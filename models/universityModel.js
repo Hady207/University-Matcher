@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-
+const slugify = require('slugify');
 const uniSchema = new mongoose.Schema(
   {
     name: {
@@ -38,10 +38,32 @@ const uniSchema = new mongoose.Schema(
       max: [5, 'Rating must be below 5.0'],
       set: val => Math.round(val * 10) / 10 // 4.666666, 46.66666, 47, 4.7
     },
-    location: String
+    location: {
+      type: {
+        type: String,
+        default: 'Point',
+        enum: ['Point']
+      },
+      coordinates: [Number],
+      address: String,
+      description: String
+    }
   },
-  { timestamps: true }
+  { timestamps: true, toJSON: { virtuals: true }, toObject: { virtuals: true } }
 );
 
-const University = mongoose.model('University', uniSchema);
-module.exports = University;
+uniSchema.index({ slug: 1 });
+
+// VIRTUAL POPULATE
+uniSchema.virtual('reviews', {
+  ref: 'Review',
+  foreignField: 'university', //name of the field in the other model
+  localField: '_id'
+});
+
+uniSchema.pre('save', function(next) {
+  this.slug = slugify(this.name, { lower: true });
+  next();
+});
+
+module.exports = mongoose.model('University', uniSchema);

@@ -1,6 +1,9 @@
 const express = require('express');
 const universityController = require('../controller/universityController');
+const reviewRouter = require('../routes/reviewRoute');
 const router = express.Router();
+
+router.use('/:uniId/review', reviewRouter);
 
 router
   .route('/')

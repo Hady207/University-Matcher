@@ -1,12 +1,13 @@
-const catchAsync = require("../utils/catchAsync");
-const AppError = require("../utils/catchAsync");
-const APIFeatures = require("../utils/apiFeatures");
+const catchAsync = require('../utils/catchAsync');
+const AppError = require('../utils/appError');
+const APIFeatures = require('../utils/apiFeatures');
 
 exports.getAll = Model =>
   catchAsync(async (req, res, next) => {
+    // To allow for nested Get reviews on tour (hack)
     let filter = {};
-    if (req.params.Id) {
-      filter = { university: req.params.universityId };
+    if (req.params.uniId) {
+      filter = { university: req.params.uniId };
     }
     const features = new APIFeatures(Model.find(filter), req.query)
       .filter()
@@ -16,11 +17,11 @@ exports.getAll = Model =>
     const doc = await features.query;
 
     res.status(200).json({
-      status: "success",
+      status: 'success',
       result: doc.length,
       data: {
-        data: doc,
-      },
+        data: doc
+      }
     });
   });
 
@@ -33,14 +34,14 @@ exports.getOne = (Model, popOptions) =>
     const doc = await query;
 
     if (!doc) {
-      return next(new AppError("No document found with that ID", 404));
+      return next(new AppError('No document found with that ID', 404));
     }
 
     res.status(200).json({
-      status: "success",
+      status: 'success',
       data: {
-        data: doc,
-      },
+        data: doc
+      }
     });
   });
 
@@ -49,10 +50,10 @@ exports.createOne = Model =>
     const doc = await Model.create(req.body);
 
     res.status(201).json({
-      status: "success",
+      status: 'success',
       data: {
-        data: doc,
-      },
+        data: doc
+      }
     });
   });
 
@@ -60,16 +61,16 @@ exports.updateOne = Model =>
   catchAsync(async (req, res, next) => {
     const doc = await Model.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
-      runValidators: true,
+      runValidators: true
     });
     if (!doc) {
-      return next(new AppError("No document found with that ID", 404));
+      return next(new AppError('No document found with that ID', 404));
     }
     res.status(200).json({
-      status: "success",
+      status: 'success',
       data: {
-        data: doc,
-      },
+        data: doc
+      }
     });
   });
 
@@ -77,11 +78,11 @@ exports.deleteOne = Model =>
   catchAsync(async (req, res, next) => {
     const doc = await Model.findByIdAndDelete(req.params.id);
     if (!doc) {
-      return next(new AppError("No document found with that ID", 404));
+      return next(new AppError('No document found with that ID', 404));
     }
     res.status(204).json({
-      status: "success",
-      message: "Data has been deleted",
-      data: null,
+      status: 'success',
+      message: 'Data has been deleted',
+      data: null
     });
   });

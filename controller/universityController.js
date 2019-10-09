@@ -1,10 +1,10 @@
-const factory = require("./handlerFactory");
-const University = require("../models/universityModel");
-const appError = require("../utils/appError");
-const catchAsync = require("../utils/catchAsync");
+const factory = require('./handlerFactory');
+const University = require('../models/universityModel');
+const appError = require('../utils/appError');
+const catchAsync = require('../utils/catchAsync');
 
 exports.getAllUni = factory.getAll(University);
-exports.getUni = factory.getOne(University, { path: "reviews" });
+exports.getUni = factory.getOne(University, { path: 'reviews' });
 exports.createUni = factory.createOne(University);
 exports.updateUni = factory.updateOne(University);
 exports.deleteUni = factory.deleteOne(University);
