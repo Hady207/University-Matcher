@@ -24,4 +24,9 @@ router
   .patch(userController.updateUser)
   .delete(userController.deleteUser);
 
+router.route('/:id/follow').post(authController.protect, userController.follow);
+router
+  .route('/:id/unfollow')
+  .post(authController.protect, userController.unfollow);
+
 module.exports = router;

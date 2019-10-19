@@ -27,7 +27,7 @@ exports.updateMe = catchAsync(async (req, res, next) => {
     );
   }
   // 2) Filtered out unwanted fields names that are not allowed to be unwanted
-  const Filtered = filteredObj(req.body, 'name', 'email');
+  const filtered = filteredObj(req.body, 'name', 'email');
   if (req.file) filtered.photo = req.file.filename;
 
   // 3) Update user document
@@ -39,6 +39,39 @@ exports.updateMe = catchAsync(async (req, res, next) => {
     status: 'success',
     data: {
       user: updatedUser
+    }
+  });
+});
+
+exports.follow = catchAsync(async (req, res, next) => {
+  const user = await User.findById(req.user.id);
+  const friend = await User.findById(req.params.id);
+  console.log('me', user);
+  console.log('you', friend);
+  if (!user) {
+    return next(new AppError('no user with given id', 400));
+  }
+  user.follow(req.params.id);
+  res.status(200).json({
+    status: 'success',
+    message: `you followed this user ${friend.name}`,
+    data: {
+      user
+    }
+  });
+});
+
+exports.unfollow = catchAsync(async (req, res, next) => {
+  const user = await User.findById(req.user.id);
+  if (!user) {
+    return next(new AppError('no user with given id', 400));
+  }
+  user.unfollow(req.params.id);
+  res.status(200).json({
+    status: 'success',
+    message: `you unfollowed this user`,
+    data: {
+      user
     }
   });
 });

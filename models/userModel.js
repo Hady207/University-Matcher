@@ -16,6 +16,12 @@ const userSchema = new mongoose.Schema({
     validator: [validator.isEmail, `Please provide a valid email`]
   },
   photo: { type: String, default: 'default.jpg' },
+  following: [
+    {
+      type: mongoose.Schema.ObjectId,
+      ref: 'User'
+    }
+  ],
   role: {
     type: String,
     enum: ['student', 'admin'],
@@ -65,7 +71,32 @@ userSchema.pre('save', async function(next) {
   next();
 });
 
+userSchema.pre(/^find/, async function(next) {
+  this.populate({
+    path: 'following',
+    select: '-following '
+  });
+  return next();
+});
+
 // instances method
+
+userSchema.methods.follow = function(id) {
+  if (this.following.indexOf(id) === -1) {
+    this.following.push(id);
+  }
+  return this.save({ validateBeforeSave: false });
+};
+userSchema.methods.unfollow = function(id) {
+  this.following.remove(id);
+  return this.save({ validateBeforeSave: false });
+};
+
+userSchema.methods.isFollowing = function(id) {
+  return this.following.some(function(followId) {
+    return followId.toString() === id.toString();
+  });
+};
 
 userSchema.methods.correctPassword = async function(
   bodyPassword,
