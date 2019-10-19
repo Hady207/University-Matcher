@@ -4,7 +4,6 @@ const Review = require('../models/reviewModel');
 exports.setUniUserId = (req, res, next) => {
   req.body.user = req.user.id;
   req.body.university = req.params.uniId;
-  console.log(req.body);
   next();
 };
 
