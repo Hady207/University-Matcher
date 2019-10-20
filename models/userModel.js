@@ -22,6 +22,12 @@ const userSchema = new mongoose.Schema({
       ref: 'User'
     }
   ],
+  followers: [
+    {
+      type: mongoose.Schema.ObjectId,
+      ref: 'User'
+    }
+  ],
   role: {
     type: String,
     enum: ['student', 'admin'],
@@ -73,9 +79,10 @@ userSchema.pre('save', async function(next) {
 
 userSchema.pre(/^find/, async function(next) {
   this.populate({
-    path: 'following',
-    select: '-following '
+    path: 'following followers',
+    select: '-following -followers'
   });
+
   return next();
 });
 

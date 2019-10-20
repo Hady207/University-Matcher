@@ -45,13 +45,22 @@ exports.updateMe = catchAsync(async (req, res, next) => {
 
 exports.follow = catchAsync(async (req, res, next) => {
   const user = await User.findById(req.user.id);
-  const friend = await User.findById(req.params.id);
+  // const friend = await User.findById(req.params.id);
   console.log('me', user);
-  console.log('you', friend);
+  // console.log('you', friend);
   if (!user) {
     return next(new AppError('no user with given id', 400));
   }
   user.follow(req.params.id);
+
+  // console.log(friend.followers);
+  // friend.followers.push(user._id);
+  // console.log(friend.followers);
+  // friend.save({ validateBeforeSave: false });
+  const friend = await User.findByIdAndUpdate(req.params.id, {
+    $push: { followers: req.user.id }
+  });
+  console.log(friend);
   res.status(200).json({
     status: 'success',
     message: `you followed this user ${friend.name}`,
@@ -61,15 +70,23 @@ exports.follow = catchAsync(async (req, res, next) => {
   });
 });
 
+// 96f359d51a6fee0a5dd2f5e77e4a921c16be2a5a
+
 exports.unfollow = catchAsync(async (req, res, next) => {
   const user = await User.findById(req.user.id);
+
   if (!user) {
     return next(new AppError('no user with given id', 400));
   }
   user.unfollow(req.params.id);
+  const friend = await User.findByIdAndUpdate(req.params.id, {
+    $pull: { followers: req.user.id }
+  });
+  // friend.followers.pop(user._id);
+  // friend.save({ validateBeforeSave: false });
   res.status(200).json({
     status: 'success',
-    message: `you unfollowed this user`,
+    message: `you unfollowed this ${friend.name}`,
     data: {
       user
     }
