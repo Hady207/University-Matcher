@@ -49,6 +49,10 @@ const userSchema = new mongoose.Schema({
       message: `Passwords are not the same`
     }
   },
+  programs: [
+    { type: String, enum: ['diploma', 'bachelore', 'masters', 'phd'] }
+  ],
+  courses: [String],
   passwordChangedAt: Date,
   passwordRestToken: String,
   passwrodResetExpires: Date,

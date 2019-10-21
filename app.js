@@ -1,6 +1,7 @@
 const express = require('express');
 const cookieParser = require('cookie-parser');
 const morgan = require('morgan');
+const path = require('path');
 
 const globalErrorHandler = require('./controller/errorController');
 const AppError = require('./utils/appError');
@@ -10,6 +11,11 @@ const userRoute = require('./routes/userRoute');
 const postsRoute = require('./routes/postsRoute');
 
 const app = express();
+
+// Serving static files
+app.set('view engine', 'pug');
+app.set('views', path.join(__dirname, 'views'));
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(morgan('dev'));
 app.use(express.json({ limit: '10kb' }));

@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Montserrat:400,500,600i,700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="./css/style.css" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <header>
+      <nav class="nav__fixed " style="display: block;">
+        <ul class="nav__items">
+          <li class="nav__elements "><a href="#" class="">Home</a></li>
+          <li class="nav__elements"><a href="#">Universities</a></li>
+          <li class="nav__elements active"><a href="#">campus</a></li>
+          <!-- <li class="nav__elements"><a href="#">chatbot</a></li> -->
+          <div></div>
+          <div class="fix__login">
+            <li class="nav__elements">
+              <a href="#" class="button button-signup">Sign Up</a>
+            </li>
+            <li class="nav__elements">
+              <a href="#" class="button button-login">Login</a>
+            </li>
+          </div>
+        </ul>
+      </nav>
+    </header>
+    <section class="campus">
+      <div class="campus__grid">
+        <!-- left of the page -->
+        <div class="campus__grid--left">
+          <div class="flexing">
+            <div class="user__image">
+              <img src="./img/aarav.jpg" alt="" class="user__photo" />
+            </div>
+            <h3 class="user__name">Hadi Maher</h3>
+          </div>
+          <div class="user__information">
+            <div class="user__info">
+              <p>Reviews</p>
+              <span>23</span>
+            </div>
+            <div class="user__info">
+              <p>Followers</p>
+              <span>27</span>
+            </div>
+          </div>
+        </div>
+        <!-- Center of the page -->
+        <div class="campus__grid--center">
+          <form class="campus__form" action="/" method="POST">
+            <textarea
+              name=""
+              id=""
+              placeholder="Write whats on your mind"
+              cols="30"
+              rows="10"
+              style="padding: 1rem;
+              margin-top: -1rem;
+              border-radius: 7px;
+              resize: none;"
+            ></textarea>
+            <!-- <button
+              class="btn btn-success btn-block btn-lg"
+              style="text-transform: uppercase;
+            font-size: 1.6rem;"
+              type="submit"
+            >
+              Post
+            </button> -->
+            <button
+              type="submit"
+              style="border-radius: 7px;"
+              class="button button--details button--review"
+            >
+              Post
+            </button>
+          </form>
+          <hr />
+          <!-- Campus card start here -->
+          <div class="campus__card">
+            <div class="campus__image">
+              <img src="./img/leo.jpg" alt="" class="campus__user" />
+            </div>
+            <div class="campus__info">
+              <h3 class="campus__username">Hadi Maher</h3>
+              <p class="campus__post">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Officiis ipsam error illum perferendis.
+              </p>
+              <div class="campus__buttons">
+                <button class="button button--like " id="likeButton">
+                  <div>
+                    <span>12</span>
+                    Like <ion-icon name="thumbs-up"></ion-icon>
+                  </div>
+                </button>
+                <button class="button  button--dislike" id="dislikeButton">
+                  Like <ion-icon name="thumbs-down"></ion-icon>
+                </button>
+                <button class="button button--comment" id="commentButton">
+                  <span>15</span>
+                  Comment <ion-icon name="chatbubbles"></ion-icon>
+                </button>
+              </div>
+              <div class="commentSection" id="commentSection">
+                <div class="commentList">
+                  <div class="comment_info">
+                    <div class="userphoto">
+                      <img src="./img/monica.jpg" class="commentPhoto" alt="" />
+                    </div>
+                    <h6>Hadi Maher</h6>
+                  </div>
+                  <div class="comment">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Sunt, ullam exercitationem nesciunt consequatur fugit
+                    aliquid.
+                  </div>
+                </div>
+
+                <!-- second Comment -->
+                <div class="commentList">
+                  <div class="comment_info">
+                    <div class="userphoto">
+                      <img src="./img/monica.jpg" class="commentPhoto" alt="" />
+                    </div>
+                    <h6>Hadi Maher</h6>
+                  </div>
+                  <div class="comment">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Sunt, ullam exercitationem nesciunt consequatur fugit
+                    aliquid.
+                  </div>
+                </div>
+                <form action="" class="comment__form" method="post">
+                  <input type="text" />
+                </form>
+              </div>
+            </div>
+          </div>
+          <!-- End Here -->
+          <div class="campus__card">
+            <div class="campus__image">
+              <img src="./img/leo.jpg" alt="" class="campus__user" />
+            </div>
+            <div class="campus__info">
+              <h3 class="campus__username">Hadi Maher</h3>
+              <p class="campus__post">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Officiis ipsam error illum perferendis.
+              </p>
+              <div class="campus__buttons">
+                <button class="button button--like">
+                  Like <ion-icon name="thumbs-up"></ion-icon>
+                </button>
+                <button class="button button--comment">
+                  Comment <ion-icon name="chatbubbles"></ion-icon>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- right of the page -->
+        <div class="campus__grid--right">
+          <div class="collapse" id="collapseExample">
+            <iframe
+              allow="microphone;"
+              width="300"
+              height="430"
+              src="https://console.dialogflow.com/api-client/demo/embedded/581d5614-e3e0-4308-a131-f77463997262"
+            >
+            </iframe>
+          </div>
+          <button
+            class="btn btn-primary btn-lg btn-block"
+            type="button"
+            style="text-transform: uppercase;
+            font-size: 1.6rem;"
+            data-toggle="collapse"
+            data-target="#collapseExample"
+            aria-expanded="false"
+            aria-controls="collapseExample"
+          >
+            Chatbot
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <h2 class="footer__title">
+        chatbot Master
+      </h2>
+      <span>All right reserved</span>
+    </footer>
+    <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
+    <script src="./js/commentSection.js"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

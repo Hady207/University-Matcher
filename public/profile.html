@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!DOCTYPE html>
+    <html lang="en">
+      <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+        <link rel="stylesheet" href="./css/style.css" />
+        <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
+
+        <title>Document</title>
+      </head>
+      <body class="dashboard__body">
+        <nav class="nav__fixed " style="display: block;">
+          <ul class="nav__items">
+            <li class="nav__elements "><a href="#" class="">Home</a></li>
+            <li class="nav__elements"><a href="#">Universities</a></li>
+            <li class="nav__elements"><a href="#">campus</a></li>
+            <!-- <li class="nav__elements"><a href="#">chatbot</a></li> -->
+            <div></div>
+            <div class="fix__login">
+              <li class="nav__elements">
+                <a href="#" class="button button-signup">Sign Up</a>
+              </li>
+              <li class="nav__elements">
+                <a href="#" class="button button-login">Login</a>
+              </li>
+            </div>
+          </ul>
+        </nav>
+
+        <div class="container__dashboard">
+          <header class="user__nav__header">
+            <img src="" alt="" />
+            <form action="" method="get" class="search">
+              <input
+                type="text"
+                class="search__input"
+                placeholder="Search"
+                name=""
+                id=""
+              />
+              <button type="submit" class="search__button">
+                <ion-icon name="search"></ion-icon>
+              </button>
+            </form>
+            <nav class="user__nav">
+              <div class="user__icon--box">
+                <ion-icon name="bookmark"></ion-icon>
+                <span class="user__nav--notification">7</span>
+              </div>
+
+              <div class="user__icon--box">
+                <ion-icon name="chatboxes"></ion-icon>
+                <span class="user__nav--notification">13</span>
+              </div>
+
+              <div class="user">
+                <img src="/img/aarav.jpg" class="user__profile" alt="" />
+                <span class="user__name">Hadi Maher</span>
+              </div>
+            </nav>
+          </header>
+          <div class="content">
+            <nav class="side__nav">
+              <ul class="side-nav">
+                <li
+                  id="menu_univeristy"
+                  class="side-nav__item side-nav__item--active"
+                >
+                  <a href="#" id="universities" class="side-nav__link">
+                    <ion-icon name="school"></ion-icon>
+                    <span>Universities</span>
+                  </a>
+                </li>
+                <li id="menu_review" class="side-nav__item">
+                  <a href="#" id="reviews" class="side-nav__link">
+                    <ion-icon name="paper"></ion-icon>
+                    <span>Reviews</span>
+                  </a>
+                </li>
+                <li id="menu_user" class="side-nav__item">
+                  <a href="#" id="users" class="side-nav__link">
+                    <ion-icon name="contacts"></ion-icon>
+                    <span>Profile Setting</span>
+                  </a>
+                </li>
+                <!-- <li class="side-nav__item"><a href="#" class="side-nav__link">Users</a></li> -->
+              </ul>
+              <div class="legal">&copy; 2020 All rights reserved</div>
+            </nav>
+            <!-- universities main -->
+            <main class="dashboard__universitiesview" id="universities__main">
+              <div class="dashboard__container">
+                <ul class="dashboard__ul">
+                  <li class="dashboard__li">
+                    <div class="user__main__list">
+                      <img
+                        src="/img/university-1.jpg"
+                        class="user__profile"
+                        alt=""
+                      />
+                    </div>
+                    <h2 class="user__name">The Arab Open University</h2>
+                    <div class="detail__button__div">
+                      <a href="#" class="b1 b1__edit b1__delete--sm">Details</a>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </main>
+
+            <!-- university main -->
+            <main class="dashboard-view" id="university__main">
+              <div class="gallery">
+                <figure class="gallery__item">
+                  <img
+                    src="./img/university-1.jpg"
+                    alt=""
+                    class="gallery__photo"
+                  />
+                </figure>
+                <figure class="gallery__item">
+                  <img
+                    src="./img/univeristy-2.jpg"
+                    alt=""
+                    class="gallery__photo"
+                  />
+                </figure>
+                <figure class="gallery__item">
+                  <img
+                    src="./img/university-3.jpg"
+                    alt=""
+                    class="gallery__photo"
+                  />
+                </figure>
+              </div>
+
+              <div class="overview">
+                <h1 class="overview__heading">University Name</h1>
+                <div class="overview__stars">
+                  <ion-icon name="star"></ion-icon>
+                  <ion-icon name="star"></ion-icon>
+                  <ion-icon name="star"></ion-icon>
+                  <ion-icon name="star"></ion-icon>
+                  <ion-icon name="star"></ion-icon>
+                </div>
+                <div class="overview__location">
+                  <ion-icon name="pin"></ion-icon>
+                  kuwait kuwait
+                </div>
+                <div class="overview__rating">
+                  <div class="overview__rating-average">8.6</div>
+                  <div class="overview__rating-count">429 votes</div>
+                </div>
+              </div>
+
+              <div class="details">
+                <div class="description">
+                  <p class="paragraph">
+                    Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                    Repellat aperiam quibusdam harum obcaecati adipisci eius
+                    nulla quia eveniet asperiores?
+                  </p>
+                  <p class="paragraph">
+                    Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                    Repellat aperiam quibusdam harum obcaecati adipisci eius
+                    nulla quia eveniet asperiores?
+                  </p>
+
+                  <ul class="list">
+                    <li class="list__item">Close to the beach</li>
+                    <li class="list__item">Breakfast included</li>
+                    <li class="list__item">Free airport shuttle</li>
+                    <li class="list__item">Free wifi in all rooms</li>
+                    <li class="list__item">Air conditioning and heating</li>
+                    <li class="list__item">Pets allowed</li>
+                    <li class="list__item">We speak all languages</li>
+                    <li class="list__item">Perfect for families</li>
+                  </ul>
+                  <div class="details__reviews">
+                    <p class="paragraphs">
+                      Number of reviews in this university
+                    </p>
+                    <span class="number">456</span>
+                  </div>
+                </div>
+                <div class="dashboard__reviews">
+                  <figure class="review">
+                    <blockquote class="review__text">
+                      Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                      Fuga doloremque architecto dicta animi, totam, itaque
+                      officia ex.
+                    </blockquote>
+                    <figcaption class="review__user">
+                      <img
+                        src="img/aarav.jpg"
+                        alt="User 1"
+                        class="review__photo"
+                      />
+                      <div class="review__user-box">
+                        <p class="review__user-name">Nick Smith</p>
+                        <p class="review__user-date">Feb 23rd, 2018</p>
+                      </div>
+                      <div class="review__rating">7.8</div>
+                    </figcaption>
+                  </figure>
+
+                  <figure class="review">
+                    <blockquote class="review__text">
+                      Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                      Fuga doloremque architecto dicta animi.
+                    </blockquote>
+                    <figcaption class="review__user">
+                      <img
+                        src="img/leo.jpg"
+                        alt="User 2"
+                        class="review__photo"
+                      />
+                      <div class="review__user-box">
+                        <p class="review__user-name">Mary Thomas</p>
+                        <p class="review__user-date">june 23rd, 2019</p>
+                      </div>
+                      <div class="review__rating">9.3</div>
+                    </figcaption>
+                  </figure>
+                </div>
+              </div>
+              <div class="cta">
+                <h2 class="cta__title">Edit or delete the university</h2>
+                <button class="b1 b1__edit" id="edit_button">
+                  <span class="b1__visible">Edit</span>
+                  <span class="b1__invisible">The AOU</span>
+                </button>
+
+                <button class="b1 b1__delete" id="delete_button">
+                  <span class="b1__visible">Delete</span>
+                  <span class="b1__invisible">The AOU</span>
+                </button>
+              </div>
+            </main>
+            <!-- Edit form start here -->
+            <div class="edit__modal" id="edit__modal">
+              <div class="info-x">
+                <a class="symbol-x" id="edit_button" href="">&#10008;</a>
+              </div>
+              <form action="post" class="form__edit">
+                <div class="modal__card">
+                  <div class="form__group">
+                    <label for="name">University Name:</label>
+                    <input id="name" name="name" type="text" />
+                  </div>
+
+                  <div class="form__group">
+                    <label for="abbrv"> abbreviation:</label>
+                    <input id="abbrv" name="abbrv" type="text" />
+                  </div>
+
+                  <div class="form__group">
+                    <label for="email">email:</label>
+                    <input id="email" name="email" type="email" />
+                  </div>
+
+                  <div class="form__group">
+                    <label for="website">website:</label>
+                    <input id="website" name="website" type="text" />
+                  </div>
+
+                  <div class="form__group">
+                    <label for="address">address:</label>
+                    <input id="address" name="address" type="text" />
+                  </div>
+
+                  <div class="form__group">
+                    <label for="desc">description:</label>
+                    <textarea
+                      name="description"
+                      id="desc"
+                      cols="30"
+                      rows="10"
+                    ></textarea>
+                  </div>
+                </div>
+                <button class="b1  b1__edit--sm" style="margin-top: 2rem;">
+                  Submit
+                </button>
+              </form>
+            </div>
+            <!-- Edit form ends here -->
+            <!-- review main -->
+            <main class="dashboard__reviewview" id="review__main">
+              <div class="dashboard__reviews">
+                <figure class="review">
+                  <div class="review__box">
+                    <h3 class="reviewview__title">review for university</h3>
+                    <a href="#" class="b1 b1__delete--sm">Delete</a>
+                  </div>
+                  <blockquote class="review__text">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                    Fuga doloremque architecto dicta animi, totam, itaque
+                    officia ex.
+                  </blockquote>
+                  <figcaption class="review__user">
+                    <img
+                      src="img/aarav.jpg"
+                      alt="User 1"
+                      class="review__photo"
+                    />
+                    <div class="review__user-box">
+                      <p class="review__user-name">Nick Smith</p>
+                      <p class="review__user-date">Feb 23rd, 2018</p>
+                    </div>
+                    <div class="review__rating">7.8</div>
+                  </figcaption>
+                </figure>
+
+                <figure class="review">
+                  <div class="review__box">
+                    <h3 class="reviewview__title">review for university</h3>
+                    <a href="#" class="b1 b1__delete--sm">Delete</a>
+                  </div>
+                  <blockquote class="review__text">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                    Fuga doloremque architecto dicta animi, totam, itaque
+                    officia ex.
+                  </blockquote>
+                  <figcaption class="review__user">
+                    <img
+                      src="img/aarav.jpg"
+                      alt="User 1"
+                      class="review__photo"
+                    />
+                    <div class="review__user-box">
+                      <p class="review__user-name">Nick Smith</p>
+                      <p class="review__user-date">Feb 23rd, 2018</p>
+                    </div>
+                    <div class="review__rating">7.8</div>
+                  </figcaption>
+                </figure>
+                <figure class="review">
+                  <div class="review__box">
+                    <h3 class="reviewview__title">review for university</h3>
+                    <a href="#" class="b1 b1__delete--sm">Delete</a>
+                  </div>
+                  <blockquote class="review__text">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                    Fuga doloremque architecto dicta animi, totam, itaque
+                    officia ex.
+                  </blockquote>
+                  <figcaption class="review__user">
+                    <img
+                      src="img/aarav.jpg"
+                      alt="User 1"
+                      class="review__photo"
+                    />
+                    <div class="review__user-box">
+                      <p class="review__user-name">Nick Smith</p>
+                      <p class="review__user-date">Feb 23rd, 2018</p>
+                    </div>
+                    <div class="review__rating">7.8</div>
+                  </figcaption>
+                </figure>
+              </div>
+            </main>
+
+            <!-- User Main -->
+            <main class="dashboard__userview" id="user__main">
+              <div class="dashboard__container dashboard__container--settings">
+                <form action="#" method="post">
+                  <div class="form__group__2">
+                    <label class="form__label" for="name">Your name</label>
+                    <input
+                      class="form__input"
+                      id="name"
+                      type="text"
+                      placeholder=""
+                      required
+                    />
+                  </div>
+                  <div class="form__group__2">
+                    <label class="form__label" for="email">email</label>
+                    <input
+                      class="form__input"
+                      id="email"
+                      type="email"
+                      placeholder="you@example.com"
+                      required
+                    />
+                  </div>
+                  <div class="form__group__2 mB">
+                    <label class="form__label" for="password">Password</label>
+                    <input
+                      class="form__input"
+                      id="password"
+                      type="password"
+                      placeholder="••••••••"
+                      required
+                    />
+                  </div>
+                  <div class="form__group__2 mB">
+                    <label class="form__label" for="passwordconfirm"
+                      >Confirm Password
+                    </label>
+                    <input
+                      class="form__input"
+                      id="passwordconfirm"
+                      type="passwordConfirm"
+                      placeholder="••••••••"
+                      required
+                    />
+                  </div>
+
+                  <div class="form__group__2 mB">
+                    <h4 class="form__label">Interested In</h4>
+                    <div class="flexxx">
+                      <div
+                        id="program"
+                        class="custom-select"
+                        style="width:200px;"
+                      >
+                        <select>
+                          <option value="0">Select a degree:</option>
+                          <option value="diploma">Diploma</option>
+                          <option value="bachlore">Bachlore</option>
+                          <option value="master">Master</option>
+                        </select>
+                      </div>
+                      <div
+                        id="program"
+                        class="custom-select"
+                        style="width:200px;"
+                      >
+                        <select>
+                          <option value="0">Select a major:</option>
+                          <option value="ITC">Information Technology</option>
+                          <option value="business">Business</option>
+                          <option value="english">English literature</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="form__group__2 mB center__me">
+                    <button class="button button--details">Submit</button>
+                  </div>
+                </form>
+              </div>
+            </main>
+          </div>
+        </div>
+        <script src="./js/dashboard.js"></script>
+      </body>
+    </html>
+  </body>
+</html>
