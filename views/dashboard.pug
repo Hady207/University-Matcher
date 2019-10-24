@@ -1,0 +1,50 @@
+extend base
+
+
+
+block content
+    body.dashboard__body
+        .container__dashboard
+            header.user__nav__header
+                img.logo(src="./img/icons/logo_transparent.png")
+
+                form.search(action="", method="get")
+                    input.search__input(type="search",placeholder="Search")
+                    button.search__button(type="submit")
+                        ion-icon(name="search")
+
+                nav.user__nav
+                    .user__icon--box(id="bookmark")
+                        ion-icon(name="bookmark") 
+                        span.user__nav--notification 7
+
+                    .user__icon--box(id="notification")
+                        ion-icon(name="chatboxes") 
+                        span.user__nav--notification 7
+
+                    .user
+                        img.user__profile(src="./img/leo.jpg")
+                        span.user__name Hadi Maher
+
+            .dashboard__dropdown.dashboard__dropdown--notification(id="notificationDrop" style="z-index:1000;")
+                .list
+                    h3.list__item Hello
+                    h3.list__item Hello
+                    h3.list__item Hello
+                    h3.list__item Hello
+            
+            .dashboard__dropdown.dashboard__dropdown--bookmarks(id="bookmarksDrop" style="z-index:1000;")
+                .list
+                    h3.list__item Hello
+                    h3.list__item Hello
+                    h3.list__item Hello
+                    h3.list__item Hello
+            
+
+            if user
+
+                include _admin
+            
+            else 
+
+                include _admin

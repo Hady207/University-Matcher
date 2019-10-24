@@ -1,0 +1,177 @@
+
+
+mixin universitiesLis(img,name,uniId)
+    li.dashboard__li
+        .user__main__list
+            img.user__profile(src="/img/university-1.jpg")
+        
+        h2.user__name=name
+        .detail__button__div
+            a.b1.b1__edit.b1__delete--sm(id="details__button") Details
+
+
+mixin reviewCard(review,img,name,createdAt,rating)
+    figure.review
+        blockquote.review__text=review
+        figcaption.review__user
+            img.review__photo(src=`img/${img}.jpg`)
+            .review__user-box
+                p.review__user-name=name
+                p.review__user-date=createdAt
+            .review__raitng=rating
+
+mixin reviewsLis(uniId,title,review,img,name,createdAt,rating)
+    figure.review
+        .review__box
+            h3.reviewview__title=title
+            a.b1.b1__delete--sm(href="") Delete
+
+        blockquote.review__text=review
+        figcaption.review__user
+            img.review__photo(src=`img/${img}.jpg`)
+            .review__user-box
+                p.review__user-name=name
+                p.review__user-date=createdAt
+            .review__rating=rating
+
+
+mixin userLis(img,name,userId)
+    li.dashboard__li
+        .user__main__list
+            img.user__profile(src=`/img/${img}.jpg`)
+        
+        h2.user__name=name
+        .detail__button__div
+            a.b1.b1__delete--sm(href=`/${userId}`) Details
+
+
+
+
+  
+         
+.content
+    nav.side__nav
+        ul.side-nav
+            li.side-nav__item.side-nav__item--active(id="menu_university")
+                a.side-nav__link(id="universities" href="#")
+                    ion-icon(name="school")
+                    span Universities
+            
+            li.side-nav__item(id="menu_review")
+                a.side-nav__link(id="reviews" href="#")
+                    ion-icon(name="paper")
+                    span Reviews
+
+            li.side-nav__item(id="menu_user")
+                a.side-nav__link(id="users" href="#")
+                    ion-icon(name="contacts")
+                    span Users
+        
+        .legal &copy; 2020 All rights reserved
+    
+    main.dashboard__universitiesview(id="universities__main" style="display:block;")
+        .dashboard__container
+            ul.dashboard__ul
+                +universitiesLis()
+            
+            
+    main.dashboard-view(id="university__main" style="display:none;")
+        .gallery
+            figure.gallery__item
+                img.gallery__photo(src="./img/university-1.jpg")
+            figure.gallery__item
+                img.gallery__photo(src="./img/university-2.jpg")
+            figure.gallery__item
+                img.gallery__photo(src="./img/university-3.jpg")
+                
+        .overview
+            h1.overview__heading University Name
+            .overview__stars
+                ion-icon(name="star")
+            .overview__location
+                ion-icon(name="pin")
+                | kuwait kuwait
+            .overview__rating
+                .overview__rating--average 8.6
+                .overview__rating--count 429 votes
+                
+        .details
+            .description
+                p.paragraph Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi deserunt exercitationem, impedit veniam explicabo aliquam suscipit, repellat neque vitae incidunt qui accusamus cupiditate, quis veritatis aliquid corrupti dignissimos laboriosam fugiat.
+                p.paragraph Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe aliquam, culpa dignissimos nam tempore praesentium dolor sunt repudiandae odit assumenda, dolorem ipsa, sapiente unde laudantium mollitia modi ipsum distinctio delectus.
+
+                ul.list
+                    li.list__item Close to the beach
+                    li.list__item Close to the beach
+                    li.list__item Close to the beach
+                    li.list__item Close to the beach
+                    li.list__item Close to the beach
+                    li.list__item Close to the beach
+                    li.list__item Close to the beach
+                    li.list__item Close to the beach
+                    
+                .details__reviews
+                    p.paragraphs Number of reviews in this university
+                    span.number 456
+                    
+            .dashboard__reviews
+                +reviewCard("loremloreoreolroerloreloeroreo","leo","leo","23/3/2019","4.5")
+                    
+
+        .cta
+            h2.cta__title Edit or Delete the University
+            button.b1.b1__edit(id="edit_button")
+                span.b1__visible Edit
+                span.b1__invisible The AOU
+
+            button.b1.b1__delete(id="delete_button")
+                span.b1__visible Delete
+                span.b1__invisible The AOU        
+
+
+    .edit__modal(id="edit__modal")
+        .info-x
+            a.symbol-x(id="exit" href="#") &#10008;
+        
+        form.form__edit(action="", method="post")
+            .modal__card
+                .form__group
+                    label.form__label(for="name") University Name:
+                    input.form__input(id="name",name="name",type="text")
+
+                .form__group
+                    label.form__label(for="abbrv") abbreviation:
+                    input.form__input(id="abbrv",name="abbrv",type="text")
+
+                .form__group
+                    label.form__label(for="email") email:
+                    input.form__input(id="email",name="email",type="email")
+                
+                .form__group
+                    label.form__label(for="website") website:
+                    input.form__input(id="website",name="website",type="text")
+                
+                .form__group
+                    label.form__label(for="address") address:
+                    input.form__input(id="address",name="address",type="text")
+                
+                .form__group
+                    label.form__label(for="desc") description:
+                    textarea(id="desc",name="description",cols="30",rows="10")
+
+            button.b1.b1__edit--sm(style="margin-top: 2rem;") Submit   
+            
+    main.dashboard__reviewview(id="review__main")
+        .dashboard__reviews
+            +reviewsLis("welqowe","Taats weird","loerlorelore","aarav","aarav","23/43/2012","7.8")
+            
+
+    main.dashboard__userview(id="user__main")
+        .dashboard__container
+            ul.dashboard__ul
+                +userLis('aarav','John','122o102o0')
+              
+                            
+
+block scripts
+    script(src="./js/dashboard.js")

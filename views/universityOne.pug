@@ -1,0 +1,123 @@
+extend base
+
+
+
+mixin reviewCard(img,name,description,rating)
+    -var star = `ion-icon(name="star-outline")`
+    -var inactiveStar = `ion-icon.inactive(name="star-outline")`
+    .reviews__card
+        .reviews__avatar
+            img.reviews__avatar--img(src=`/img/${img}.jpg`)
+            h6.review__user=name
+
+        p.review__text=description
+
+        .review__rating
+            ion-icon(name="star-outline")
+            ion-icon.inactive(name="star-outline")
+
+block head
+    link(
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+      rel="stylesheet"
+      integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+      crossorigin="anonymous")
+    
+
+
+block content
+    section.university__hero
+        .university__hero--container
+            .university__hero--overlay &nbsp;
+            img.university__hero--img(src="./img/university-1.jpg")
+
+        .university__box
+            h1.university__box--title
+                span The Arab Open University
+            .university__group
+                .university__group--detail
+                    ion-icon(name="pin") 
+                    span Location
+                .university__group--detail
+                    ion-icon(name="book") 
+                    span programs
+
+
+
+
+    section.university
+        .university__grid
+            .university__info.university__info--1
+                h3.university__info--title Information
+                .university__detail.university__detail--1
+                    ion-icon(name="book")
+                    span.span-1 Next admission period
+                    span.span-2 Spring
+
+                .university__detail.university__detail--2
+                    ion-icon(name="book")
+                    span.span-1 Next admission period
+                    span.span-2 Spring
+
+                .university__detail.university__detail--3
+                    ion-icon(name="book")
+                    span.span-1 Next admission period
+                    span.span-2 Spring
+
+                .university__detail.university__detail--4
+                    ion-icon(name="book")
+                    span.span-1 Next admission period
+                    span.span-2 Spring
+
+                .university__detail.university__detail--5
+                    ion-icon(name="book")
+                    span.span-1 Next admission period
+                    span.span-2 Spring
+
+            .university__info.university__info--2
+                h2.university__info--title About AOU 
+                p.university__paragraph Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae alias corrupti qui ipsa quam iusto quo repellendus numquam quae, suscipit excepturi neque itaque! Rem, veniam. Voluptatem excepturi quisquam laudantium earum!
+                p.university__paragraph Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae alias corrupti qui ipsa quam iusto quo repellendus numquam quae, suscipit excepturi neque itaque! Rem, veniam. Voluptatem excepturi quisquam laudantium earum!
+                p.university__paragraph Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae alias corrupti qui ipsa quam iusto quo repellendus numquam quae, suscipit excepturi neque itaque! Rem, veniam. Voluptatem excepturi quisquam laudantium earum!
+
+
+
+    section.university__gallery
+        .university__picture
+            img.university__image.university__image--1(src="./img/university-1.jpg")
+        .university__picture
+            img.university__image.university__image--2(src="./img/university-2.jpg")
+        .university__picture
+            img.university__image.university__image--3(src="./img/university-3.jpg")
+
+
+    section.university__map
+
+    section.university__reviews
+        .reviews
+            +reviewCard('leo','Hadi','lorem',3)
+
+
+
+    section.section__post
+        .write
+            h2.review--title Write your own review
+            form.review__form(action="", method="post")
+                textarea.text__box(name="", cols="30", rows="10")
+                .star__rating
+                    input.stars.stars--1(type="radio", id="star1", value="1", name="")
+                    label(for="star1")
+                    input.stars.stars--2(type="radio", id="star2", value="2", name="")
+                    label(for="star2")
+                    input.stars.stars--3(type="radio", id="star3", value="3", name="")
+                    label(for="star3")
+                    input.stars.stars--4(type="radio", id="star4", value="4", name="")
+                    label(for="star4")
+                    input.stars.stars--5(type="radio", id="star5", value="5", name="")
+                    label(for="star5")
+                button.btn.button--details.button--review.span--row(type="submit") Post your review
+
+
+
+
+

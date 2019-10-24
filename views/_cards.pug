@@ -1,0 +1,35 @@
+mixin universityCard(name,abbv,description,location,programs,students,date,price,rate)
+    .uni__card
+        .card__header
+            img.card__picture(src="./img/univeristy-2.jpg")
+            h3.card__title
+                span= abbv
+        .card__body
+            h4.card__body--title=name
+            p.card__body--paragraph=description 
+            .card__data
+                ion-icon(name="pin") 
+                span=location
+
+            .card__data
+                ion-icon(name="book") 
+                span=programs
+
+            .card__data
+                ion-icon(name="person") 
+                span=students
+
+            .card__data
+                ion-icon(name="calendar") 
+                span=date
+        .card__footer
+            p
+                span.card__footer--value KD #{price}
+                span.card__footer--text per year
+            p.card__ratings
+                span.card__footer--value=rate
+                span.card__footer--text rating (5)
+            a.button.button--details.button--card(href="#") Details
+
+
+

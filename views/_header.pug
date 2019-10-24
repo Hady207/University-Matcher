@@ -1,0 +1,78 @@
+if url
+    nav.nav__fixed(id='menu')
+        .nav__container
+            .logo
+                img.logo__img(src='./img/icons/logo_transparent.png' alt='logo')
+            ul.nav__items
+                li.nav__elements
+                    a(href="/") Home
+                li.nav__elements
+                    a(href="/") Universities
+                li.nav__elements
+                    a(href="/") Campus
+                div
+                .fix__login
+                    if user
+                        li.nav__elements
+                            a.button.button-user(href="#" id='login') ${username} 
+                                span 4
+                        li.nav__elements
+                            form(action="", method="get")
+                                a.button.button-logout(href="#") logout
+                    else
+                        li.nav__elements
+                            a.button.button-signup(href="#") Sign Up
+                        li.nav__elements
+                            a.button.button-login(href="#") login
+
+        .dropdown__profile
+            .list
+                a.list__item.list__item__link(href='#') View Profile
+                h3.list__item Hi
+                h3.list__item Hi
+
+else
+    nav.nav__fixed(id='menu' style='display:block;')
+        .nav__container
+            .logo
+                img.logo__img(src='./img/icons/logo_transparent.png' alt='logo')
+            ul.nav__items
+                li.nav__elements
+                    a(href="/") Home
+                li.nav__elements
+                    a(href="/") Universities
+                li.nav__elements
+                    a(href="/") Campus
+                div
+                .fix__login
+                    if user
+                        li.nav__elements
+                            a.button.button-user(href="#" id='login') ${username} 
+                                span 4
+                        li.nav__elements
+                            form(action="", method="get")
+                                a.button.button-logout(href="#") logout
+                    else
+                        li.nav__elements
+                            a.button.button-signup(href="#") Sign Up
+                        li.nav__elements
+                            a.button.button-login(href="#") login
+
+        .dropdown__profile
+            .list
+                a.list__item.list__item__link(href='#') View Profile
+                h3.list__item Hi
+                h3.list__item Hi
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,39 @@
+extend base
+
+block content
+    main.signup__main
+        .signup__form
+            h2.signup__title Create your account
+            form(action="#", method="post")
+                .form__group__2
+                    label.form__label(for="name") Your name
+                    input.form__input(id="name",type="text",required,placeholder)
+                .form__group__2
+                    label.form__label(for="email") email
+                    input.form__input(id="email",type="email",required,placeholder="you@example.com")
+                .form__group__2.mB
+                    label.form__label(for="password") password
+                    input.form__input(id="password",type="password",required,placeholder="••••••••")
+                .form__group__2.mB
+                    label.form__label(for="passwordconfirm") Confirm Password
+                    input.form__input(id="passwordconfirm",type="password",required,placeholder="••••••••")
+                
+                .form__group__2.mB
+                    h4.form__label Interested In
+                    .flexxx
+                        .custom-select(id='program' style="width:200px")
+                            select
+                                option(value="0") Select a degree:
+                                option(value="diploma") Diploma
+                                option(value="bachlore") Bachlore
+                                option(value="master") Master
+                        
+                        .custom-select(id='program' style="width:200px")
+                            select
+                                option(value="0") Select a major:
+                                option(value="ITC") Information Technology
+                                option(value="business") Business
+                                option(value="english") English literature
+                
+                .form__group__2.mB
+                    button.button.button--details(type="submit") Sign Up

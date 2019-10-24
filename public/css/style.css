@@ -476,8 +476,10 @@ section {
       grid-row-gap: 1rem;
       margin-top: auto; }
       .uni__card .card__footer--value {
+        margin-right: 1rem;
         font-weight: 700; }
       .uni__card .card__footer--text {
+        margin-right: 1rem;
         color: #999; }
       .uni__card .card__footer .card__ratings {
         grid-row: 2/3; }
@@ -1618,3 +1620,7 @@ section {
     display: block;
     text-align: center;
     color: white; }
+
+.addAcitveButtonStyle{
+  background-color: #eb2f64;
+}    

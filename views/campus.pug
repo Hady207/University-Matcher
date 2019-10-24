@@ -1,0 +1,109 @@
+extend base
+
+mixin commentCard(img,user,comment)
+    .commentList
+        .comment_info
+            .userphoto
+                img.commentPhoto(src=`./img/${img}.jpg`)
+            h6=user
+        .comment=comment
+
+
+mixin campusCard(postImg,postUser,postDesc,likeSize,commentSize)
+    .campus__card
+        .campus__image
+            img.campus__user(src=`./img/${postImg}.jpg`)
+
+
+        .campus__info(style="width:100%;")
+            h3.campus__username=postUser
+            p.campus__post=postDesc
+
+            .campus__buttons
+                button.button.button--like(id="likeButton")
+                    div
+                        span=likeSize
+                        |  like      
+                        ion-icon(name="thumbs-up")
+
+                //- button.button.button--dislike(id="dislikeButton")
+                //-     div
+                //-         span=likeSize
+                //-         |unlike
+                //-         ion-icon(name="thumbs-down")
+
+                button.button.button--comment(id="commentButton")
+                    
+                    span=commentSize
+                    |  Comment  
+                    ion-icon(name="chatbubbles")
+
+            .commentSection(id="commentSection")
+                +commentCard("monica","leo messi","Hello World")
+
+                form.comment__form(action="" method="")
+                    input(type="text")
+
+
+block head 
+    link(
+        rel="stylesheet"
+        href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+        crossorigin="anonymous"
+    )
+
+
+
+block content
+    section.campus
+        .campus__grid
+            .campus__grid--left
+                .flexing
+                    .user__image
+                        img.user__photo(src="./img/aarav.jpg")
+                    h3.user__name Hadi Maher
+
+                .user__information
+                    .user__info
+                        p Reviews
+                        span 23
+
+                    .user__info
+                        p Followers
+                        span 27
+
+            .campus__grid--center
+                form.campus__form(action="", method="POST")
+                    textarea(name="", cols="30", rows="10" style="padding:1rem; margin-top:-1rem; border-radius:7px; resize:none;" placeholder="Write whats on your mind")
+                    button.button.button--details.button--review(type="submit" style="border-radius:7px;") Post
+
+                hr
+                +campusCard("leo","leo","hello people","12","42")
+
+            .campus__grid--right
+                .collapse(id="collapseExample")
+                    iframe(allow="microphone;",width="300",height="430",src="https://console.dialogflow.com/api-client/demo/embedded/581d5614-e3e0-4308-a131-f77463997262")
+
+                button.btn.btn-primary.btn-lg.btn-block(type="button",style="text-transform:uppercase; font-size:1.6rem;",data-toggle="collapse",data-target="#collapseExample",aria-expanded="false",aria-controls="collapseExample") Chatbot
+
+
+
+
+block scripts
+    script(
+        src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"
+    )
+    script(
+        src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"
+    )
+    script(
+        src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"
+    )
+    script(src="./js/commentSection.js")

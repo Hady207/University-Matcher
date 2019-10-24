@@ -1,31 +1,37 @@
 // side nav buttons
-const university = document.getElementById("universities");
-const reviews = document.getElementById("reviews");
-const users = document.getElementById("users");
+const universities = document.getElementById('universities');
+const reviews = document.getElementById('reviews');
+const users = document.getElementById('users');
 
 // nav active lis
-const active = "side-nav__item--active";
-const universityli = document.querySelector("#menu_univeristy");
-const reviewli = document.querySelector("#menu_review");
-const userli = document.querySelector("#menu_user");
+const active = 'side-nav__item--active';
 
-const lis = document.querySelectorAll(".side-nav__item");
+const buttonActive = `addAcitveButtonStyle`;
+
+const universityli = document.querySelector('#menu_university');
+const reviewli = document.querySelector('#menu_review');
+const userli = document.querySelector('#menu_user');
+
+const lis = document.querySelectorAll('.side-nav__item');
 
 // main body elements
-const university__main = document.querySelector("#university__main");
-const review__main = document.querySelector("#review__main");
-const user__main = document.querySelector("#user__main");
-const model = document.querySelector("#edit__modal");
+const universities__main = document.querySelector('#universities__main');
+const university__main = document.querySelector('#university__main');
+const review__main = document.querySelector('#review__main');
+const user__main = document.querySelector('#user__main');
+const model = document.querySelector('#edit__modal');
 
 // university buttons
-const editButton = document.querySelector("#edit_button");
-const exitButton = document.querySelector("#exit");
+const details = document.querySelector('#details__button');
+const editButton = document.querySelector('#edit_button');
+const exitButton = document.querySelector('#exit');
 
 // Side Navs listenrs
-university.addEventListener("click", e => {
-  university__main.style.display = "block";
-  review__main.style.display = "none";
-  user__main.style.display = "none";
+universities.addEventListener('click', e => {
+  universities__main.style.display = 'block';
+  university__main.style.display = 'none';
+  review__main.style.display = 'none';
+  user__main.style.display = 'none';
   for (let i = 0; i < lis.length; i++) {
     lis[i].classList.remove(active);
   }
@@ -34,10 +40,11 @@ university.addEventListener("click", e => {
   }
 });
 
-reviews.addEventListener("click", e => {
-  university__main.style.display = "none";
-  review__main.style.display = "block";
-  user__main.style.display = "none";
+reviews.addEventListener('click', e => {
+  universities__main.style.display = 'none';
+  university__main.style.display = 'none';
+  review__main.style.display = 'block';
+  user__main.style.display = 'none';
 
   for (let i = 0; i < lis.length; i++) {
     lis[i].classList.remove(active);
@@ -48,10 +55,11 @@ reviews.addEventListener("click", e => {
   }
 });
 
-users.addEventListener("click", e => {
-  university__main.style.display = "none";
-  review__main.style.display = "none";
-  user__main.style.display = "block";
+users.addEventListener('click', e => {
+  universities__main.style.display = 'none';
+  university__main.style.display = 'none';
+  review__main.style.display = 'none';
+  user__main.style.display = 'block';
   for (let i = 0; i < lis.length; i++) {
     lis[i].classList.remove(active);
   }
@@ -62,27 +70,34 @@ users.addEventListener("click", e => {
 
 // university button listenrs
 
-editButton.addEventListener("click", e => {
-  console.log(e);
-  model.classList.toggle("edit__modal-show");
-});
+if (editButton && exitButton) {
+  editButton.addEventListener('click', e => {
+    console.log(e);
+    model.classList.toggle('edit__modal-show');
+  });
 
-exitButton.addEventListener("click", e => {
-  model.classList.toggle("edit__modal-show");
-});
+  exitButton.addEventListener('click', e => {
+    model.classList.toggle('edit__modal-show');
+  });
+}
+const bookmark = document.querySelector('#bookmark');
+const notification = document.querySelector('#notification');
+const bookmarkDrop = document.querySelector('#bookmarksDrop');
+const notificationDrop = document.querySelector('#notificationDrop');
 
-const bookmark = document.querySelector("#bookmark");
-const notification = document.querySelector("#notification");
-const bookmarkDrop = document.querySelector("#bookmarksDrop");
-const notificationDrop = document.querySelector("#notificationDrop");
-
-bookmark.addEventListener("click", e => {
+bookmark.addEventListener('click', e => {
+  // bookmark.classList.toggle(buttonActive);
   bookmarkDrop.style.display =
-    bookmarkDrop.style.display === "none" ? "block" : "none";
+    bookmarkDrop.style.display === 'none' ? 'block' : 'none';
   // dropbox.style.display = dropbox.style.display === "none" ? "block" : "none";
 });
 
-notification.addEventListener("click", e => {
+notification.addEventListener('click', e => {
   notificationDrop.style.display =
-    notificationDrop.style.display === "none" ? "block" : "none";
+    notificationDrop.style.display === 'none' ? 'block' : 'none';
+});
+
+details.addEventListener('click', e => {
+  universities__main.style.display = 'none';
+  university__main.style.display = 'block';
 });
