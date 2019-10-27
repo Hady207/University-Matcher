@@ -7,23 +7,23 @@ if url
                 li.nav__elements
                     a(href="/") Home
                 li.nav__elements
-                    a(href="/") Universities
+                    a(href="/universities") Universities
                 li.nav__elements
-                    a(href="/") Campus
+                    a(href="/campus") Campus
                 div
+                
                 .fix__login
                     if user
                         li.nav__elements
-                            a.button.button-user(href="#" id='login') ${username} 
+                            a.button.button-user(href="#" id='login')=user.name
                                 span 4
                         li.nav__elements
-                            form(action="", method="get")
-                                a.button.button-logout(href="#") logout
+                            a.button.button-logout(href="#" id="logoutbtn") logout
                     else
                         li.nav__elements
-                            a.button.button-signup(href="#") Sign Up
+                            a.button.button-signup(href="/signup") Sign Up
                         li.nav__elements
-                            a.button.button-login(href="#") login
+                            a.button.button-login(href="/login") login
 
         .dropdown__profile
             .list
@@ -40,23 +40,22 @@ else
                 li.nav__elements
                     a(href="/") Home
                 li.nav__elements
-                    a(href="/") Universities
+                    a(href="/universities") Universities
                 li.nav__elements
-                    a(href="/") Campus
+                    a(href="/campus") Campus
                 div
                 .fix__login
                     if user
                         li.nav__elements
-                            a.button.button-user(href="#" id='login') ${username} 
+                            a.button.button-user(href=`#` id='login')=user.name
                                 span 4
                         li.nav__elements
-                            form(action="", method="get")
-                                a.button.button-logout(href="#") logout
+                            a.button.button-logout(href="#" id="logoutbtn") logout
                     else
                         li.nav__elements
-                            a.button.button-signup(href="#") Sign Up
+                            a.button.button-signup(href="/signup") Sign Up
                         li.nav__elements
-                            a.button.button-login(href="#") login
+                            a.button.button-login(href="login") login
 
         .dropdown__profile
             .list

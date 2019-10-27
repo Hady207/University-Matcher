@@ -56,8 +56,7 @@ exports.login = catchAsync(async (req, res, next) => {
   // 2) Check if user exists && password is correct
   const user = await User.findOne({ email: email }).select('+password');
   if (!user || !(await user.correctPassword(password, user.password))) {
-    console('true');
-    return next(new AppError('Incorrect email or password'), 401);
+    return next(new AppError('Incorrect email or password', 400));
   }
   createSendToken(user, 200, res);
 });
@@ -119,7 +118,7 @@ exports.isLoggedIn = async (req, res, next) => {
     try {
       // 1) Verify token
       const decoded = await promisify(jwt.verify)(
-        token,
+        req.cookies.jwt,
         process.env.JWT_SECRET
       );
 

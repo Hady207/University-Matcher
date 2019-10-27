@@ -2,13 +2,15 @@ const express = require('express');
 const cookieParser = require('cookie-parser');
 const morgan = require('morgan');
 const path = require('path');
+const cors = require('cors');
 
-const globalErrorHandler = require('./controller/errorController');
+const globalErrorHandler = require('./controllers/errorController');
 const AppError = require('./utils/appError');
 const universityRoute = require('./routes/universityRoute');
 const reviewRoute = require('./routes/reviewRoute');
 const userRoute = require('./routes/userRoute');
 const postsRoute = require('./routes/postsRoute');
+const viewRoute = require('./routes/viewRoute');
 
 const app = express();
 
@@ -21,7 +23,16 @@ app.use(morgan('dev'));
 app.use(express.json({ limit: '10kb' }));
 app.use(express.urlencoded({ extended: true, limit: '10kb' }));
 app.use(cookieParser());
+app.use(cors());
 
+app.use((req, res, next) => {
+  req.requestTime = new Date().toISOString();
+
+  console.log('cookie', req.cookies);
+  next();
+});
+
+app.use('/', viewRoute);
 app.use('/api/universities', universityRoute);
 app.use('/api/reviews', reviewRoute);
 app.use('/api/users', userRoute);

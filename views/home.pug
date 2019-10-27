@@ -49,27 +49,29 @@ block content
                 li.nav__elements
                     a(href="/") Home
                 li.nav__elements
-                    a(href="/") Universities
+                    a(href="/universities") Universities
                 li.nav__elements
-                    a(href="/") Campus
+                    a(href="/campus") Campus
                 div
                 .fix__login-1
-                if user
-                    li.nav__elements
-                        a.button.button-user(href="#" id='login') ${username} 
-                            span 4
-                    li.nav__elements
-                        form(action="", method="get")
-                            a.button.button-logout(href="#") logout
-                else
-                    li.nav__elements
-                        a.button.button-signup(href="#") Sign Up
-                    li.nav__elements
-                        a.button.button-login(href="#") login
+                    if user
+                        li.nav__elements
+                            a.button.button-user(href="#" id='login')=user.name 
+                                span 4
+                        li.nav__elements
+                               a.button.button-logout(href="#" id="logoutbtn") logout
+                    else
+                        li.nav__elements
+                            a.button.button-signup(href="/signup") Sign Up
+                        li.nav__elements
+                            a.button.button-login(href="/login") login
 
         .animated
             h1.hero__title University Matcher
-            span.hero__subtitle Let's shape your future
+            if user
+                span.hero__subtitle Welcome #{user.name}
+            else
+                span.hero__subtitle Let's shape your future
 
 
     main
@@ -129,3 +131,4 @@ block scripts
     script(src="https://code.jquery.com/jquery-3.4.1.min.js",integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=", crossorigin="anonymous")
     script(src="./js/navbar.js")
     script(src="./js/navDropDown.js")
+    

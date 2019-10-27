@@ -12,7 +12,7 @@ block head
 block content
 
     section.login__section
-        form.mt-3.text-center.form-signin.AVAST_PAM_loginform(action="" method="")
+        form.mt-3.text-center.form-signin.AVAST_PAM_loginform(id="form__login")
             img.mb-4.login__logo(src="./img/icons/logo_transparent.png")
             h1.h3.mb-3.font-weight-normal Login
             label.sr-only(for="inputEmail") Email addresss
@@ -23,6 +23,8 @@ block content
 
 
 block scripts
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js')
+    script(src="./js/login.js")
     script(
         src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"

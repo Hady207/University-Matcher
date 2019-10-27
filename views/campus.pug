@@ -59,19 +59,20 @@ block content
     section.campus
         .campus__grid
             .campus__grid--left
-                .flexing
-                    .user__image
-                        img.user__photo(src="./img/aarav.jpg")
-                    h3.user__name Hadi Maher
+                if user
+                    .flexing
+                        .user__image
+                            img.user__photo(src="./img/aarav.jpg")
+                        h3.user__name=user.name
 
-                .user__information
-                    .user__info
-                        p Reviews
-                        span 23
+                    .user__information
+                        .user__info
+                            p Reviews
+                            span 23
 
-                    .user__info
-                        p Followers
-                        span 27
+                        .user__info
+                            p Followers
+                            span=user.followers.length
 
             .campus__grid--center
                 form.campus__form(action="", method="POST")
