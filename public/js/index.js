@@ -4,7 +4,7 @@ import { login, logout } from './login';
 
 // DOM ELEMENTS
 const loginBtn = document.querySelector('#form__login');
-const logoutBtn = document.querySelector('#logoutbtn');
+const logoutBtn = document.getElementById('lgtBTN');
 
 // DELEGATION
 if (loginBtn)

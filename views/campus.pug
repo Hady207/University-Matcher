@@ -4,15 +4,15 @@ mixin commentCard(img,user,comment)
     .commentList
         .comment_info
             .userphoto
-                img.commentPhoto(src=`./img/${img}.jpg`)
+                img.commentPhoto(src=`./img/users/${img}`)
             h6=user
         .comment=comment
 
 
-mixin campusCard(postImg,postUser,postDesc,likeSize,commentSize)
+mixin campusCard(postImg,postUser,postDesc,likeSize,commentSize,comments=[])
     .campus__card
         .campus__image
-            img.campus__user(src=`./img/${postImg}.jpg`)
+            img.campus__user(src=`../img/users/${postImg}`)
 
 
         .campus__info(style="width:100%;")
@@ -39,10 +39,14 @@ mixin campusCard(postImg,postUser,postDesc,likeSize,commentSize)
                     ion-icon(name="chatbubbles")
 
             .commentSection(id="commentSection")
-                +commentCard("monica","leo messi","Hello World")
+                if commentSize>0 
+                    each c in comments
+                      +commentCard(c.user.photo,c.user.name,c.comment)
 
                 form.comment__form(action="" method="")
-                    input(type="text")
+                    .circlePhoto
+                        img(class="circle__photo" src=`./img/aarav.jpg`)
+                    input.commentInput(type="text",placeholder="Write your comment")
 
 
 block head 
@@ -62,7 +66,7 @@ block content
                 if user
                     .flexing
                         .user__image
-                            img.user__photo(src="./img/aarav.jpg")
+                            img.user__photo(src="./img/users/aarav.jpg")
                         h3.user__name=user.name
 
                     .user__information
@@ -80,7 +84,8 @@ block content
                     button.button.button--details.button--review(type="submit" style="border-radius:7px;") Post
 
                 hr
-                +campusCard("leo","leo","hello people","12","42")
+                each p in posts
+                    +campusCard(p.user.photo,p.user.name,p.post,p.likes,p.comments.length,p.comments)
 
             .campus__grid--right
                 .collapse(id="collapseExample")

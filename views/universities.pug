@@ -11,9 +11,10 @@ block content
                     ion-icon(name="search")
         
         .uni__row
-            +universityCard('The Arab Open University','AOU','loremloremlorem','location','programs','students','date','123','rate')
-            +universityCard('The Arab Open University','AOU','loremloremlorem','location','programs','students','date','123','rate')
-            +universityCard('The Arab Open University','AOU','loremloremlorem','location','programs','students','date','123','rate')
+            each uni in universities
+                +universityCard(uni.slug,'university-1.jpg',uni.name,uni.abbrv,uni.description.slice(0,20),uni.address,uni.programs,uni.students,uni.buildDate,uni.price,uni.ratingAverage)
+                //- +universityCard('The Arab Open University','AOU','loremloremlorem','location','programs','students','date','123','rate')
+                //- +universityCard('The Arab Open University','AOU','loremloremlorem','location','programs','students','date','123','rate')
 
 
     

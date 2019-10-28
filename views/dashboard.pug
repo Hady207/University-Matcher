@@ -23,8 +23,8 @@ block content
                         span.user__nav--notification 7
 
                     .user
-                        img.user__profile(src="./img/leo.jpg")
-                        span.user__name Hadi Maher
+                        img.user__profile(src=`./img/users/${user.photo}`)
+                        span.user__name= user.name
 
             .dashboard__dropdown.dashboard__dropdown--notification(id="notificationDrop" style="z-index:1000;")
                 .list
@@ -41,10 +41,7 @@ block content
                     h3.list__item Hello
             
 
-            if user
-
+            if user.role ==='admin'
                 include _admin
-            
             else 
-
                 include _profile

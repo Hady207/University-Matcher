@@ -2,7 +2,7 @@ if url
     nav.nav__fixed(id='menu')
         .nav__container
             .logo
-                img.logo__img(src='./img/icons/logo_transparent.png' alt='logo')
+                img.logo__img(src='../img/icons/logo_transparent.png' alt='logo')
             ul.nav__items
                 li.nav__elements
                     a(href="/") Home
@@ -15,10 +15,10 @@ if url
                 .fix__login
                     if user
                         li.nav__elements
-                            a.button.button-user(href="#" id='login')=user.name
+                            a.button.button-user(href=`/dashboard`,id='login')=user.name
                                 span 4
                         li.nav__elements
-                            a.button.button-logout(href="#" id="logoutbtn") logout
+                            a.button.button-logout(href="#",id="lgtBTN") logout
                     else
                         li.nav__elements
                             a.button.button-signup(href="/signup") Sign Up
@@ -35,7 +35,7 @@ else
     nav.nav__fixed(id='menu' style='display:block;')
         .nav__container
             .logo
-                img.logo__img(src='./img/icons/logo_transparent.png' alt='logo')
+                img.logo__img(src='../img/icons/logo_transparent.png' alt='logo')
             ul.nav__items
                 li.nav__elements
                     a(href="/") Home
@@ -47,10 +47,10 @@ else
                 .fix__login
                     if user
                         li.nav__elements
-                            a.button.button-user(href=`#` id='login')=user.name
+                            a.button.button-user(href=`/dashboard`,id='login')=user.name
                                 span 4
                         li.nav__elements
-                            a.button.button-logout(href="#" id="logoutbtn") logout
+                            a.button.button-logout(href="#",id="lgtBTN") logout
                     else
                         li.nav__elements
                             a.button.button-signup(href="/signup") Sign Up

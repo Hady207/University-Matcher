@@ -2,10 +2,10 @@ extend base
 
 
 
-mixin universityCard(name,abbv,description,location,programs,students,date,price,rate)
+mixin universityCard(slug,img,name,abbv,description,location,programs,students,date,price,rate)
     .uni__card
         .card__header
-            img.card__picture(src="./img/univeristy-2.jpg")
+            img.card__picture(src=`../img/${img}`)
             h3.card__title
                 span= abbv
             .card__body
@@ -33,7 +33,7 @@ mixin universityCard(name,abbv,description,location,programs,students,date,price
                 p.card__ratings
                     span.card__footer--value=rate
                     span.card__footer--text rating (5)
-                a.button.button--details.button--card(href="#") Details
+                a.button.button--details.button--card(href=`/universities/${slug}`) Details
               
 
 
@@ -59,7 +59,7 @@ block content
                             a.button.button-user(href="#" id='login')=user.name 
                                 span 4
                         li.nav__elements
-                               a.button.button-logout(href="#" id="logoutbtn") logout
+                               a.button.button-logout(href="#" id="lgtBTN") logout
                     else
                         li.nav__elements
                             a.button.button-signup(href="/signup") Sign Up
@@ -76,11 +76,15 @@ block content
 
     main
         section.uni
-            h2.uni__title Universities That is recommend to you
+            if user
+                h2.uni__title Universities That is recommend to you
+            else
+                h2.uni__title The Top Three Universities
             .uni__row
-                +universityCard('The Arab Open University','AOU','loremloremlorem','location','programs','students','date','123','rate')
-                +universityCard('The Arab Open University','AOU','loremloremlorem','location','programs','students','date','123','rate')
-                +universityCard('The Arab Open University','AOU','loremloremlorem','location','programs','students','date','123','rate')
+                each u in top3
+                    +universityCard(u.slug,u.image,u.name,u.abbrv,u.description.slice(0,20),u.address,u.programs,u.numOfStudents,u.buildDate,u.price,u.ratingAverage)
+                
+               
 
         section.students
             h2.students__title learn More about Universities from students
@@ -91,24 +95,24 @@ block content
             .box__container
                 .box
                     .box__img
-                        img.box__img--photo( src="./img/aarav.jpg",alt="UserName")
+                        img.box__img--photo( src="./img/users/aarav.jpg",alt="UserName")
                     
                     p.box__paragraph Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab,voluptatum praesentium? Labore, at molestiae repudiandae vero facilis ea unde voluptatum. Expedita magnam voluptates inventore provident at ipsam neque. Earum, saepe.
 
                 .box
                     .box__img
-                        img.box__img--photo( src="./img/aarav.jpg",alt="UserName")
+                        img.box__img--photo( src="./img/users/leo.jpg",alt="UserName")
                 
                     p.box__paragraph Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab,voluptatum praesentium? Labore, at molestiae repudiandae vero facilis ea unde voluptatum. Expedita magnam voluptates inventore provident at ipsam neque. Earum, saepe.
 
                 .box
                     .box__img
-                        img.box__img--photo( src="./img/aarav.jpg",alt="UserName")
+                        img.box__img--photo( src="./img/users/monica.jpg",alt="UserName")
                 
                     p.box__paragraph Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab,voluptatum praesentium? Labore, at molestiae repudiandae vero facilis ea unde voluptatum. Expedita magnam voluptates inventore provident at ipsam neque. Earum, saepe.
 
             .center
-                a.button.button--details.center__element(href="#") Join Now
+                a.button.button--details.center__element(href="/signup") Join Now
 
 
         section.chatbot

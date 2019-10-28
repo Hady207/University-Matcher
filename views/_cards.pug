@@ -1,7 +1,7 @@
-mixin universityCard(name,abbv,description,location,programs,students,date,price,rate)
+mixin universityCard(slug,img,name,abbv,description,location,programs,students,date,price,rate)
     .uni__card
         .card__header
-            img.card__picture(src="./img/univeristy-2.jpg")
+            img.card__picture(src=`./img/${img}`)
             h3.card__title
                 span= abbv
         .card__body
@@ -29,7 +29,7 @@ mixin universityCard(name,abbv,description,location,programs,students,date,price
             p.card__ratings
                 span.card__footer--value=rate
                 span.card__footer--text rating (5)
-            a.button.button--details.button--card(href="#") Details
+            a.button.button--details.button--card(href=`/universities/${slug}`) Details
 
 
 

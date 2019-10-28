@@ -3,25 +3,28 @@ extend base
 
 
 mixin reviewCard(img,name,description,rating)
-    -var star = `ion-icon(name="star-outline")`
+    -var star = `(name="star-outline")`
     -var inactiveStar = `ion-icon.inactive(name="star-outline")`
+    -var inactive= 5-rating;
     .reviews__card
         .reviews__avatar
-            img.reviews__avatar--img(src=`/img/${img}.jpg`)
+            img.reviews__avatar--img(src=`/img/users/${img}`)
             h6.review__user=name
 
         p.review__text=description
 
         .review__rating
-            ion-icon(name="star-outline")
-            ion-icon.inactive(name="star-outline")
+            -for(let i = 1; i<=rating;i++)  
+                ion-icon(name="star-outline")
+            -for(let i = 1; i<=inactive;i++)  
+                ion-icon.inactive(name="star-outline")
 
-block head
-    link(
-      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-      rel="stylesheet"
-      integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
-      crossorigin="anonymous")
+//- block head
+//-     link(
+//-       href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+//-       rel="stylesheet"
+//-       integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+//-       crossorigin="anonymous")
     
 
 
@@ -29,18 +32,18 @@ block content
     section.university__hero
         .university__hero--container
             .university__hero--overlay &nbsp;
-            img.university__hero--img(src="./img/university-1.jpg")
+            img.university__hero--img(src="../img/university-1.jpg")
 
         .university__box
             h1.university__box--title
-                span The Arab Open University
+                span=university.name
             .university__group
                 .university__group--detail
                     ion-icon(name="pin") 
-                    span Location
+                    span=university.address
                 .university__group--detail
                     ion-icon(name="book") 
-                    span programs
+                    span=university.programs
 
 
 
@@ -55,28 +58,28 @@ block content
                     span.span-2 Spring
 
                 .university__detail.university__detail--2
-                    ion-icon(name="book")
-                    span.span-1 Next admission period
-                    span.span-2 Spring
+                    <i class="fas fa-graduation-cap"></i>
+                    span.span-1 Certificates
+                    span.span-2=university.certificates
 
                 .university__detail.university__detail--3
                     ion-icon(name="book")
-                    span.span-1 Next admission period
-                    span.span-2 Spring
+                    span.span-1 Students
+                    span.span-2=university.students
 
                 .university__detail.university__detail--4
                     ion-icon(name="book")
-                    span.span-1 Next admission period
-                    span.span-2 Spring
+                    span.span-1 Average Price
+                    span.span-2=university.price
 
                 .university__detail.university__detail--5
                     ion-icon(name="book")
-                    span.span-1 Next admission period
+                    span.span-1 Admission rules
                     span.span-2 Spring
 
             .university__info.university__info--2
-                h2.university__info--title About AOU 
-                p.university__paragraph Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae alias corrupti qui ipsa quam iusto quo repellendus numquam quae, suscipit excepturi neque itaque! Rem, veniam. Voluptatem excepturi quisquam laudantium earum!
+                h2.university__info--title About #{university.abbrv} 
+                p.university__paragraph= university.description
                 p.university__paragraph Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae alias corrupti qui ipsa quam iusto quo repellendus numquam quae, suscipit excepturi neque itaque! Rem, veniam. Voluptatem excepturi quisquam laudantium earum!
                 p.university__paragraph Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae alias corrupti qui ipsa quam iusto quo repellendus numquam quae, suscipit excepturi neque itaque! Rem, veniam. Voluptatem excepturi quisquam laudantium earum!
 
@@ -84,18 +87,19 @@ block content
 
     section.university__gallery
         .university__picture
-            img.university__image.university__image--1(src="./img/university-1.jpg")
+            img.university__image.university__image--1(src="../img/university-1.jpg")
         .university__picture
-            img.university__image.university__image--2(src="./img/university-2.jpg")
+            img.university__image.university__image--2(src="../img/university-2.jpg")
         .university__picture
-            img.university__image.university__image--3(src="./img/university-3.jpg")
+            img.university__image.university__image--3(src="../img/university-3.jpg")
 
 
     section.university__map
 
     section.university__reviews
         .reviews
-            +reviewCard('leo','Hadi','lorem',3)
+            each r in university.reviews
+                +reviewCard(r.user.photo,r.user.name,r.review,r.rating)
 
 
 

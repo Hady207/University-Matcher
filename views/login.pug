@@ -11,15 +11,19 @@ block head
 
 block content
 
-    section.login__section
-        form.mt-3.text-center.form-signin.AVAST_PAM_loginform(id="form__login")
-            img.mb-4.login__logo(src="./img/icons/logo_transparent.png")
-            h1.h3.mb-3.font-weight-normal Login
-            label.sr-only(for="inputEmail") Email addresss
-            input.form-control( type="email", id="inputEmail", placeholder="Email address", required="",autofocus="")
-            label.sr-only(for="inputPassword") Password
-            input.form-control( type="password", id="inputPassword", placeholder="Password", required="")
-            input(type="submit", value="Login")
+    main.signup__main
+        form.signup__form(id="form__login")
+            //- img.mb-4.login__logo(src="./img/icons/logo_transparent.png")
+            h1.signup__title Login
+            .form__group__2
+                label.form__label(for="inputEmail") Email addresss
+                input.form__input( type="email", id="inputEmail", placeholder="you@example.com", required,autofocus)
+            .form__group__2
+                label.form__label(for="inputPassword") Password
+                input.form__input( type="password", id="inputPassword", placeholder="••••••••", required, minlength="8")
+            .form__group__2
+                button.button.button--details(style="background:green;") Login
+               
 
 
 block scripts

@@ -8716,7 +8716,7 @@ var _login = require("./login");
 
 // DOM ELEMENTS
 var loginBtn = document.querySelector('#form__login');
-var logoutBtn = document.querySelector('#logoutbtn'); // DELEGATION
+var logoutBtn = document.getElementById('lgtBTN'); // DELEGATION
 
 if (loginBtn) loginBtn.addEventListener('submit', function (e) {
   e.preventDefault();
@@ -8755,7 +8755,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56619" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56632" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
