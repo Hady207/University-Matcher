@@ -21,11 +21,12 @@ const uniSchema = new mongoose.Schema(
     },
     admission: { type: String, required: true },
     image: { type: String, required: ['true', 'Please Provide a image'] },
+    images: [String],
     slug: String,
     programs: [
       { type: String, enum: ['diploma', 'bachelore', 'masters', 'phd'] }
     ],
-    courses: [String],
+    majors: [String],
     address: String,
     ratingQuantity: {
       type: Number,
@@ -47,7 +48,10 @@ const uniSchema = new mongoose.Schema(
       coordinates: [Number],
       address: String,
       description: String
-    }
+    },
+    priceAverage: Number,
+    certificates: [String],
+    numOfStudents: Number
   },
   { timestamps: true, toJSON: { virtuals: true }, toObject: { virtuals: true } }
 );

@@ -42,7 +42,7 @@ exports.login = catchAsync(async (req, res, next) => {
 exports.campus = catchAsync(async (req, res, next) => {
   const posts = await Post.find({});
   console.log('posts', posts);
-  res.render('campus', { posts });
+  res.render('campus', { title: 'campus', posts });
 });
 
 exports.dashboard = catchAsync(async (req, res, next) => {

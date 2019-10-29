@@ -3,6 +3,15 @@ const validator = require('validator');
 const crypto = require('crypto');
 const bcrypt = require('bcryptjs');
 
+const notificationSchema = new mongoose.Schema({
+  notifiyText: String,
+  user: {
+    id: String,
+    name: String,
+    photo: String
+  }
+});
+
 const userSchema = new mongoose.Schema({
   name: {
     type: String,
@@ -49,10 +58,12 @@ const userSchema = new mongoose.Schema({
       message: `Passwords are not the same`
     }
   },
+  favoriteUni: [String],
+  major: String,
   programs: [
     { type: String, enum: ['diploma', 'bachelore', 'masters', 'phd'] }
   ],
-  courses: [String],
+  notifications: [notificationSchema],
   passwordChangedAt: Date,
   passwordRestToken: String,
   passwrodResetExpires: Date,
