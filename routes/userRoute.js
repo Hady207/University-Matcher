@@ -13,11 +13,11 @@ router.get(
 router.post('/signup', authController.signup);
 router.post('/login', authController.login);
 router.get('/logout', authController.logout);
-// router.post('/forgotPassword', authController.forgotPassword);
-// router.patch('/resetPassword/:token', authController.resetPassword);
+router.post('/forgotPassword', authController.forgotPassword);
+router.patch('/resetPassword/:token', authController.resetPassword);
 
 router.route('/').get(userController.getAllUser);
-
+router.get('/me', userController.getMe, userController.getUser);
 router
   .route('/:id')
   .get(userController.getUser)

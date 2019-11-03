@@ -60,9 +60,11 @@ const userSchema = new mongoose.Schema({
   },
   favoriteUni: [String],
   major: String,
-  programs: [
-    { type: String, enum: ['diploma', 'bachelore', 'masters', 'phd'] }
-  ],
+  programs: [{ type: String, enum: ['diploma', 'bachelore', 'master', 'phd'] }],
+  program: {
+    type: String,
+    enum: ['diploma', 'bachelore', 'master', 'phd']
+  },
   notifications: [notificationSchema],
   passwordChangedAt: Date,
   passwordRestToken: String,
@@ -138,14 +140,18 @@ userSchema.methods.changedPasswordAfter = function(JWTTimestamp) {
   return false;
 };
 
-userSchema.methods.createPasswordResetToken = async function() {
+userSchema.methods.createPasswordResetToken = function() {
   const resetToken = crypto.randomBytes(32).toString('hex');
-  this.passwordRestToken = crypto
+
+  this.passwordResetToken = crypto
     .createHash('sha256')
     .update(resetToken)
     .digest('hex');
-  this.passwordResetExpires = Date.now() + 10 * 60 * 1000;
+
   console.log({ resetToken }, this.passwordResetToken);
+
+  this.passwordResetExpires = Date.now() + 10 * 60 * 1000;
+
   return resetToken;
 };
 

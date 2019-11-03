@@ -1,4 +1,4 @@
-mixin universityCard(slug,img,name,abbv,description,location,programs,students,date,price,rate)
+mixin universityCard(slug,img,name,abbv,description,location,programs,students,website,price,rate)
     .uni__card
         .card__header
             img.card__picture(src=`./img/${img}`)
@@ -20,12 +20,13 @@ mixin universityCard(slug,img,name,abbv,description,location,programs,students,d
                 span=students
 
             .card__data
-                ion-icon(name="calendar") 
-                span=date
+                ion-icon(name="globe") 
+                span 
+                    a(href=`${website}` style='text-decoration: none;')=website
         .card__footer
             p
-                span.card__footer--value KD #{price}
-                span.card__footer--text per year
+                span.card__footer--value #{price} KWD
+                span.card__footer--text Credit Hour Price
             p.card__ratings
                 span.card__footer--value=rate
                 span.card__footer--text rating (5)

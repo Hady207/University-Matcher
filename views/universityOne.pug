@@ -2,14 +2,17 @@ extend base
 
 
 
-mixin reviewCard(img,name,description,rating)
+mixin reviewCard(uniId,id,userId,img,name,description,rating)
     -var star = `(name="star-outline")`
     -var inactiveStar = `ion-icon.inactive(name="star-outline")`
     -var inactive= 5-rating;
+    
     .reviews__card
-        .reviews__avatar
+        .reviews__avatar(style='width:100%')
             img.reviews__avatar--img(src=`/img/users/${img}`)
             h6.review__user=name
+            if user
+                button.symbol-delete(id="delete",data-uniid=`${uniId}`,data-reviewid=`${id}`) &#10008;
 
         p.review__text=description
 
@@ -26,13 +29,21 @@ mixin reviewCard(img,name,description,rating)
 //-       integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
 //-       crossorigin="anonymous")
     
+block append head
+    script(src='https://api.mapbox.com/mapbox-gl-js/v1.4.1/mapbox-gl.js')
+    link(href='https://api.mapbox.com/mapbox-gl-js/v1.4.1/mapbox-gl.css' rel='stylesheet')
+    style body:{padding:3rem}
+ 
+
+
 
 
 block content
+    
     section.university__hero
         .university__hero--container
             .university__hero--overlay &nbsp;
-            img.university__hero--img(src="../img/university-1.jpg")
+            img.university__hero--img(src=`../img/${university.coverImage}`)
 
         .university__box
             h1.university__box--title
@@ -47,79 +58,86 @@ block content
 
 
 
+    .bodyPadding
+        section.university
+            .university__grid
+                .university__info.university__info--1
+                    h3.university__info--title Information
+                    .university__detail.university__detail--1
+                        ion-icon(name="calendar")
+                        span.span-1 Next admission period
+                        span.span-2 Spring
 
-    section.university
-        .university__grid
-            .university__info.university__info--1
-                h3.university__info--title Information
-                .university__detail.university__detail--1
-                    ion-icon(name="book")
-                    span.span-1 Next admission period
-                    span.span-2 Spring
+                    .university__detail.university__detail--2
+                        ion-icon(name="document")
+                        span.span-1 Certificates
+                        span.span-2=university.certificates
 
-                .university__detail.university__detail--2
-                    <i class="fas fa-graduation-cap"></i>
-                    span.span-1 Certificates
-                    span.span-2=university.certificates
+                    .university__detail.university__detail--3
+                        ion-icon(name="school")
+                        span.span-1 Students
+                        span.span-2=university.numOfStudents
 
-                .university__detail.university__detail--3
-                    ion-icon(name="book")
-                    span.span-1 Students
-                    span.span-2=university.students
+                    .university__detail.university__detail--4
+                        ion-icon(name="pricetag")
+                        span.span-1 Average Price
+                        span.span-2 #{university.priceAverage} KWD per hour
 
-                .university__detail.university__detail--4
-                    ion-icon(name="book")
-                    span.span-1 Average Price
-                    span.span-2=university.price
+                    .university__detail.university__detail--5
+                        ion-icon(name="alert")
+                        span.span-1 Admission rules
+                        span.span-2= university.admissionRule
+                    
+                    .university__detail.university__detail--5
+                        ion-icon(name="star")
+                        span.span-1 average rating
+                        span.span-2 #{university.ratingAverage} / 5 (#{university.ratingQuantity})
 
-                .university__detail.university__detail--5
-                    ion-icon(name="book")
-                    span.span-1 Admission rules
-                    span.span-2 Spring
-
-            .university__info.university__info--2
-                h2.university__info--title About #{university.abbrv} 
-                p.university__paragraph= university.description
-                p.university__paragraph Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae alias corrupti qui ipsa quam iusto quo repellendus numquam quae, suscipit excepturi neque itaque! Rem, veniam. Voluptatem excepturi quisquam laudantium earum!
-                p.university__paragraph Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae alias corrupti qui ipsa quam iusto quo repellendus numquam quae, suscipit excepturi neque itaque! Rem, veniam. Voluptatem excepturi quisquam laudantium earum!
-
-
-
-    section.university__gallery
-        .university__picture
-            img.university__image.university__image--1(src="../img/university-1.jpg")
-        .university__picture
-            img.university__image.university__image--2(src="../img/university-2.jpg")
-        .university__picture
-            img.university__image.university__image--3(src="../img/university-3.jpg")
-
-
-    section.university__map
-
-    section.university__reviews
-        .reviews
-            each r in university.reviews
-                +reviewCard(r.user.photo,r.user.name,r.review,r.rating)
+                .university__info.university__info--2
+                    h2.university__info--title About #{university.abbrv} 
+                    p.university__paragraph= university.description.slice(0,100)
+                    p.university__paragraph= university.description.slice(100,200)
+                    p.university__paragraph= university.certificates
 
 
 
-    section.section__post
-        .write
-            h2.review--title Write your own review
-            form.review__form(action="", method="post")
-                textarea.text__box(name="", cols="30", rows="10")
-                .star__rating
-                    input.stars.stars--1(type="radio", id="star1", value="1", name="")
-                    label(for="star1")
-                    input.stars.stars--2(type="radio", id="star2", value="2", name="")
-                    label(for="star2")
-                    input.stars.stars--3(type="radio", id="star3", value="3", name="")
-                    label(for="star3")
-                    input.stars.stars--4(type="radio", id="star4", value="4", name="")
-                    label(for="star4")
-                    input.stars.stars--5(type="radio", id="star5", value="5", name="")
-                    label(for="star5")
-                button.btn.button--details.button--review.span--row(type="submit") Post your review
+        section.university__gallery
+            .university__picture
+                img.university__image.university__image--1(src=`../img/${university.images[0]}`)
+            .university__picture
+                img.university__image.university__image--2(src=`../img/${university.images[1]}`)
+            .university__picture
+                img.university__image.university__image--3(src=`../img/${university.images[2]}`)
+
+
+        section.university__map
+            #map(data-location=`${JSON.stringify(university.location)}`)
+
+        section.university__reviews
+            .reviews
+                each r in university.reviews
+                    +reviewCard(r.university,r.id,r.user._id,r.user.photo,r.user.name,r.review,r.rating)
+
+
+
+        section.section__post
+            .write
+                h2.review--title Write your own review
+                //- form.review__form(action=`/api/universities/${university._id}/review/postReview`, method="post")
+                form.review__form(data-uniid=`${university._id}`,data-slug=`${university.slug}`)
+                    textarea.text__box(name="review", cols="30", rows="10")
+                    .star__rating
+                        input.stars.stars--1(type="radio", id="star1", value="5", name="rating")
+                        label(for="star1")
+                        input.stars.stars--2(type="radio", id="star2", value="4", name="rating")
+                        label(for="star2")
+                        input.stars.stars--3(type="radio", id="star3", value="3", name="rating")
+                        label(for="star3")
+                        input.stars.stars--4(type="radio", id="star4", value="2", name="rating")
+                        label(for="star4")
+                        input.stars.stars--5(type="radio", id="star5", value="1", name="rating")
+                        label(for="star5")
+                    button.btn.button--details.button--review.span--row(type="submit") Post your review
 
 
 

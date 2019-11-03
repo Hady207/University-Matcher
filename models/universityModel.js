@@ -19,8 +19,8 @@ const uniSchema = new mongoose.Schema(
       type: String,
       required: [true, `Please provide a description`]
     },
-    admission: { type: String, required: true },
-    image: { type: String, required: ['true', 'Please Provide a image'] },
+    admissionRule: { type: String, required: true },
+    coverImage: { type: String, required: ['true', 'Please Provide a image'] },
     images: [String],
     slug: String,
     programs: [
@@ -40,6 +40,7 @@ const uniSchema = new mongoose.Schema(
       set: val => Math.round(val * 10) / 10 // 4.666666, 46.66666, 47, 4.7
     },
     location: {
+      // geoJSON
       type: {
         type: String,
         default: 'Point',

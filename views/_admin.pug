@@ -14,7 +14,7 @@ mixin reviewCard(review,img,name,createdAt,rating)
     figure.review
         blockquote.review__text=review
         figcaption.review__user
-            img.review__photo(src=`img/${img}.jpg`)
+            img.review__photo(src=`img/users/${img}`)
             .review__user-box
                 p.review__user-name=name
                 p.review__user-date=createdAt
@@ -28,7 +28,7 @@ mixin reviewsLis(uniId,title,review,img,name,createdAt,rating)
 
         blockquote.review__text=review
         figcaption.review__user
-            img.review__photo(src=`img/${img}.jpg`)
+            img.review__photo(src=`img/users/${img}`)
             .review__user-box
                 p.review__user-name=name
                 p.review__user-date=createdAt
@@ -38,7 +38,7 @@ mixin reviewsLis(uniId,title,review,img,name,createdAt,rating)
 mixin userLis(img,name,userId)
     li.dashboard__li
         .user__main__list
-            img.user__profile(src=`/img/${img}.jpg`)
+            img.user__profile(src=`/img/users/${img}`)
         
         h2.user__name=name
         .detail__button__div

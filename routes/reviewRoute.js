@@ -6,6 +6,10 @@ const router = express.Router({ mergeParams: true });
 router.use(authController.protect);
 
 router
+  .route('/postReview')
+  .post(reviewController.setUniUserId, reviewController.createReviewForm);
+
+router
   .route('/')
   .get(reviewController.getReviews)
   .post(reviewController.setUniUserId, reviewController.createReview);

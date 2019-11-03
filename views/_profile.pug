@@ -14,7 +14,7 @@ mixin reviewCard(review,img,name,createdAt,rating)
     figure.review
         blockquote.review__text=review
         figcaption.review__user
-            img.review__photo(src=`img/${img}.jpg`)
+            img.review__photo(src=`img/users/${img}`)
             .review__user-box
                 p.review__user-name=name
                 p.review__user-date=createdAt
@@ -28,7 +28,7 @@ mixin reviewsLis(uniId,title,review,img,name,createdAt,rating)
 
         blockquote.review__text=review
         figcaption.review__user
-            img.review__photo(src=`img/${img}.jpg`)
+            img.review__photo(src=`img/users/${img}`)
             .review__user-box
                 p.review__user-name=name
                 p.review__user-date=createdAt
@@ -38,7 +38,7 @@ mixin reviewsLis(uniId,title,review,img,name,createdAt,rating)
 mixin userLis(img,name,userId)
     li.dashboard__li
         .user__main__list
-            img.user__profile(src=`/img/${img}.jpg`)
+            img.user__profile(src=`/img/users/${img}`)
         
         h2.user__name=name
         .detail__button__div
@@ -126,6 +126,7 @@ mixin userLis(img,name,userId)
             
 
     main.dashboard__userview(id="user__main")
+        h2.dashboard__settings--title Your Account Settings
         .dashboard__container.dashboard__container--settings
             form(action="",method="post")
                 .form__group__2
@@ -135,6 +136,32 @@ mixin userLis(img,name,userId)
                 .form__group__2
                     label.form__label(for="email") email
                     input.form__input(id="email",type="email",required,placeholder="you@example.com")
+                
+                .form__group__2.mB
+                    h4.form__label Interested In
+                    .flexxx
+                        .custom-select(style="width:200px")
+                            select#program
+                                option(value="0") Select a degree:
+                                option(value="diploma") Diploma
+                                option(value="bachlore") Bachlore
+                                option(value="master") Master
+                        
+                        .custom-select(style="width:200px")
+                            select#major
+                                option(value="0") Select a major:
+                                option(value="ITC") Information Technology
+                                option(value="business") Business
+                                option(value="english") English literature
+                
+                .form__group__2.mB
+                    button.button.button--details(type="submit") Save Settings 
+
+                hr(style="margin:3rem 0;")
+
+                .form__group__2.mB
+                    label.form__label(for="password-current") current password
+                    input.form__input(id="password-current",type="password",required,placeholder="••••••••")
 
                 .form__group__2.mB
                     label.form__label(for="password") password
@@ -144,25 +171,10 @@ mixin userLis(img,name,userId)
                     label.form__label(for="passwordconfirm") Confirm Password
                     input.form__input(id="passwordconfirm",type="password",required,placeholder="••••••••")
                 
-                .form__group__2.mB
-                    h4.form__label Interested In
-                    .flexxx
-                        .custom-select(id='program' style="width:200px")
-                            select
-                                option(value="0") Select a degree:
-                                option(value="diploma") Diploma
-                                option(value="bachlore") Bachlore
-                                option(value="master") Master
-                        
-                        .custom-select(id='program' style="width:200px")
-                            select
-                                option(value="0") Select a major:
-                                option(value="ITC") Information Technology
-                                option(value="business") Business
-                                option(value="english") English literature
+                
                 
                 .form__group__2.mB
-                    button.button.button--details(type="submit") Edit
+                    button.button.button--details(type="submit") Save Password
               
                             
 

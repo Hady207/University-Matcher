@@ -34,3 +34,30 @@ export const logout = async () => {
     showAlert('success', 'GoodBye');
   }
 };
+
+// newUser= {
+//   name:
+//   email:
+//   password:,
+//   passwordConfirm,
+//   major,
+//   programs
+// }
+
+export const signUp = async newUser => {
+  try {
+    const res = await axios({
+      method: 'POST',
+      url: 'http://127.0.0.1:3000/api/users/signup',
+      data: newUser
+    });
+    if (res.data.status === 'success') {
+      showAlert('success', 'Logged In successfully');
+      window.setTimeout(() => {
+        location.assign('/');
+      }, 1500);
+    }
+  } catch (error) {
+    showAlert('error', error.response.data.message);
+  }
+};

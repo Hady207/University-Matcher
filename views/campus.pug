@@ -1,15 +1,16 @@
 extend base
 
-mixin commentCard(img,user,comment)
+mixin commentCard(postId,commentId,img,user,comment)
     .commentList
         .comment_info
             .userphoto
                 img.commentPhoto(src=`./img/users/${img}`)
             h6=user
+            button.comment-delete(data-postID=`${postId}`,data-commentID=`${commentId}`) &#10008;
         .comment=comment
 
 
-mixin campusCard(postImg,postUser,postDesc,likeSize,commentSize,comments=[])
+mixin campusCard(index,postid,postImg,postUser,postDesc,likeSize,commentSize,comments=[])
     .campus__card
         .campus__image
             img.campus__user(src=`../img/users/${postImg}`)
@@ -38,15 +39,15 @@ mixin campusCard(postImg,postUser,postDesc,likeSize,commentSize,comments=[])
                     |  Comment  
                     ion-icon(name="chatbubbles")
 
-            .commentSection(id="commentSection")
+            .commentSection(id=`commentSection-${index}`)
                 if commentSize>0 
                     each c in comments
-                      +commentCard(c.user.photo,c.user.name,c.comment)
+                      +commentCard(postid,c._id,c.user.photo,c.user.name,c.comment)
 
-                form.comment__form(action="" method="")
+                form#commentPost.comment__form(action="" method="" data-unique=`${postid}`)
                     .circlePhoto
-                        img(class="circle__photo" src=`./img/aarav.jpg`)
-                    input.commentInput(type="text",placeholder="Write your comment")
+                        img(class="circle__photo" src=`./img/users/${user.photo}`)
+                    input.commentInput(id=`commentText-${index}` type="text",placeholder="Write your comment")
 
 
 block head 
@@ -66,7 +67,7 @@ block content
                 if user
                     .flexing
                         .user__image
-                            img.user__photo(src="./img/users/aarav.jpg")
+                            img.user__photo(src=`./img/users/${user.photo}`)
                         h3.user__name=user.name
 
                     .user__information
@@ -79,13 +80,13 @@ block content
                             span=user.followers.length
 
             .campus__grid--center
-                form.campus__form(action="", method="POST")
-                    textarea(name="", cols="30", rows="10" style="padding:1rem; margin-top:-1rem; border-radius:7px; resize:none;" placeholder="Write whats on your mind")
+                form#campusPost.campus__form(action="", method="POST")
+                    textarea.textArea(name="", cols="30", rows="10" style="padding:1rem; margin-top:-1rem; border-radius:7px; resize:none;" placeholder="Write whats on your mind")
                     button.button.button--details.button--review(type="submit" style="border-radius:7px;") Post
 
                 hr
-                each p in posts
-                    +campusCard(p.user.photo,p.user.name,p.post,p.likes,p.comments.length,p.comments)
+                each p,index in posts
+                    +campusCard(index,p.id,p.user.photo,p.user.name,p.post,p.likes,p.comments.length,p.comments)
 
             .campus__grid--right
                 .collapse(id="collapseExample")

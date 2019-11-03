@@ -20,6 +20,8 @@ router
     postsController.createComment
   );
 
+router.delete('/:id/comments/:commentId', postsController.deleteComment);
+
 router.route('/:id/like').post(authController.protect, postsController.hitLike);
 //   .patch(postsController.setUserId, postsController.createComment);
 

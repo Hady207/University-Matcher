@@ -12,6 +12,7 @@
   --shadow-dark: 0 2rem 6rem rgba(0, 0, 0, 0.3);
   --shadow-light: 0 2rem 5rem rgba(0, 0, 0, 0.06);
   --line: 1px solid var(--color-grey-light-2);
+  --section-rotate: 9vw;
 }
 
 @keyframes acitveHover {
@@ -82,9 +83,14 @@ body {
   line-height: 1.6rem;
   font-weight: 400;
   background-color: #fff;
+
 }
 
 section {
+  padding: 3rem;
+}
+
+.bodyPadding {
   padding: 3rem;
 }
 
@@ -407,6 +413,7 @@ section {
 
 .nav__fixed {
   top: 0;
+  left: 0;
   position: fixed;
   background: #313131;
   width: 100%;
@@ -780,6 +787,7 @@ section {
   background: #fcfcfc;
   display: flex;
   align-items: center;
+  padding: 0;
 }
 
 .university .university__grid {
@@ -822,7 +830,7 @@ section {
   -ms-flex: 0 0 50%;
   flex: 0 0 50%;
   /* width: 100%; */
-  align-items: center;
+  /* align-items: center; */
   display: flex;
   flex-direction: column;
   background-color: #f7f7f7;
@@ -867,32 +875,81 @@ section {
 }
 
 .university__gallery {
-  display: flex;
+  /* display: flex;
   -webkit-clip-path: polygon(0 9vw, 100% 0, 100% calc(100% - 9vw), 0 100%);
   margin-top: calc(0px - 9vw);
+  position: relative;
+  z-index: 1000; */
+  padding: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  clip-path: polygon(0 var(--section-rotate), 100% 0, 100% calc(100% - var(--section-rotate)), 0 100%);
+  -webkit-clip-path: polygon(0 var(--section-rotate), 100% 0, 100% calc(100% - var(--section-rotate)), 0 100%);
+  margin-top: calc(0px - var(--section-rotate));
   position: relative;
   z-index: 1000;
 }
 
 .university__gallery .university__picture .university__image--1 {
-  height: 100%;
+  padding-top: 15%;
+  height: 110%;
   width: 100%;
   object-fit: cover;
 }
 
 .university__gallery .university__picture .university__image--2 {
-  height: 100%;
+  padding-bottom: 15%;
+  height: 110%;
   width: 100%;
   object-fit: cover;
 }
 
 .university__gallery .university__picture .university__image--3 {
-  height: 100%;
+  padding-bottom: 27%;
+  height: 110%;
   width: 100%;
   object-fit: cover;
 }
 
+.university__map {
+  position: relative;
+  height: 65rem;
+  margin-top: calc(0px - 9vw);
+  padding: 0;
+}
+
+#map {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+}
+
+.marker {
+  background-image: url('../img/pin.png');
+  background-size: cover;
+  width: 32px;
+  height: 40px;
+  cursor: pointer;
+}
+
+.mapboxgl-popup {
+  max-width: 25rem;
+}
+
+.mapboxgl-popup-content {
+  text-align: center;
+  font-family: 'Lato', sans-serif;
+  padding: 1.5rem !important;
+  font-size: 1.4rem;
+  -webkit-box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.15) !important;
+  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.15) !important;
+}
+
 .university__reviews {
+  position: relative;
+  z-index: 1000;
   background-image: linear-gradient(to right bottom, #e91e63, #313131e8);
   -webkit-clip-path: polygon(0 9vw, 100% 0, 100% calc(100% - 9vw), 0 100%);
   margin-top: calc(0px - 9vw);
@@ -1371,8 +1428,47 @@ section {
   transition: all 0.2s;
 }
 
+.symbol-delete {
+  margin-left: auto;
+  color: red;
+  font-size: 3rem;
+  border: none;
+  background: none;
+  cursor: pointer;
+  transition: all 0.2s;
+  outline: none;
+}
+
+.symbol-delete:active {
+  color: orangered;
+  transform: translateY(6px);
+}
+
+.comment-delete {
+  margin-left: auto;
+  color: red;
+  font-size: 3rem;
+  border: none;
+  background: none;
+  cursor: pointer;
+  transition: all 0.2s;
+  outline: none;
+}
+
+.comment-delete:active {
+  color: orangered;
+  transform: translateY(6px);
+}
+
 .dashboard__body {
   position: relative;
+}
+
+.dashboard__settings--title {
+  padding: 2rem;
+  -webkit-background-clip: text;
+  color: transparent;
+  background-image: linear-gradient(to right, #e91e63, #f44336);
 }
 
 .edit__modal {
