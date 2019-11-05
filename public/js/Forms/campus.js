@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { showAlert } from './alerts';
+import { showAlert } from '../UI/alerts';
 
 // Send A post request to api/posts
 export const sendPost = async data => {

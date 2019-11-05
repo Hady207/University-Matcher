@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { showAlert } from './alerts';
+import { showAlert } from '../UI/alerts';
 
 export const postReview = async (id, review, rating) => {
   try {

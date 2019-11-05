@@ -11,7 +11,7 @@ mixin reviewCard(uniId,id,userId,img,name,description,rating)
         .reviews__avatar(style='width:100%')
             img.reviews__avatar--img(src=`/img/users/${img}`)
             h6.review__user=name
-            if user
+            -if (user&&userId == user.id)
                 button.symbol-delete(id="delete",data-uniid=`${uniId}`,data-reviewid=`${id}`) &#10008;
 
         p.review__text=description
@@ -44,6 +44,12 @@ block content
         .university__hero--container
             .university__hero--overlay &nbsp;
             img.university__hero--img(src=`../img/${university.coverImage}`)
+            -if (user && user.favoriteUni.includes(university._id))
+                button.favoriteButton.favoriteButtonActive(data-universityid=university._id) 
+                    ion-icon(name="heart")
+            -else
+                button.favoriteButton(data-universityid=university._id) 
+                    ion-icon(name="heart")
 
         .university__box
             h1.university__box--title

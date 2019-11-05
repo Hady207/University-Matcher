@@ -1,19 +1,19 @@
 const Post = require('../models/postModel');
 const catchAsync = require('../utils/catchAsync');
 const factory = require('./handlerFactory');
-const Pusher = require('pusher');
+// const Pusher = require('pusher');
 
-const channels_client = new Pusher({
-  appId: process.env.PUSHER_appId,
-  key: process.env.PUSHER_KEY,
-  secret: process.env.PUSHER_SECRET,
-  cluster: 'ap2',
-  encrypted: true
-});
+// const channels_client = new Pusher({
+//   appId: process.env.PUSHER_appId,
+//   key: process.env.PUSHER_KEY,
+//   secret: process.env.PUSHER_SECRET,
+//   cluster: 'ap2',
+//   encrypted: true
+// });
 
-channels_client.trigger('my-channel', 'my-event', {
-  message: 'hello world'
-});
+// channels_client.trigger('my-channel', 'my-event', {
+//   message: 'hello world'
+// });
 
 exports.setUserId = (req, res, next) => {
   req.body.user = req.user.id;
@@ -59,11 +59,22 @@ exports.deleteComment = catchAsync(async (req, res, next) => {
 
 exports.hitLike = catchAsync(async (req, res, next) => {
   const post = await Post.findByIdAndUpdate(req.params.id, {
-    $inc: { likes: 1 }
+    $push: { likes: req.user.id }
   });
 
   res.status(201).json({
     status: 'success',
     message: 'you hit the like button'
+  });
+});
+
+exports.hitdisLike = catchAsync(async (req, res, next) => {
+  const post = await Post.findByIdAndUpdate(req.params.id, {
+    $pull: { likes: req.user.id }
+  });
+
+  res.status(201).json({
+    status: 'success',
+    message: 'you hit the dislike like button'
   });
 });

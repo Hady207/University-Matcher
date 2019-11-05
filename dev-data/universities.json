@@ -1,0 +1,21 @@
+[{
+    "name": "Arab Open University",
+    "abbrv": "AOU",
+    "email": "",
+    "description": "AOU is a non-profit university that has eight branches in the Arab World. These branches are located in  Kuwait, Egypt, Saudi Arabia, Lebanon, Jordan, Bahrain, Oman and Sudan. Flexible learning system, since AOU adopts a combination of face to face and distance learning education.",
+    "website": "www.arabou.edu.kw",
+    "address": "Al-Ardia Aradia 830 Kuwait",
+    "admissionRule": "High school percentage of 60% or 2.00 GPA or above",
+    "coverImage": "aouCover.jpg",
+    "images": ["aou-1.jpg", "aou-2.jpg", "aou-3.jpg"],
+    "programs": ["bachelore"],
+    "majors": ["buisness", "English Literature", "Information Technology"],
+    "priceAverage": 25,
+    "location.coordinates": [47.912932, 29.282543],
+    "location.description": "Arab Open University",
+    "location.address": ", 6 Street, Ardiya",
+    "numOfStudents": 3000,
+    "certificates": ["Open University in UK Degree", "Degree equated by Supreme Council of Universities in Kuwait"]
+
+
+}]

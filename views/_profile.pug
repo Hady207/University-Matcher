@@ -1,13 +1,13 @@
 
 
-mixin universitiesLis(img,name,uniId)
+mixin universitiesLis(id,img,name,uniId)
     li.dashboard__li
         .user__main__list
-            img.user__profile(src="/img/university-1.jpg")
-        
+            img.user__profile(src=`/img/${img}`)
+
         h2.user__name=name
         .detail__button__div
-            a.b1.b1__edit.b1__delete--sm(id="details__button") Details
+            a.b1.b1__edit.b1__delete--sm(id=`details__button` data-findUni=uniId) Details
 
 
 mixin reviewCard(review,img,name,createdAt,rating)
@@ -36,27 +36,28 @@ mixin reviewsLis(uniId,title,review,img,name,createdAt,rating)
 
 
 mixin userLis(img,name,userId)
-    li.dashboard__li
+
+    li.dashboard__li(style="display:flex")
         .user__main__list
             img.user__profile(src=`/img/users/${img}`)
-        
+
         h2.user__name=name
-        .detail__button__div
-            a.b1.b1__delete--sm(href=`/${userId}`) Details
+        .detail__button__div(style="margin-left:auto")
+            a.b1.b1__delete--sm(href=`/${userId}` ) unfollow
 
 
 
 
-  
-         
+
+
 .content
     nav.side__nav
         ul.side-nav
             li.side-nav__item.side-nav__item--active(id="menu_university")
                 a.side-nav__link(id="universities" href="#")
                     ion-icon(name="school")
-                    span Favourite Universities
-            
+                    span My Universities
+
             li.side-nav__item(id="menu_review")
                 a.side-nav__link(id="reviews" href="#")
                     ion-icon(name="contacts")
@@ -66,24 +67,26 @@ mixin userLis(img,name,userId)
                 a.side-nav__link(id="users" href="#")
                     ion-icon(name="settings")
                     span My settings
-        
+
         .legal &copy; 2020 All rights reserved
-    
+
     main.dashboard__universitiesview(id="universities__main" style="display:block;")
+        h2.dashboard__settings--title Favourite Universities
         .dashboard__container
             ul.dashboard__ul
-                +universitiesLis()
-            
-            
+                each u,i in user.favoriteUni
+                    +universitiesLis(i,u.coverImage,u.name,u.id)
+
+
     main.dashboard-view(id="university__main", style="display:none;")
-        .gallery
-            figure.gallery__item
-                img.gallery__photo(src="./img/university-1.jpg")
-            figure.gallery__item
-                img.gallery__photo(src="./img/university-2.jpg")
-            figure.gallery__item
-                img.gallery__photo(src="./img/university-3.jpg")
-                
+        //- .gallery
+        //-     figure.gallery__item
+        //-         img.gallery__photo(src=`./img/university-1.jpg`)
+        //-     figure.gallery__item
+        //-         img.gallery__photo(src=`./img/university-2.jpg`)
+        //-     figure.gallery__item
+        //-         img.gallery__photo(src=`./img/university-3.jpg`)
+
         .overview
             h1.overview__heading University Name
             .overview__stars
@@ -94,7 +97,7 @@ mixin userLis(img,name,userId)
             .overview__rating
                 .overview__rating--average 8.6
                 .overview__rating--count 429 votes
-                
+
         .details
             .description
                 p.paragraph Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi deserunt exercitationem, impedit veniam explicabo aliquam suscipit, repellat neque vitae incidunt qui accusamus cupiditate, quis veritatis aliquid corrupti dignissimos laboriosam fugiat.
@@ -109,34 +112,41 @@ mixin userLis(img,name,userId)
                     li.list__item Close to the beach
                     li.list__item Close to the beach
                     li.list__item Close to the beach
-                    
+
                 .details__reviews
                     p.paragraphs Number of reviews in this university
                     span.number 456
-                    
+
             .dashboard__reviews
                 +reviewCard("loremloreoreolroerloreloeroreo","leo","leo","23/3/2019","4.5")
-                    
 
-        
-            
+
+
+
     main.dashboard__reviewview(id="review__main")
-        .dashboard__reviews
-            +reviewsLis("welqowe","Taats weird","loerlorelore","aarav","aarav","23/43/2012","7.8")
-            
+        h2.dashboard__settings--title Your Friends List
+        .dashboard__container
+            each f in user.followers
+                +userLis(f.photo,f.name,f._id)
+            h5 Make connections and follow other students
+            hr
+            each f in user.following
+                +userLis(f.photo,f.name,f._id)
+
+
 
     main.dashboard__userview(id="user__main")
         h2.dashboard__settings--title Your Account Settings
         .dashboard__container.dashboard__container--settings
-            form(action="",method="post")
+            form.form-user-data(action="",method="post")
                 .form__group__2
                     label.form__label(for="name") Your Name
-                    input.form__input(id="name",type="text",required)
-                
+                    input.form__input(id="name",type="text",required,placeholder=`${user.name}`)
+
                 .form__group__2
                     label.form__label(for="email") email
-                    input.form__input(id="email",type="email",required,placeholder="you@example.com")
-                
+                    input.form__input(id="email",type="email",required,placeholder=`${user.email}`)
+
                 .form__group__2.mB
                     h4.form__label Interested In
                     .flexxx
@@ -146,40 +156,40 @@ mixin userLis(img,name,userId)
                                 option(value="diploma") Diploma
                                 option(value="bachlore") Bachlore
                                 option(value="master") Master
-                        
+
                         .custom-select(style="width:200px")
                             select#major
                                 option(value="0") Select a major:
                                 option(value="ITC") Information Technology
                                 option(value="business") Business
                                 option(value="english") English literature
-                
+
                 .form__group__2.mB
                     button.button.button--details(type="submit") Save Settings 
 
                 hr(style="margin:3rem 0;")
 
+            form.form-user-password(action="",method="post")
                 .form__group__2.mB
                     label.form__label(for="password-current") current password
-                    input.form__input(id="password-current",type="password",required,placeholder="••••••••")
+                    input.form__input(id="password-current",type="password",required,placeholder="current password")
 
                 .form__group__2.mB
                     label.form__label(for="password") password
-                    input.form__input(id="password",type="password",required,placeholder="••••••••")
+                    input.form__input(id="password",type="password",required,placeholder="New password")
 
                 .form__group__2.mB
                     label.form__label(for="passwordconfirm") Confirm Password
-                    input.form__input(id="passwordconfirm",type="password",required,placeholder="••••••••")
-                
-                
-                
+                    input.form__input(id="passwordconfirm",type="password",required,placeholder="Confirm new password")
+
+
+
                 .form__group__2.mB
-                    button.button.button--details(type="submit") Save Password
-              
-                            
+                    button.button.button--details(id="btn--save-password" type="submit") Save Password
+
+
 
 block scripts
-    script(src="./js/dashboard.js")
+    script(src="./js/UI/dashboard.js")
 
 
-    

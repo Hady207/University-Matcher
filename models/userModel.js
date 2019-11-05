@@ -58,7 +58,12 @@ const userSchema = new mongoose.Schema({
       message: `Passwords are not the same`
     }
   },
-  favoriteUni: [String],
+  favoriteUni: [
+    {
+      type: mongoose.Schema.ObjectId,
+      ref: 'University'
+    }
+  ],
   major: String,
   programs: [{ type: String, enum: ['diploma', 'bachelore', 'master', 'phd'] }],
   program: {
@@ -96,7 +101,7 @@ userSchema.pre('save', async function(next) {
 
 userSchema.pre(/^find/, async function(next) {
   this.populate({
-    path: 'following followers',
+    path: 'following followers ',
     select: '-following -followers'
   });
 

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { showAlert } from './alerts';
+import { showAlert } from '../UI/alerts';
 
 export const login = async (email, password) => {
   console.log(email, password);
@@ -30,7 +30,9 @@ export const logout = async () => {
   });
 
   if (res.data.status === 'success') {
-    location.reload(true);
+    window.setTimeout(() => {
+      location.assign('/');
+    }, 1500);
     showAlert('success', 'GoodBye');
   }
 };

@@ -23,6 +23,9 @@ router
 router.delete('/:id/comments/:commentId', postsController.deleteComment);
 
 router.route('/:id/like').post(authController.protect, postsController.hitLike);
+router
+  .route('/:id/dislike')
+  .post(authController.protect, postsController.hitdisLike);
 //   .patch(postsController.setUserId, postsController.createComment);
 
 module.exports = router;

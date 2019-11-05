@@ -22,7 +22,7 @@ const user__main = document.querySelector('#user__main');
 const model = document.querySelector('#edit__modal');
 
 // university buttons
-const details = document.querySelector('#details__button');
+// const details = document.querySelector('#details__button');
 const editButton = document.querySelector('#edit_button');
 const exitButton = document.querySelector('#exit');
 
@@ -97,7 +97,9 @@ notification.addEventListener('click', e => {
     notificationDrop.style.display === 'none' ? 'block' : 'none';
 });
 
-details.addEventListener('click', e => {
-  universities__main.style.display = 'none';
-  university__main.style.display = 'block';
-});
+// details.addEventListener('click', e => {
+//   const unID = details.dataset.finduni;
+//   console.log(unID);
+//   universities__main.style.display = 'none';
+//   university__main.style.display = 'block';
+// });

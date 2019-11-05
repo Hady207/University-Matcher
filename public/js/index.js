@@ -1,9 +1,13 @@
 import '@babel/polyfill';
 
-import { login, logout, signUp } from './login';
-import { postReview, deleteReview } from './reviewForm';
-import { displayMap } from './mapbox';
-import { sendPost, sendComment, deleteComment } from './campus';
+import { login, logout, signUp } from './Forms/login';
+import { postReview, deleteReview } from './Forms/reviewForm';
+import { updateSettings } from './Forms/updateSettings';
+import { sendPost, sendComment, deleteComment } from './Forms/campus';
+import { renderUni } from './Forms/uniDash';
+import { favorite } from './Forms/favoriteButton';
+import { like, dislike } from './Forms/likes';
+import { displayMap } from './UI/mapbox';
 
 // DOM ELEMENTS
 const mapBox = document.getElementById('map');
@@ -15,6 +19,13 @@ const deleteBtn = document.querySelector('.symbol-delete');
 const postForm = document.querySelector('#campusPost');
 const commentForm = document.querySelectorAll('#commentPost');
 const commentDeleteBtn = document.querySelector('.comment-delete');
+const userDataForm = document.querySelector('.form-user-data');
+const userPasswordForm = document.querySelector('.form-user-password');
+// const dashboardDetail = document.querySelectorAll('.b1__edit');
+const details = document.querySelector('#details__button');
+const favoriteBtn = document.querySelector('.favoriteButton');
+const likeButton = document.querySelectorAll('.button--like');
+const dislikeButton = document.querySelectorAll('.button--dislike');
 
 // DELEGATION
 if (loginBtn)
@@ -27,6 +38,7 @@ if (loginBtn)
 
 if (logoutBtn)
   logoutBtn.addEventListener('click', e => {
+    console.log('pushed');
     logout();
   });
 
@@ -41,9 +53,17 @@ if (formSignup)
     const major = document.getElementById('major').value;
 
     const newUser = { name, email, password, passwordConfirm, program, major };
-    console.log(newUser);
+
     signUp(newUser);
   });
+
+if (favoriteBtn) {
+  favoriteBtn.addEventListener('click', e => {
+    const id = favoriteBtn.dataset.universityid;
+    favorite(id);
+    favoriteBtn.classList.toggle('favoriteButtonActive');
+  });
+}
 
 if (mapBox) {
   const place = JSON.parse(document.getElementById('map').dataset.location);
@@ -62,18 +82,16 @@ if (reviewForm)
       if (stars[i].checked) {
         rate = stars[i].value;
         break;
-        // stars[i].value;
       }
     }
     postReview(id, review, rate);
-    console.log(id, review, rate);
   });
 
 if (deleteBtn)
   deleteBtn.addEventListener('click', e => {
     const uniid = deleteBtn.getAttribute('data-uniid');
     const reviewid = deleteBtn.getAttribute('data-reviewid');
-    // console.log(uniid, reviewid);
+
     deleteReview(uniid, reviewid);
   });
 
@@ -81,18 +99,15 @@ if (postForm)
   postForm.addEventListener('submit', e => {
     e.preventDefault();
     const textArea = document.querySelector('.textArea').value;
-    console.log(textArea);
+
     sendPost({ post: textArea });
   });
 
 if (commentForm) {
-  console.log(commentForm);
-
   commentForm.forEach((form, i) => {
     form.addEventListener('submit', e => {
       e.preventDefault();
       const comment = document.querySelector(`#commentText-${i}`).value;
-      console.log(`${comment}`, form.dataset.unique);
       sendComment(form.dataset.unique, comment);
     });
   });
@@ -102,8 +117,72 @@ if (commentDeleteBtn) {
   commentDeleteBtn.addEventListener('click', e => {
     const postId = commentDeleteBtn.dataset.postid;
     const commentId = commentDeleteBtn.dataset.commentid;
-
-    console.log(postId, commentId);
     deleteComment(postId, commentId);
+  });
+}
+
+if (userDataForm) {
+  userDataForm.addEventListener('submit', e => {
+    e.preventDefault();
+    const form = new FormData();
+    form.append('name', document.getElementById('name').value);
+    form.append('email', document.getElementById('email').value);
+    // form.append('photo', document.getElementById('photo').files[0]);
+    console.log(form);
+
+    updateSettings(form, 'data');
+  });
+}
+
+if (userPasswordForm)
+  userPasswordForm.addEventListener('submit', async e => {
+    e.preventDefault();
+    document.querySelector('#btn--save-password').textContent = 'Updating...';
+
+    const passwordCurrent = document.getElementById('password-current').value;
+    const password = document.getElementById('password').value;
+    const passwordConfirm = document.getElementById('passwordconfirm').value;
+    await updateSettings(
+      { passwordCurrent, password, passwordConfirm },
+      'password'
+    );
+
+    document.querySelector('#btn--save-password').textContent = 'Save password';
+    document.getElementById('password-current').value = '';
+    document.getElementById('password').value = '';
+    document.getElementById('passwordconfirm"').value = '';
+  });
+
+if (details)
+  details.addEventListener('click', e => {
+    const unID = details.dataset.finduni;
+
+    universities__main.style.display = 'none';
+    university__main.style.display = 'block';
+
+    renderUni(unID);
+  });
+
+if (likeButton) {
+  likeButton.forEach((button, i) => {
+    button.addEventListener('click', e => {
+      button.style.display = 'none';
+      const id = button.dataset.likeid;
+      const dislikeButton2 = document.querySelector(`#dislikeButton-${i}`);
+      dislikeButton2.style.display = 'block';
+      like(id);
+    });
+  });
+}
+
+if (dislikeButton) {
+  dislikeButton.forEach((button, i) => {
+    button.addEventListener('click', e => {
+      button.style.display = 'none';
+      const id = button.dataset.unlikeid;
+      const likeButton2 = document.querySelector(`#likeButton-${i}`);
+      likeButton2.style.display = 'block';
+      dislike(id);
+    });
   });
 }

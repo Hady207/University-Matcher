@@ -40,7 +40,7 @@ exports.login = catchAsync(async (req, res, next) => {
 });
 
 exports.campus = catchAsync(async (req, res, next) => {
-  const posts = await Post.find({});
+  const posts = await Post.find({}).sort('-createdAt');
   console.log('posts', posts);
   res.render('campus', { title: 'campus', posts });
 });

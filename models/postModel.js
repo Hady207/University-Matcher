@@ -9,13 +9,28 @@ const commentSchema = new mongoose.Schema({
   }
 });
 
+const likesSchema = new mongoose.Schema({
+  like: {
+    type: Number,
+    default: 0
+  },
+  user: [
+    {
+      type: mongoose.Schema.ObjectId,
+      ref: 'User'
+    }
+  ]
+});
+
 const postSchema = new mongoose.Schema(
   {
     post: String,
-    likes: {
-      type: Number,
-      default: 0
-    },
+    likes: [
+      {
+        type: mongoose.Schema.ObjectId,
+        ref: 'User'
+      }
+    ],
     comments: [commentSchema],
     user: {
       type: mongoose.Schema.ObjectId,

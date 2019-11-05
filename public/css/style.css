@@ -235,6 +235,7 @@ section {
   text-transform: uppercase;
   display: inline-block;
   text-decoration: none;
+  outline: none;
   position: relative;
   transition: all 0.4s;
   font-weight: 400;
@@ -257,6 +258,7 @@ section {
 
 .button--like {
   background: #2196f3;
+  display: block;
 }
 
 .button--comment {
@@ -266,7 +268,43 @@ section {
 .button--dislike {
   display: none;
   background: orangered;
+  margin-right: 5px;
 }
+
+.favoriteButton {
+  top: 20%;
+  left: 5%;
+  position: absolute;
+  transform: translate(-50%, -70%);
+  padding: 1rem 1rem;
+  background: none;
+  color: white;
+  border: none;
+  font-size: 3.8rem;
+  outline: none;
+  border-radius: 19px;
+  cursor: pointer;
+  backface-visibility: hidden;
+  transition: all 0.8s;
+  text-shadow: 0 0.5rem 2rem rgba(0, 0, 0, 0.15);
+
+}
+
+.favoriteButton:hover {
+  top: 18%;
+
+}
+
+.favoriteButton:active {
+  top: 23%;
+  color: #20bf6b;
+}
+
+.favoriteButtonActive {
+  color: #20bf6b;
+}
+
+
 
 .b1 {
   font-size: 1.5rem;
@@ -1336,6 +1374,8 @@ section {
 
 .campus__card .campus__info .campus__buttons {
   margin-bottom: 2px;
+  display: flex;
+  justify-content: space-between;
 }
 
 .campus__card .campus__info .campus__buttons button {
@@ -2065,6 +2105,7 @@ section {
   padding: 4.5rem;
   border-bottom: var(--line);
   width: 100%;
+  flex-direction: column;
 }
 
 .dashboard__container--settings {
@@ -2257,6 +2298,7 @@ section {
   display: inline-block;
   margin-bottom: 3.5rem;
 }
+
 
 .form__group__2:not(:last-child) {
   margin-bottom: 2.5rem;

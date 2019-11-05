@@ -10,7 +10,7 @@ mixin commentCard(postId,commentId,img,user,comment)
         .comment=comment
 
 
-mixin campusCard(index,postid,postImg,postUser,postDesc,likeSize,commentSize,comments=[])
+mixin campusCard(index,postid,postImg,postUser,postDesc,likes,commentSize,comments=[])
     .campus__card
         .campus__image
             img.campus__user(src=`../img/users/${postImg}`)
@@ -21,17 +21,30 @@ mixin campusCard(index,postid,postImg,postUser,postDesc,likeSize,commentSize,com
             p.campus__post=postDesc
 
             .campus__buttons
-                button.button.button--like(id="likeButton")
-                    div
-                        span=likeSize
-                        |  like      
-                        ion-icon(name="thumbs-up")
-
-                //- button.button.button--dislike(id="dislikeButton")
-                //-     div
-                //-         span=likeSize
-                //-         |unlike
-                //-         ion-icon(name="thumbs-down")
+                -if(likes.includes(user.id))
+                    button.button.button--like(id=`likeButton-${index}` style='display:none' data-likeid=postid)
+                        div
+                            span=likes.length
+                            |  like      
+                            ion-icon(name="thumbs-up")
+                    
+                    button.button.button--dislike(id=`dislikeButton-${index}` style='display:block'  data-unlikeid=postid)
+                        div
+                            span=likes.length
+                            |  unlike  
+                            ion-icon(name="thumbs-down")
+                -else 
+                    button.button.button--like(id=`likeButton-${index}`  data-likeid=postid)
+                        div
+                            span=likes.length
+                            |  like      
+                            ion-icon(name="thumbs-up")
+                    
+                    button.button.button--dislike(id=`dislikeButton-${index}`   data-unlikeid=postid)
+                        div
+                            span=likes.length
+                            |  unlike  
+                            ion-icon(name="thumbs-down")
 
                 button.button.button--comment(id="commentButton")
                     
@@ -113,4 +126,4 @@ block scripts
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"
     )
-    script(src="./js/commentSection.js")
+    script(src="./js/UI/commentSection.js")
