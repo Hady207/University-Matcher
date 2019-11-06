@@ -6,7 +6,7 @@ export const favorite = async id => {
     const res = await axios.post(
       `http://127.0.0.1:3000/api/universities/${id}`
     );
-    console.log(res);
+
     if (res.data.status === 'added') {
       showAlert('success', 'added to favorite');
     } else {

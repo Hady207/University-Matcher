@@ -79,9 +79,13 @@ exports.unfollow = catchAsync(async (req, res, next) => {
     return next(new AppError('no user with given id', 400));
   }
   user.unfollow(req.params.id);
-  const friend = await User.findByIdAndUpdate(req.params.id, {
-    $pull: { followers: req.user.id }
-  });
+  const friend = await User.findByIdAndUpdate(
+    req.params.id,
+    {
+      $pull: { followers: req.user.id }
+    },
+    { new: true, safe: true, multi: true }
+  );
   // friend.followers.pop(user._id);
   // friend.save({ validateBeforeSave: false });
   res.status(200).json({

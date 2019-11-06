@@ -26,47 +26,50 @@ const model = document.querySelector('#edit__modal');
 const editButton = document.querySelector('#edit_button');
 const exitButton = document.querySelector('#exit');
 
-// Side Navs listenrs
-universities.addEventListener('click', e => {
-  universities__main.style.display = 'block';
-  university__main.style.display = 'none';
-  review__main.style.display = 'none';
-  user__main.style.display = 'none';
-  for (let i = 0; i < lis.length; i++) {
-    lis[i].classList.remove(active);
-  }
-  if (!universityli.classList.contains(active)) {
-    universityli.classList.add(active);
-  }
-});
+// Side Navs listeners
+if (universities)
+  universities.addEventListener('click', e => {
+    universities__main.style.display = 'block';
+    university__main.style.display = 'none';
+    review__main.style.display = 'none';
+    user__main.style.display = 'none';
+    for (let i = 0; i < lis.length; i++) {
+      lis[i].classList.remove(active);
+    }
+    if (!universityli.classList.contains(active)) {
+      universityli.classList.add(active);
+    }
+  });
 
-reviews.addEventListener('click', e => {
-  universities__main.style.display = 'none';
-  university__main.style.display = 'none';
-  review__main.style.display = 'block';
-  user__main.style.display = 'none';
+if (reviews)
+  reviews.addEventListener('click', e => {
+    universities__main.style.display = 'none';
+    university__main.style.display = 'none';
+    review__main.style.display = 'block';
+    user__main.style.display = 'none';
 
-  for (let i = 0; i < lis.length; i++) {
-    lis[i].classList.remove(active);
-  }
+    for (let i = 0; i < lis.length; i++) {
+      lis[i].classList.remove(active);
+    }
 
-  if (!reviewli.classList.contains(active)) {
-    reviewli.classList.add(active);
-  }
-});
+    if (!reviewli.classList.contains(active)) {
+      reviewli.classList.add(active);
+    }
+  });
 
-users.addEventListener('click', e => {
-  universities__main.style.display = 'none';
-  university__main.style.display = 'none';
-  review__main.style.display = 'none';
-  user__main.style.display = 'block';
-  for (let i = 0; i < lis.length; i++) {
-    lis[i].classList.remove(active);
-  }
-  if (!userli.classList.contains(active)) {
-    userli.classList.add(active);
-  }
-});
+if (users)
+  users.addEventListener('click', e => {
+    universities__main.style.display = 'none';
+    university__main.style.display = 'none';
+    review__main.style.display = 'none';
+    user__main.style.display = 'block';
+    for (let i = 0; i < lis.length; i++) {
+      lis[i].classList.remove(active);
+    }
+    if (!userli.classList.contains(active)) {
+      userli.classList.add(active);
+    }
+  });
 
 // university button listenrs
 

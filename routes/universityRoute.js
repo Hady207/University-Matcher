@@ -19,4 +19,9 @@ router
   .patch(universityController.updateUni)
   .delete(universityController.deleteUni);
 
+router.post(
+  '/:id/favourite',
+  authController.protect,
+  universityController.removeFavorite
+);
 module.exports = router;

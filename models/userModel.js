@@ -99,14 +99,22 @@ userSchema.pre('save', async function(next) {
   next();
 });
 
-userSchema.pre(/^find/, async function(next) {
+userSchema.pre(/^find/, function(next) {
   this.populate({
     path: 'following followers ',
-    select: '-following -followers'
+    select: '-following -followers -programs -notifications'
   });
 
   return next();
 });
+
+// userSchema.pre(/^find/, function(next) {
+//   this.populate({
+//     path: 'favoriteUni '
+//   });
+
+//   return next();
+// });
 
 // instances method
 

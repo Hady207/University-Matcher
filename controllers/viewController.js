@@ -50,3 +50,8 @@ exports.dashboard = catchAsync(async (req, res, next) => {
   const user = await User.findById(req.params.id);
   res.render('dashboard', { title: 'dashboard', universities });
 });
+
+exports.profile = catchAsync(async (req, res, next) => {
+  const friend = await User.findById(req.params.id);
+  res.render('_otherProfile', { title: 'Welcome', friend });
+});

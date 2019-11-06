@@ -1,12 +1,13 @@
 extend base
 
-mixin commentCard(postId,commentId,img,user,comment)
+mixin commentCard(postId,commentId,img,User,comment)
     .commentList
         .comment_info
             .userphoto
                 img.commentPhoto(src=`./img/users/${img}`)
-            h6=user
-            button.comment-delete(data-postID=`${postId}`,data-commentID=`${commentId}`) &#10008;
+            a(href=`/profile/${User.id}`)=User.name
+            -if(user&& User.id == user.id)
+                button.comment-delete(data-postID=`${postId}`,data-commentID=`${commentId}`) &#10008;
         .comment=comment
 
 
@@ -17,11 +18,11 @@ mixin campusCard(index,postid,postImg,postUser,postDesc,likes,commentSize,commen
 
 
         .campus__info(style="width:100%;")
-            h3.campus__username=postUser
+            a.campus__username(href=`/profile/${postUser.id}`)=postUser.name
             p.campus__post=postDesc
-
+            
             .campus__buttons
-                -if(likes.includes(user.id))
+                -if(user && likes.includes(user.id))
                     button.button.button--like(id=`likeButton-${index}` style='display:none' data-likeid=postid)
                         div
                             span=likes.length
@@ -55,12 +56,12 @@ mixin campusCard(index,postid,postImg,postUser,postDesc,likes,commentSize,commen
             .commentSection(id=`commentSection-${index}`)
                 if commentSize>0 
                     each c in comments
-                      +commentCard(postid,c._id,c.user.photo,c.user.name,c.comment)
-
-                form#commentPost.comment__form(action="" method="" data-unique=`${postid}`)
-                    .circlePhoto
-                        img(class="circle__photo" src=`./img/users/${user.photo}`)
-                    input.commentInput(id=`commentText-${index}` type="text",placeholder="Write your comment")
+                      +commentCard(postid,c._id,c.user.photo,c.user,c.comment)
+                -if(user)
+                    form#commentPost.comment__form(action="" method="" data-unique=`${postid}`)
+                        .circlePhoto
+                            img(class="circle__photo" src=`./img/users/${user.photo}`)
+                        input.commentInput(id=`commentText-${index}` type="text",placeholder="Write your comment")
 
 
 block head 
@@ -99,7 +100,7 @@ block content
 
                 hr
                 each p,index in posts
-                    +campusCard(index,p.id,p.user.photo,p.user.name,p.post,p.likes,p.comments.length,p.comments)
+                    +campusCard(index,p.id,p.user.photo,p.user,p.post,p.likes,p.comments.length,p.comments)
 
             .campus__grid--right
                 .collapse(id="collapseExample")

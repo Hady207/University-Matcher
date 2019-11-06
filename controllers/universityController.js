@@ -17,10 +17,10 @@ exports.favoriteUni = catchAsync(async (req, res, next) => {
   console.log(req.user);
   let user;
   if (req.user.favoriteUni.includes(req.params.id)) {
-    console.log('it does');
+    console.log('it does include it');
     user = await User.updateOne(
       { _id: req.user.id },
-      { $pull: { favoriteUni: { id: req.params.id } } },
+      { $pull: { favoriteUni: req.params.id } },
       { new: true, safe: true, multi: true }
     );
     // user = await User.findByIdAndUpdate(
@@ -67,3 +67,21 @@ exports.favoriteUni = catchAsync(async (req, res, next) => {
 //     },
 //   });
 // });
+
+exports.removeFavorite = catchAsync(async (req, res, next) => {
+  if (req.user.favoriteUni.includes(req.params.id)) {
+    const user = await User.findByIdAndUpdate(req.user.id, {
+      $pull: { favoriteUni: req.params.id }
+    });
+    console.log(user);
+    res.status(201).json({
+      status: 'success',
+      message: 'removed from favorite'
+    });
+  } else {
+    res.status(201).json({
+      status: 'faild',
+      message: 'this is not in your favorite list'
+    });
+  }
+});

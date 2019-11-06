@@ -35,15 +35,25 @@ mixin reviewsLis(uniId,title,review,img,name,createdAt,rating)
             .review__rating=rating
 
 
-mixin userLis(img,name,userId)
+mixin userLis(index,img,User,userId)
 
-    li.dashboard__li(style="display:flex")
+    li.dashboard__li(style="display:flex;padding: 2rem;align-items: center;")
         .user__main__list
             img.user__profile(src=`/img/users/${img}`)
 
-        h2.user__name=name
+        a.user__name(href=`/profile/${User.id}`)=User.name
         .detail__button__div(style="margin-left:auto")
-            a.b1.b1__delete--sm(href=`/${userId}` ) unfollow
+            button.b1.b1__delete--sm.unfollowBtns(id=`unfollowLink-${index}`, data-idfollower=`${User.id}`) unfollow
+
+mixin followersLis(index,img,User,userId)
+
+    li.dashboard__li(style="display:flex;padding: 2rem;align-items: center;")
+        .user__main__list
+            img.user__profile(src=`/img/users/${img}`)
+
+        a.user__name(href=`/profile/${User.id}`)=User.name
+        .detail__button__div(style="margin-left:auto")
+            button.b1.b1__delete--sm.unfollowFBtns(id=`unfollowLinkF-${index}`, data-block=`${User.id}`) unfollow
 
 
 
@@ -126,12 +136,14 @@ mixin userLis(img,name,userId)
     main.dashboard__reviewview(id="review__main")
         h2.dashboard__settings--title Your Friends List
         .dashboard__container
-            each f in user.followers
-                +userLis(f.photo,f.name,f._id)
+            h5 Followers
+            each f,i in user.followers
+                +followersLis(i,f.photo,f,f._id)
             h5 Make connections and follow other students
             hr
-            each f in user.following
-                +userLis(f.photo,f.name,f._id)
+            h5 Following
+            each f,i in user.following
+                +userLis(i,f.photo,f,f._id)
 
 
 

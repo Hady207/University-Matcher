@@ -7,6 +7,7 @@ import { sendPost, sendComment, deleteComment } from './Forms/campus';
 import { renderUni } from './Forms/uniDash';
 import { favorite } from './Forms/favoriteButton';
 import { like, dislike } from './Forms/likes';
+import { follow, unFollow } from './Forms/followers';
 import { displayMap } from './UI/mapbox';
 
 // DOM ELEMENTS
@@ -26,6 +27,10 @@ const details = document.querySelector('#details__button');
 const favoriteBtn = document.querySelector('.favoriteButton');
 const likeButton = document.querySelectorAll('.button--like');
 const dislikeButton = document.querySelectorAll('.button--dislike');
+const followButton = document.querySelector('.follow__button');
+const unfollowButton = document.querySelector('.unfollow__button');
+const unfollowList = document.querySelectorAll('.unfollowBtns');
+const blockList = document.querySelector('.unfollowFBtns');
 
 // DELEGATION
 if (loginBtn)
@@ -184,5 +189,30 @@ if (dislikeButton) {
       likeButton2.style.display = 'block';
       dislike(id);
     });
+  });
+}
+
+if (followButton) {
+  followButton.addEventListener('click', e => {
+    const id = followButton.dataset.friend;
+    follow(id);
+  });
+}
+
+if (unfollowButton) {
+  unfollowButton.addEventListener('click', e => {
+    const id = unfollowButton.dataset.friend;
+    unFollow(id);
+  });
+}
+
+if (unfollowList) {
+  unfollowList.forEach((unfollowed, i) => {
+    unfollowed.addEventListener('click', e => {
+      const id = unfollowed.dataset.idfollower;
+      unFollow(id);
+    });
+    // const clicked = document.querySelector(`unfollowLink-${i}`);
+    // const id = clicked.dataset.unfollow;
   });
 }

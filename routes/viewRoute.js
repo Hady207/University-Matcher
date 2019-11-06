@@ -19,5 +19,6 @@ router.get(
 );
 router.get('/campus', authController.isLoggedIn, viewController.campus);
 router.get('/dashboard', authController.protect, viewController.dashboard);
+router.get('/profile/:id', authController.protect, viewController.profile);
 
 module.exports = router;
