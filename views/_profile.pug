@@ -1,13 +1,13 @@
 
 
-mixin universitiesLis(id,img,name,uniId)
+mixin universitiesLis(i,img,name,uniId)
     li.dashboard__li
         .user__main__list
             img.user__profile(src=`/img/${img}`)
-
+        
         h2.user__name=name
         .detail__button__div
-            a.b1.b1__edit.b1__delete--sm(id=`details__button` data-findUni=uniId) Details
+            a.b1.b1__edit.b1__delete--sm.details__buttons(id=`details__button-${i}` data-finduni=uniId) Details
 
 
 mixin reviewCard(review,img,name,createdAt,rating)
@@ -97,35 +97,35 @@ mixin followersLis(index,img,User,userId)
         //-     figure.gallery__item
         //-         img.gallery__photo(src=`./img/university-3.jpg`)
 
-        .overview
-            h1.overview__heading University Name
-            .overview__stars
-                ion-icon(name="star")
-            .overview__location
-                ion-icon(name="pin")
-                | kuwait kuwait
-            .overview__rating
-                .overview__rating--average 8.6
-                .overview__rating--count 429 votes
+        //- .overview
+        //-     h1.overview__heading University Name
+        //-     .overview__stars
+        //-         ion-icon(name="star")
+        //-     .overview__location
+        //-         ion-icon(name="pin")
+        //-         | kuwait kuwait
+        //-     .overview__rating
+        //-         .overview__rating--average 8.6
+        //-         .overview__rating--count 429 votes
 
-        .details
-            .description
-                p.paragraph Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi deserunt exercitationem, impedit veniam explicabo aliquam suscipit, repellat neque vitae incidunt qui accusamus cupiditate, quis veritatis aliquid corrupti dignissimos laboriosam fugiat.
-                p.paragraph Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe aliquam, culpa dignissimos nam tempore praesentium dolor sunt repudiandae odit assumenda, dolorem ipsa, sapiente unde laudantium mollitia modi ipsum distinctio delectus.
+        //- .details
+        //-     .description
+        //-         p.paragraph Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi deserunt exercitationem, impedit veniam explicabo aliquam suscipit, repellat neque vitae incidunt qui accusamus cupiditate, quis veritatis aliquid corrupti dignissimos laboriosam fugiat.
+        //-         p.paragraph Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe aliquam, culpa dignissimos nam tempore praesentium dolor sunt repudiandae odit assumenda, dolorem ipsa, sapiente unde laudantium mollitia modi ipsum distinctio delectus.
 
-                ul.list
-                    li.list__item Close to the beach
-                    li.list__item Close to the beach
-                    li.list__item Close to the beach
-                    li.list__item Close to the beach
-                    li.list__item Close to the beach
-                    li.list__item Close to the beach
-                    li.list__item Close to the beach
-                    li.list__item Close to the beach
+        //-         ul.list
+        //-             li.list__item Close to the beach
+        //-             li.list__item Close to the beach
+        //-             li.list__item Close to the beach
+        //-             li.list__item Close to the beach
+        //-             li.list__item Close to the beach
+        //-             li.list__item Close to the beach
+        //-             li.list__item Close to the beach
+        //-             li.list__item Close to the beach
 
-                .details__reviews
-                    p.paragraphs Number of reviews in this university
-                    span.number 456
+        //-         .details__reviews
+        //-             p.paragraphs Number of reviews in this university
+        //-             span.number 456
 
             .dashboard__reviews
                 +reviewCard("loremloreoreolroerloreloeroreo","leo","leo","23/3/2019","4.5")
@@ -153,11 +153,11 @@ mixin followersLis(index,img,User,userId)
             form.form-user-data(action="",method="post")
                 .form__group__2
                     label.form__label(for="name") Your Name
-                    input.form__input(id="name",type="text",required,placeholder=`${user.name}`)
+                    input.form__input(id="name",type="text", value=`${user.name}` ,required,placeholder=`${user.name}`)
 
                 .form__group__2
                     label.form__label(for="email") email
-                    input.form__input(id="email",type="email",required,placeholder=`${user.email}`)
+                    input.form__input(id="email",type="email",value=`${user.email}`,required,placeholder=`${user.email}`)
 
                 .form__group__2.mB
                     h4.form__label Interested In
@@ -176,7 +176,13 @@ mixin followersLis(index,img,User,userId)
                                 option(value="business") Business
                                 option(value="english") English literature
 
-                .form__group__2.mB
+                .form__group__2.mB.form__photo-upload
+                    img.form__user-photo(src=`img/users/${user.photo}`, alt='User photo')
+                    input.form__upload(id='photo', type='file', accept='image/*', name='photo')
+                    label(for='photo') Choose new photo
+                    
+                
+                .form__group__2.right
                     button.button.button--details(type="submit") Save Settings 
 
                 hr(style="margin:3rem 0;")
@@ -184,19 +190,19 @@ mixin followersLis(index,img,User,userId)
             form.form-user-password(action="",method="post")
                 .form__group__2.mB
                     label.form__label(for="password-current") current password
-                    input.form__input(id="password-current",type="password",required,placeholder="current password")
+                    input.form__input(id="password-current",type="password",required,placeholder="current password" minlength='8')
 
                 .form__group__2.mB
                     label.form__label(for="password") password
-                    input.form__input(id="password",type="password",required,placeholder="New password")
+                    input.form__input(id="password",type="password",required,placeholder="New password" minlength='8')
 
                 .form__group__2.mB
                     label.form__label(for="passwordconfirm") Confirm Password
-                    input.form__input(id="passwordconfirm",type="password",required,placeholder="Confirm new password")
+                    input.form__input(id="passwordconfirm",type="password",required,placeholder="Confirm new password" minlength='8')
 
 
 
-                .form__group__2.mB
+                .form__group__2.right
                     button.button.button--details(id="btn--save-password" type="submit") Save Password
 
 

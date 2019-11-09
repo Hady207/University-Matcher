@@ -14,6 +14,7 @@ import { displayMap } from './UI/mapbox';
 const mapBox = document.getElementById('map');
 const loginBtn = document.querySelector('#form__login');
 const logoutBtn = document.getElementById('lgtBTN');
+const logoutBtnHome = document.getElementById('logoutHome');
 const formSignup = document.querySelector('.signUpForm');
 const reviewForm = document.querySelector('.review__form');
 const deleteBtn = document.querySelector('.symbol-delete');
@@ -23,7 +24,7 @@ const commentDeleteBtn = document.querySelector('.comment-delete');
 const userDataForm = document.querySelector('.form-user-data');
 const userPasswordForm = document.querySelector('.form-user-password');
 // const dashboardDetail = document.querySelectorAll('.b1__edit');
-const details = document.querySelector('#details__button');
+// const details = document.querySelector('#details__button');
 const favoriteBtn = document.querySelector('.favoriteButton');
 const likeButton = document.querySelectorAll('.button--like');
 const dislikeButton = document.querySelectorAll('.button--dislike');
@@ -31,6 +32,9 @@ const followButton = document.querySelector('.follow__button');
 const unfollowButton = document.querySelector('.unfollow__button');
 const unfollowList = document.querySelectorAll('.unfollowBtns');
 const blockList = document.querySelector('.unfollowFBtns');
+const details = document.querySelectorAll('.details__buttons');
+const universities__main = document.querySelector('#universities__main');
+const university__main = document.querySelector('#university__main');
 
 // DELEGATION
 if (loginBtn)
@@ -44,6 +48,12 @@ if (loginBtn)
 if (logoutBtn)
   logoutBtn.addEventListener('click', e => {
     console.log('pushed');
+    logout();
+  });
+
+if (logoutBtnHome)
+  logoutBtnHome.addEventListener('click', e => {
+    console.log('pushedHome');
     logout();
   });
 
@@ -132,7 +142,7 @@ if (userDataForm) {
     const form = new FormData();
     form.append('name', document.getElementById('name').value);
     form.append('email', document.getElementById('email').value);
-    // form.append('photo', document.getElementById('photo').files[0]);
+    form.append('photo', document.getElementById('photo').files[0]);
     console.log(form);
 
     updateSettings(form, 'data');
@@ -155,17 +165,7 @@ if (userPasswordForm)
     document.querySelector('#btn--save-password').textContent = 'Save password';
     document.getElementById('password-current').value = '';
     document.getElementById('password').value = '';
-    document.getElementById('passwordconfirm"').value = '';
-  });
-
-if (details)
-  details.addEventListener('click', e => {
-    const unID = details.dataset.finduni;
-
-    universities__main.style.display = 'none';
-    university__main.style.display = 'block';
-
-    renderUni(unID);
+    document.getElementById('passwordconfirm').value = '';
   });
 
 if (likeButton) {
@@ -216,3 +216,13 @@ if (unfollowList) {
     // const id = clicked.dataset.unfollow;
   });
 }
+
+if (details)
+  details.forEach((detail, i) => {
+    detail.addEventListener('click', e => {
+      const unID = detail.dataset.finduni;
+      universities__main.style.display = 'none';
+      university__main.style.display = 'block';
+      renderUni(unID);
+    });
+  });

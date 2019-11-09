@@ -60,6 +60,7 @@ export const signUp = async newUser => {
       }, 1500);
     }
   } catch (error) {
+    console.log(error.response);
     showAlert('error', error.response.data.message);
   }
 };

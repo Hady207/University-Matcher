@@ -5,7 +5,6 @@ const users = document.getElementById('users');
 
 // nav active lis
 const active = 'side-nav__item--active';
-
 const buttonActive = `addAcitveButtonStyle`;
 
 const universityli = document.querySelector('#menu_university');
@@ -22,9 +21,11 @@ const user__main = document.querySelector('#user__main');
 const model = document.querySelector('#edit__modal');
 
 // university buttons
-// const details = document.querySelector('#details__button');
+// const details = document.querySelectorAll('.details__buttons');
 const editButton = document.querySelector('#edit_button');
 const exitButton = document.querySelector('#exit');
+const elem = document.querySelector('.dashboard-view');
+const child = document.querySelector('#universityContainer');
 
 // Side Navs listeners
 if (universities)
@@ -38,6 +39,11 @@ if (universities)
     }
     if (!universityli.classList.contains(active)) {
       universityli.classList.add(active);
+    }
+
+    if (university__main.childNodes) {
+      console.log(elem.firstChild);
+      elem.firstChild.remove();
     }
   });
 
@@ -99,6 +105,16 @@ notification.addEventListener('click', e => {
   notificationDrop.style.display =
     notificationDrop.style.display === 'none' ? 'block' : 'none';
 });
+
+// if (details)
+//   details.forEach((detail, i) => {
+//     detail.addEventListener('click', e => {
+//       const unID = detail.dataset.finduni;
+//       console.log(unID);
+//       universities__main.style.display = 'none';
+//       university__main.style.display = 'block';
+//     });
+//   });
 
 // details.addEventListener('click', e => {
 //   const unID = details.dataset.finduni;

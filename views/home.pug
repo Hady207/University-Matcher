@@ -56,10 +56,10 @@ block content
                 .fix__login-1
                     if user
                         li.nav__elements
-                            a.button.button-user(href="#" id='login')=user.name 
+                            a.button.button-user(href="/dashboard" id='login')=user.name 
                                 span 4
                         li.nav__elements
-                               a.button.button-logout(href="#" id="lgtBTN") logout
+                               a.button.button-logout(href="#" id="logoutHome") logout
                     else
                         li.nav__elements
                             a.button.button-signup(href="/signup") Sign Up

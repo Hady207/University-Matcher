@@ -8489,15 +8489,16 @@ function () {
               }, 1500);
             }
 
-            _context3.next = 10;
+            _context3.next = 11;
             break;
 
           case 7:
             _context3.prev = 7;
             _context3.t0 = _context3["catch"](0);
+            console.log(_context3.t0.response);
             (0, _alerts.showAlert)('error', _context3.t0.response.data.message);
 
-          case 10:
+          case 11:
           case "end":
             return _context3.stop();
         }
@@ -8637,22 +8638,58 @@ var _alerts = require("../UI/alerts");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var updateSettings = function updateSettings(data, type) {
-  try {
-    var url = type === 'password' ? 'http://127.0.0.1:3000/api/users/updateMyPassword' : 'http://127.0.0.1:3000/api/users/updateMe';
-    var res = (0, _axios.default)({
-      method: 'PATCH',
-      url: url,
-      data: data
-    });
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
-    if (res.data.status === 'success') {
-      (0, _alerts.showAlert)('success', "".concat(type.toUpperCase(), " updated successfully!"));
-    }
-  } catch (error) {
-    (0, _alerts.showAlert)('error', error);
-  }
-};
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+var updateSettings =
+/*#__PURE__*/
+function () {
+  var _ref = _asyncToGenerator(
+  /*#__PURE__*/
+  regeneratorRuntime.mark(function _callee(data, type) {
+    var url, res;
+    return regeneratorRuntime.wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            _context.prev = 0;
+            url = type === 'password' ? 'http://127.0.0.1:3000/api/users/updateMyPassword' : 'http://127.0.0.1:3000/api/users/updateMe';
+            _context.next = 4;
+            return (0, _axios.default)({
+              method: 'PATCH',
+              url: url,
+              data: data
+            });
+
+          case 4:
+            res = _context.sent;
+
+            if (res.data.status === 'success') {
+              (0, _alerts.showAlert)('success', "".concat(type.toUpperCase(), " updated successfully!"));
+            }
+
+            _context.next = 12;
+            break;
+
+          case 8:
+            _context.prev = 8;
+            _context.t0 = _context["catch"](0);
+            console.log(_context.t0);
+            (0, _alerts.showAlert)('error', _context.t0);
+
+          case 12:
+          case "end":
+            return _context.stop();
+        }
+      }
+    }, _callee, null, [[0, 8]]);
+  }));
+
+  return function updateSettings(_x, _x2) {
+    return _ref.apply(this, arguments);
+  };
+}();
 
 exports.updateSettings = updateSettings;
 },{"axios":"../../node_modules/axios/index.js","../UI/alerts":"UI/alerts.js"}],"Forms/campus.js":[function(require,module,exports) {
@@ -8831,16 +8868,32 @@ exports.renderUni = void 0;
 
 var _axios = _interopRequireDefault(require("axios"));
 
+var _alerts = _interopRequireDefault(require("../UI/alerts"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
-var university__main = document.querySelector('#university__main');
+// const university__main = document.querySelector('#university__main');
+var renderUniversityDashboard = function renderUniversityDashboard(u) {
+  var markup = "<div id=\"universityContainer\">\n  \n  <div class=\"gallery\">\n<figure class=\"gallery__item\">\n  <img src=\"./img/".concat(u.images[0], "\" alt=\"\" class=\"gallery__photo\" />\n</figure>\n<figure class=\"gallery__item\">\n  <img src=\"./img/").concat(u.images[1], "\" alt=\"\" class=\"gallery__photo\" />\n</figure>\n<figure class=\"gallery__item\">\n  <img src=\"./img/").concat(u.images[2], "\" alt=\"\" class=\"gallery__photo\" />\n</figure>\n</div>\n\n<div class=\"overview\">\n<h1 class=\"overview__heading\">").concat(u.name, "</h1>\n<div class=\"overview__stars\">\n  \n</div>\n<div class=\"overview__location\">\n  <ion-icon name=\"pin\"></ion-icon>\n  ").concat(u.address, "\n</div>\n<div class=\"overview__rating\">\n  <div class=\"overview__rating-average\">").concat(u.ratingAverage, "</div>\n  <div class=\"overview__rating-count\">").concat(u.ratingQuantity, " votes</div>\n</div>\n</div>\n\n<div class=\"details\">\n<div class=\"description\">\n  <p class=\"paragraph\">\n    ").concat(u.description, "\n  </p>\n  \n\n  <ul class=\"list\">\n    <li class=\"list__item\">").concat(u.admissionRule, "</li>\n    <li class=\"list__item\">").concat(u.majors, "</li>\n    <li class=\"list__item\">").concat(u.priceAverage, "KWD per course hour</li>\n    <li class=\"list__item\">").concat(u.certificates, "</li>\n    <li class=\"list__item\">").concat(u.numOfStudents, "</li>\n    <li class=\"list__item\">").concat(u.programs, "</li>\n    <li class=\"list__item\">").concat(u.website, "</li>\n  </ul>\n  </div>");
+  document.querySelector('.dashboard-view').insertAdjacentHTML('afterbegin', markup);
+};
 
-var renderUniversityDashboard = function renderUniversityDashboard(university) {
-  var markup = "<div class=\"gallery\">\n<figure class=\"gallery__item\"><img class=\"gallery__photo\" src=\"./img/university-1.jpg\" /></figure>\n<figure class=\"gallery__item\"><img class=\"gallery__photo\" src=\"./img/university-2.jpg\" /></figure>\n<figure class=\"gallery__item\"><img class=\"gallery__photo\" src=\"./img/university-3.jpg\" /></figure>\n</div>";
+var starsRender = function starsRender(rate) {
+  var num = Math.floor(rate);
+
+  for (var i = 1; i <= num; i++) {
+    document.querySelector('.overview__stars').insertAdjacentHTML('afterbegin', "<ion-icon name=\"star\"></ion-icon>");
+  }
 };
 
 var renderUni =
@@ -8849,23 +8902,37 @@ function () {
   var _ref = _asyncToGenerator(
   /*#__PURE__*/
   regeneratorRuntime.mark(function _callee(uniId) {
-    var university;
+    var university, data;
     return regeneratorRuntime.wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
-            _context.next = 2;
+            _context.prev = 0;
+            _context.next = 3;
             return _axios.default.get("http://127.0.0.1:3000/api/universities/".concat(uniId));
 
-          case 2:
-            university = _context.sent;
-
           case 3:
+            university = _context.sent;
+            console.log(university);
+            console.log(university.data.data);
+            data = _objectSpread({}, university.data.data.data);
+            console.log(data);
+            renderUniversityDashboard(data);
+            starsRender(data.ratingAverage);
+            _context.next = 15;
+            break;
+
+          case 12:
+            _context.prev = 12;
+            _context.t0 = _context["catch"](0);
+            console.log(_context.t0);
+
+          case 15:
           case "end":
             return _context.stop();
         }
       }
-    }, _callee);
+    }, _callee, null, [[0, 12]]);
   }));
 
   return function renderUni(_x) {
@@ -8874,7 +8941,7 @@ function () {
 }();
 
 exports.renderUni = renderUni;
-},{"axios":"../../node_modules/axios/index.js"}],"Forms/favoriteButton.js":[function(require,module,exports) {
+},{"axios":"../../node_modules/axios/index.js","../UI/alerts":"UI/alerts.js"}],"Forms/favoriteButton.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -9485,6 +9552,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 var mapBox = document.getElementById('map');
 var loginBtn = document.querySelector('#form__login');
 var logoutBtn = document.getElementById('lgtBTN');
+var logoutBtnHome = document.getElementById('logoutHome');
 var formSignup = document.querySelector('.signUpForm');
 var reviewForm = document.querySelector('.review__form');
 var deleteBtn = document.querySelector('.symbol-delete');
@@ -9493,15 +9561,18 @@ var commentForm = document.querySelectorAll('#commentPost');
 var commentDeleteBtn = document.querySelector('.comment-delete');
 var userDataForm = document.querySelector('.form-user-data');
 var userPasswordForm = document.querySelector('.form-user-password'); // const dashboardDetail = document.querySelectorAll('.b1__edit');
+// const details = document.querySelector('#details__button');
 
-var details = document.querySelector('#details__button');
 var favoriteBtn = document.querySelector('.favoriteButton');
 var likeButton = document.querySelectorAll('.button--like');
 var dislikeButton = document.querySelectorAll('.button--dislike');
 var followButton = document.querySelector('.follow__button');
 var unfollowButton = document.querySelector('.unfollow__button');
 var unfollowList = document.querySelectorAll('.unfollowBtns');
-var blockList = document.querySelector('.unfollowFBtns'); // DELEGATION
+var blockList = document.querySelector('.unfollowFBtns');
+var details = document.querySelectorAll('.details__buttons');
+var universities__main = document.querySelector('#universities__main');
+var university__main = document.querySelector('#university__main'); // DELEGATION
 
 if (loginBtn) loginBtn.addEventListener('submit', function (e) {
   e.preventDefault();
@@ -9511,6 +9582,10 @@ if (loginBtn) loginBtn.addEventListener('submit', function (e) {
 });
 if (logoutBtn) logoutBtn.addEventListener('click', function (e) {
   console.log('pushed');
+  (0, _login.logout)();
+});
+if (logoutBtnHome) logoutBtnHome.addEventListener('click', function (e) {
+  console.log('pushedHome');
   (0, _login.logout)();
 });
 if (formSignup) formSignup.addEventListener('submit', function (e) {
@@ -9598,8 +9673,8 @@ if (userDataForm) {
     e.preventDefault();
     var form = new FormData();
     form.append('name', document.getElementById('name').value);
-    form.append('email', document.getElementById('email').value); // form.append('photo', document.getElementById('photo').files[0]);
-
+    form.append('email', document.getElementById('email').value);
+    form.append('photo', document.getElementById('photo').files[0]);
     console.log(form);
     (0, _updateSettings.updateSettings)(form, 'data');
   });
@@ -9632,7 +9707,7 @@ function () {
             document.querySelector('#btn--save-password').textContent = 'Save password';
             document.getElementById('password-current').value = '';
             document.getElementById('password').value = '';
-            document.getElementById('passwordconfirm"').value = '';
+            document.getElementById('passwordconfirm').value = '';
 
           case 11:
           case "end":
@@ -9646,12 +9721,6 @@ function () {
     return _ref.apply(this, arguments);
   };
 }());
-if (details) details.addEventListener('click', function (e) {
-  var unID = details.dataset.finduni;
-  universities__main.style.display = 'none';
-  university__main.style.display = 'block';
-  (0, _uniDash.renderUni)(unID);
-});
 
 if (likeButton) {
   likeButton.forEach(function (button, i) {
@@ -9700,6 +9769,15 @@ if (unfollowList) {
     // const id = clicked.dataset.unfollow;
   });
 }
+
+if (details) details.forEach(function (detail, i) {
+  detail.addEventListener('click', function (e) {
+    var unID = detail.dataset.finduni;
+    universities__main.style.display = 'none';
+    university__main.style.display = 'block';
+    (0, _uniDash.renderUni)(unID);
+  });
+});
 },{"core-js/modules/es6.array.copy-within":"../../node_modules/core-js/modules/es6.array.copy-within.js","core-js/modules/es6.array.fill":"../../node_modules/core-js/modules/es6.array.fill.js","core-js/modules/es6.array.find":"../../node_modules/core-js/modules/es6.array.find.js","core-js/modules/es6.array.find-index":"../../node_modules/core-js/modules/es6.array.find-index.js","core-js/modules/es7.array.flat-map":"../../node_modules/core-js/modules/es7.array.flat-map.js","core-js/modules/es6.array.from":"../../node_modules/core-js/modules/es6.array.from.js","core-js/modules/es7.array.includes":"../../node_modules/core-js/modules/es7.array.includes.js","core-js/modules/es6.array.iterator":"../../node_modules/core-js/modules/es6.array.iterator.js","core-js/modules/es6.array.of":"../../node_modules/core-js/modules/es6.array.of.js","core-js/modules/es6.array.sort":"../../node_modules/core-js/modules/es6.array.sort.js","core-js/modules/es6.array.species":"../../node_modules/core-js/modules/es6.array.species.js","core-js/modules/es6.date.to-json":"../../node_modules/core-js/modules/es6.date.to-json.js","core-js/modules/es6.date.to-primitive":"../../node_modules/core-js/modules/es6.date.to-primitive.js","core-js/modules/es6.function.has-instance":"../../node_modules/core-js/modules/es6.function.has-instance.js","core-js/modules/es6.function.name":"../../node_modules/core-js/modules/es6.function.name.js","core-js/modules/es6.map":"../../node_modules/core-js/modules/es6.map.js","core-js/modules/es6.math.acosh":"../../node_modules/core-js/modules/es6.math.acosh.js","core-js/modules/es6.math.asinh":"../../node_modules/core-js/modules/es6.math.asinh.js","core-js/modules/es6.math.atanh":"../../node_modules/core-js/modules/es6.math.atanh.js","core-js/modules/es6.math.cbrt":"../../node_modules/core-js/modules/es6.math.cbrt.js","core-js/modules/es6.math.clz32":"../../node_modules/core-js/modules/es6.math.clz32.js","core-js/modules/es6.math.cosh":"../../node_modules/core-js/modules/es6.math.cosh.js","core-js/modules/es6.math.expm1":"../../node_modules/core-js/modules/es6.math.expm1.js","core-js/modules/es6.math.fround":"../../node_modules/core-js/modules/es6.math.fround.js","core-js/modules/es6.math.hypot":"../../node_modules/core-js/modules/es6.math.hypot.js","core-js/modules/es6.math.imul":"../../node_modules/core-js/modules/es6.math.imul.js","core-js/modules/es6.math.log1p":"../../node_modules/core-js/modules/es6.math.log1p.js","core-js/modules/es6.math.log10":"../../node_modules/core-js/modules/es6.math.log10.js","core-js/modules/es6.math.log2":"../../node_modules/core-js/modules/es6.math.log2.js","core-js/modules/es6.math.sign":"../../node_modules/core-js/modules/es6.math.sign.js","core-js/modules/es6.math.sinh":"../../node_modules/core-js/modules/es6.math.sinh.js","core-js/modules/es6.math.tanh":"../../node_modules/core-js/modules/es6.math.tanh.js","core-js/modules/es6.math.trunc":"../../node_modules/core-js/modules/es6.math.trunc.js","core-js/modules/es6.number.constructor":"../../node_modules/core-js/modules/es6.number.constructor.js","core-js/modules/es6.number.epsilon":"../../node_modules/core-js/modules/es6.number.epsilon.js","core-js/modules/es6.number.is-finite":"../../node_modules/core-js/modules/es6.number.is-finite.js","core-js/modules/es6.number.is-integer":"../../node_modules/core-js/modules/es6.number.is-integer.js","core-js/modules/es6.number.is-nan":"../../node_modules/core-js/modules/es6.number.is-nan.js","core-js/modules/es6.number.is-safe-integer":"../../node_modules/core-js/modules/es6.number.is-safe-integer.js","core-js/modules/es6.number.max-safe-integer":"../../node_modules/core-js/modules/es6.number.max-safe-integer.js","core-js/modules/es6.number.min-safe-integer":"../../node_modules/core-js/modules/es6.number.min-safe-integer.js","core-js/modules/es6.number.parse-float":"../../node_modules/core-js/modules/es6.number.parse-float.js","core-js/modules/es6.number.parse-int":"../../node_modules/core-js/modules/es6.number.parse-int.js","core-js/modules/es6.object.assign":"../../node_modules/core-js/modules/es6.object.assign.js","core-js/modules/es7.object.define-getter":"../../node_modules/core-js/modules/es7.object.define-getter.js","core-js/modules/es7.object.define-setter":"../../node_modules/core-js/modules/es7.object.define-setter.js","core-js/modules/es7.object.entries":"../../node_modules/core-js/modules/es7.object.entries.js","core-js/modules/es6.object.freeze":"../../node_modules/core-js/modules/es6.object.freeze.js","core-js/modules/es6.object.get-own-property-descriptor":"../../node_modules/core-js/modules/es6.object.get-own-property-descriptor.js","core-js/modules/es7.object.get-own-property-descriptors":"../../node_modules/core-js/modules/es7.object.get-own-property-descriptors.js","core-js/modules/es6.object.get-own-property-names":"../../node_modules/core-js/modules/es6.object.get-own-property-names.js","core-js/modules/es6.object.get-prototype-of":"../../node_modules/core-js/modules/es6.object.get-prototype-of.js","core-js/modules/es7.object.lookup-getter":"../../node_modules/core-js/modules/es7.object.lookup-getter.js","core-js/modules/es7.object.lookup-setter":"../../node_modules/core-js/modules/es7.object.lookup-setter.js","core-js/modules/es6.object.prevent-extensions":"../../node_modules/core-js/modules/es6.object.prevent-extensions.js","core-js/modules/es6.object.to-string":"../../node_modules/core-js/modules/es6.object.to-string.js","core-js/modules/es6.object.is":"../../node_modules/core-js/modules/es6.object.is.js","core-js/modules/es6.object.is-frozen":"../../node_modules/core-js/modules/es6.object.is-frozen.js","core-js/modules/es6.object.is-sealed":"../../node_modules/core-js/modules/es6.object.is-sealed.js","core-js/modules/es6.object.is-extensible":"../../node_modules/core-js/modules/es6.object.is-extensible.js","core-js/modules/es6.object.keys":"../../node_modules/core-js/modules/es6.object.keys.js","core-js/modules/es6.object.seal":"../../node_modules/core-js/modules/es6.object.seal.js","core-js/modules/es6.object.set-prototype-of":"../../node_modules/core-js/modules/es6.object.set-prototype-of.js","core-js/modules/es7.object.values":"../../node_modules/core-js/modules/es7.object.values.js","core-js/modules/es6.promise":"../../node_modules/core-js/modules/es6.promise.js","core-js/modules/es7.promise.finally":"../../node_modules/core-js/modules/es7.promise.finally.js","core-js/modules/es6.reflect.apply":"../../node_modules/core-js/modules/es6.reflect.apply.js","core-js/modules/es6.reflect.construct":"../../node_modules/core-js/modules/es6.reflect.construct.js","core-js/modules/es6.reflect.define-property":"../../node_modules/core-js/modules/es6.reflect.define-property.js","core-js/modules/es6.reflect.delete-property":"../../node_modules/core-js/modules/es6.reflect.delete-property.js","core-js/modules/es6.reflect.get":"../../node_modules/core-js/modules/es6.reflect.get.js","core-js/modules/es6.reflect.get-own-property-descriptor":"../../node_modules/core-js/modules/es6.reflect.get-own-property-descriptor.js","core-js/modules/es6.reflect.get-prototype-of":"../../node_modules/core-js/modules/es6.reflect.get-prototype-of.js","core-js/modules/es6.reflect.has":"../../node_modules/core-js/modules/es6.reflect.has.js","core-js/modules/es6.reflect.is-extensible":"../../node_modules/core-js/modules/es6.reflect.is-extensible.js","core-js/modules/es6.reflect.own-keys":"../../node_modules/core-js/modules/es6.reflect.own-keys.js","core-js/modules/es6.reflect.prevent-extensions":"../../node_modules/core-js/modules/es6.reflect.prevent-extensions.js","core-js/modules/es6.reflect.set":"../../node_modules/core-js/modules/es6.reflect.set.js","core-js/modules/es6.reflect.set-prototype-of":"../../node_modules/core-js/modules/es6.reflect.set-prototype-of.js","core-js/modules/es6.regexp.constructor":"../../node_modules/core-js/modules/es6.regexp.constructor.js","core-js/modules/es6.regexp.flags":"../../node_modules/core-js/modules/es6.regexp.flags.js","core-js/modules/es6.regexp.match":"../../node_modules/core-js/modules/es6.regexp.match.js","core-js/modules/es6.regexp.replace":"../../node_modules/core-js/modules/es6.regexp.replace.js","core-js/modules/es6.regexp.split":"../../node_modules/core-js/modules/es6.regexp.split.js","core-js/modules/es6.regexp.search":"../../node_modules/core-js/modules/es6.regexp.search.js","core-js/modules/es6.regexp.to-string":"../../node_modules/core-js/modules/es6.regexp.to-string.js","core-js/modules/es6.set":"../../node_modules/core-js/modules/es6.set.js","core-js/modules/es6.symbol":"../../node_modules/core-js/modules/es6.symbol.js","core-js/modules/es7.symbol.async-iterator":"../../node_modules/core-js/modules/es7.symbol.async-iterator.js","core-js/modules/es6.string.anchor":"../../node_modules/core-js/modules/es6.string.anchor.js","core-js/modules/es6.string.big":"../../node_modules/core-js/modules/es6.string.big.js","core-js/modules/es6.string.blink":"../../node_modules/core-js/modules/es6.string.blink.js","core-js/modules/es6.string.bold":"../../node_modules/core-js/modules/es6.string.bold.js","core-js/modules/es6.string.code-point-at":"../../node_modules/core-js/modules/es6.string.code-point-at.js","core-js/modules/es6.string.ends-with":"../../node_modules/core-js/modules/es6.string.ends-with.js","core-js/modules/es6.string.fixed":"../../node_modules/core-js/modules/es6.string.fixed.js","core-js/modules/es6.string.fontcolor":"../../node_modules/core-js/modules/es6.string.fontcolor.js","core-js/modules/es6.string.fontsize":"../../node_modules/core-js/modules/es6.string.fontsize.js","core-js/modules/es6.string.from-code-point":"../../node_modules/core-js/modules/es6.string.from-code-point.js","core-js/modules/es6.string.includes":"../../node_modules/core-js/modules/es6.string.includes.js","core-js/modules/es6.string.italics":"../../node_modules/core-js/modules/es6.string.italics.js","core-js/modules/es6.string.iterator":"../../node_modules/core-js/modules/es6.string.iterator.js","core-js/modules/es6.string.link":"../../node_modules/core-js/modules/es6.string.link.js","core-js/modules/es7.string.pad-start":"../../node_modules/core-js/modules/es7.string.pad-start.js","core-js/modules/es7.string.pad-end":"../../node_modules/core-js/modules/es7.string.pad-end.js","core-js/modules/es6.string.raw":"../../node_modules/core-js/modules/es6.string.raw.js","core-js/modules/es6.string.repeat":"../../node_modules/core-js/modules/es6.string.repeat.js","core-js/modules/es6.string.small":"../../node_modules/core-js/modules/es6.string.small.js","core-js/modules/es6.string.starts-with":"../../node_modules/core-js/modules/es6.string.starts-with.js","core-js/modules/es6.string.strike":"../../node_modules/core-js/modules/es6.string.strike.js","core-js/modules/es6.string.sub":"../../node_modules/core-js/modules/es6.string.sub.js","core-js/modules/es6.string.sup":"../../node_modules/core-js/modules/es6.string.sup.js","core-js/modules/es7.string.trim-left":"../../node_modules/core-js/modules/es7.string.trim-left.js","core-js/modules/es7.string.trim-right":"../../node_modules/core-js/modules/es7.string.trim-right.js","core-js/modules/es6.typed.array-buffer":"../../node_modules/core-js/modules/es6.typed.array-buffer.js","core-js/modules/es6.typed.int8-array":"../../node_modules/core-js/modules/es6.typed.int8-array.js","core-js/modules/es6.typed.uint8-array":"../../node_modules/core-js/modules/es6.typed.uint8-array.js","core-js/modules/es6.typed.uint8-clamped-array":"../../node_modules/core-js/modules/es6.typed.uint8-clamped-array.js","core-js/modules/es6.typed.int16-array":"../../node_modules/core-js/modules/es6.typed.int16-array.js","core-js/modules/es6.typed.uint16-array":"../../node_modules/core-js/modules/es6.typed.uint16-array.js","core-js/modules/es6.typed.int32-array":"../../node_modules/core-js/modules/es6.typed.int32-array.js","core-js/modules/es6.typed.uint32-array":"../../node_modules/core-js/modules/es6.typed.uint32-array.js","core-js/modules/es6.typed.float32-array":"../../node_modules/core-js/modules/es6.typed.float32-array.js","core-js/modules/es6.typed.float64-array":"../../node_modules/core-js/modules/es6.typed.float64-array.js","core-js/modules/es6.weak-map":"../../node_modules/core-js/modules/es6.weak-map.js","core-js/modules/es6.weak-set":"../../node_modules/core-js/modules/es6.weak-set.js","core-js/modules/web.timers":"../../node_modules/core-js/modules/web.timers.js","core-js/modules/web.immediate":"../../node_modules/core-js/modules/web.immediate.js","core-js/modules/web.dom.iterable":"../../node_modules/core-js/modules/web.dom.iterable.js","regenerator-runtime/runtime":"../../node_modules/regenerator-runtime/runtime.js","./Forms/login":"Forms/login.js","./Forms/reviewForm":"Forms/reviewForm.js","./Forms/updateSettings":"Forms/updateSettings.js","./Forms/campus":"Forms/campus.js","./Forms/uniDash":"Forms/uniDash.js","./Forms/favoriteButton":"Forms/favoriteButton.js","./Forms/likes":"Forms/likes.js","./Forms/followers":"Forms/followers.js","./UI/mapbox":"UI/mapbox.js"}],"../../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -9728,7 +9806,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61587" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50938" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

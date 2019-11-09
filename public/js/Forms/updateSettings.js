@@ -1,14 +1,14 @@
 import axios from 'axios';
 import { showAlert } from '../UI/alerts';
 
-export const updateSettings = (data, type) => {
+export const updateSettings = async (data, type) => {
   try {
     const url =
       type === 'password'
         ? 'http://127.0.0.1:3000/api/users/updateMyPassword'
         : 'http://127.0.0.1:3000/api/users/updateMe';
 
-    const res = axios({
+    const res = await axios({
       method: 'PATCH',
       url,
       data
@@ -18,6 +18,7 @@ export const updateSettings = (data, type) => {
       showAlert('success', `${type.toUpperCase()} updated successfully!`);
     }
   } catch (error) {
+    console.log(error);
     showAlert('error', error);
   }
 };

@@ -108,13 +108,14 @@ userSchema.pre(/^find/, function(next) {
   return next();
 });
 
-// userSchema.pre(/^find/, function(next) {
-//   this.populate({
-//     path: 'favoriteUni '
-//   });
+userSchema.pre(/^find/, function(next) {
+  this.populate({
+    path: 'favoriteUni ',
+    select: 'name coverImage'
+  });
 
-//   return next();
-// });
+  return next();
+});
 
 // instances method
 
