@@ -7,13 +7,13 @@ const renderUniversityDashboard = u => {
   
   <div class="gallery">
 <figure class="gallery__item">
-  <img src="./img/${u.images[0]}" alt="" class="gallery__photo" />
+  <img src="./img/universities/${u.images[0]}" alt="" class="gallery__photo" />
 </figure>
 <figure class="gallery__item">
-  <img src="./img/${u.images[1]}" alt="" class="gallery__photo" />
+  <img src="./img/universities/${u.images[1]}" alt="" class="gallery__photo" />
 </figure>
 <figure class="gallery__item">
-  <img src="./img/${u.images[2]}" alt="" class="gallery__photo" />
+  <img src="./img/universities/${u.images[2]}" alt="" class="gallery__photo" />
 </figure>
 </div>
 

@@ -1,8 +1,59 @@
+const multer = require('multer');
+const sharp = require('sharp');
 const factory = require('./handlerFactory');
 const University = require('../models/universityModel');
 const User = require('../models/userModel');
-const appError = require('../utils/appError');
+const AppError = require('../utils/appError');
 const catchAsync = require('../utils/catchAsync');
+
+const multerStorage = multer.memoryStorage();
+
+const multerFilter = (req, file, cb) => {
+  if (file.mimetype.startsWith('image')) {
+    cb(null, true);
+  } else {
+    cb(new AppError('Not an image! Please upload only images', 400), false);
+  }
+};
+
+const upload = multer({ storage: multerStorage, fileFilter: multerFilter });
+
+exports.uploadUniversityImages = upload.fields([
+  { name: 'coverImage', maxCount: 1 },
+  { name: 'images', maxCount: 3 }
+]);
+
+// upload.single('images') req.file
+// upload.array('images',5) req.files
+
+exports.resizeUniversityImages = catchAsync(async (req, res, next) => {
+  console.log(req.files);
+  if (!req.files.coverImage || !req.files.images) return next();
+
+  // 1) Cover image
+  req.body.coverImage = `university-${req.params.id}-${Date.now()}-cover.jpeg`;
+  await sharp(req.files.coverImage[0].buffer)
+    .resize(2000, 1333)
+    .toFormat('jpeg')
+    .jpeg({ quality: 90 })
+    .toFile(`public/img/universities/${req.body.coverImage}`);
+
+  // 2) Images
+  req.body.images = [];
+
+  await Promise.all(
+    req.files.images.map(async (file, i) => {
+      const filename = `tour-${req.params.id}-${Date.now()}-${i + 1}.jpeg`;
+      await sharp(file.buffer)
+        .resize(2000, 1333)
+        .toFormat('jpeg')
+        .jpeg({ quality: 90 })
+        .toFile(`public/img/universities/${filename}`);
+      req.body.images.push(filename);
+    })
+  );
+  next();
+});
 
 exports.getAllUni = factory.getAll(University);
 exports.getUni = factory.getOne(University, { path: 'reviews' });

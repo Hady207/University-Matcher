@@ -16,7 +16,12 @@ router
   .route('/:id')
   .get(universityController.getUni)
   .post(authController.protect, universityController.favoriteUni)
-  .patch(universityController.updateUni)
+  .patch(
+    authController.protect,
+    universityController.uploadUniversityImages,
+    universityController.resizeUniversityImages,
+    universityController.updateUni
+  )
   .delete(universityController.deleteUni);
 
 router.post(

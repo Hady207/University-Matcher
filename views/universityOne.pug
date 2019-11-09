@@ -43,7 +43,7 @@ block content
     section.university__hero
         .university__hero--container
             .university__hero--overlay &nbsp;
-            img.university__hero--img(src=`../img/${university.coverImage}`)
+            img.university__hero--img(src=`../img/universities/${university.coverImage}`)
             -if (user && user.favoriteUni.includes(university._id))
                 button.favoriteButton.favoriteButtonActive(data-universityid=university._id) 
                     ion-icon(name="heart")
@@ -109,11 +109,11 @@ block content
 
         section.university__gallery
             .university__picture
-                img.university__image.university__image--1(src=`../img/${university.images[0]}`)
+                img.university__image.university__image--1(src=`../img/universities/${university.images[0]}`)
             .university__picture
-                img.university__image.university__image--2(src=`../img/${university.images[1]}`)
+                img.university__image.university__image--2(src=`../img/universities/${university.images[1]}`)
             .university__picture
-                img.university__image.university__image--3(src=`../img/${university.images[2]}`)
+                img.university__image.university__image--3(src=`../img/universities/${university.images[2]}`)
 
 
         section.university__map
