@@ -39,7 +39,7 @@ block content
                     //- .user__icon--box(id="bookmark")
                     //-     ion-icon(name="bookmark") 
                     //-     span.user__nav--notification 7
-                    -if(user.following.some(following => (following._id === friend.id))  )
+                    -if(user.following.some(val => val.id == friend.id))
                         button.unfollow__button(data-friend=`${friend.id}`)
                             ion-icon(name="person-add")
                     -else

@@ -86,12 +86,12 @@ block content
 
                     .user__information
                         .user__info
-                            p Reviews
-                            span 23
+                            p Following
+                            span=user.following.length 
 
                         .user__info
                             p Followers
-                            span=user.followers.length
+                            span=user.followers.length  
 
             .campus__grid--center
                 form#campusPost.campus__form(action="", method="POST")

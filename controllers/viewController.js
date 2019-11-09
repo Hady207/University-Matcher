@@ -59,5 +59,5 @@ exports.dashboard = catchAsync(async (req, res, next) => {
 
 exports.profile = catchAsync(async (req, res, next) => {
   const friend = await User.findById(req.params.id);
-  res.render('_otherProfile', { title: 'Welcome', friend });
+  res.render('friend', { title: 'Welcome', friend });
 });
