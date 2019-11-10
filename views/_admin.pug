@@ -1,13 +1,13 @@
 
 
-mixin universitiesLis(img,name,uniId)
+mixin universitiesLis(i,img,name,uniId)
     li.dashboard__li
         .user__main__list
-            img.user__profile(src="/img/university-1.jpg")
+            img.user__profile(src=`/img/universities/${img}`)
         
         h2.user__name=name
         .detail__button__div
-            a.b1.b1__edit.b1__delete--sm(id="details__button") Details
+            a.b1.b1__edit.b1__delete--sm.details__buttons(id=`details__button-${i}` data-finduni=uniId) Details
 
 
 mixin reviewCard(review,img,name,createdAt,rating)
@@ -20,11 +20,11 @@ mixin reviewCard(review,img,name,createdAt,rating)
                 p.review__user-date=createdAt
             .review__raitng=rating
 
-mixin reviewsLis(uniId,title,review,img,name,createdAt,rating)
+mixin reviewsLis(i,reviewId,title,review,img,name,createdAt,rating)
     figure.review
         .review__box
             h3.reviewview__title=title
-            a.b1.b1__delete--sm(href="") Delete
+            a.b1.b1__delete--sm.review__admin__delete(id=`delete__review--${i}` href="#" data-reviewId=reviewId) Delete
 
         blockquote.review__text=review
         figcaption.review__user
@@ -36,13 +36,14 @@ mixin reviewsLis(uniId,title,review,img,name,createdAt,rating)
 
 
 mixin userLis(img,name,userId)
-    li.dashboard__li
-        .user__main__list
-            img.user__profile(src=`/img/users/${img}`)
-        
-        h2.user__name=name
-        .detail__button__div
-            a.b1.b1__delete--sm(href=`/${userId}`) Details
+    -if(userId != user.id)
+        li.dashboard__li
+            .user__main__list
+                img.user__profile(src=`/img/users/${img}`)
+            
+            h2.user__name=name
+            .detail__button__div
+                a.b1.b1__delete--sm.user__admin__delete(href=`#` data-userId=userId) Delete
 
 
 
@@ -72,61 +73,25 @@ mixin userLis(img,name,userId)
     main.dashboard__universitiesview(id="universities__main" style="display:block;")
         .dashboard__container
             ul.dashboard__ul
-                +universitiesLis()
+                each u,i in universities
+                    +universitiesLis(i,u.coverImage,u.name,u.id)
             
             
     main.dashboard-view(id="university__main" style="display:none;")
-        .gallery
-            figure.gallery__item
-                img.gallery__photo(src="./img/university-1.jpg")
-            figure.gallery__item
-                img.gallery__photo(src="./img/university-2.jpg")
-            figure.gallery__item
-                img.gallery__photo(src="./img/university-3.jpg")
-                
-        .overview
-            h1.overview__heading University Name
-            .overview__stars
-                ion-icon(name="star")
-            .overview__location
-                ion-icon(name="pin")
-                | kuwait kuwait
-            .overview__rating
-                .overview__rating--average 8.6
-                .overview__rating--count 429 votes
-                
-        .details
-            .description
-                p.paragraph Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi deserunt exercitationem, impedit veniam explicabo aliquam suscipit, repellat neque vitae incidunt qui accusamus cupiditate, quis veritatis aliquid corrupti dignissimos laboriosam fugiat.
-                p.paragraph Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe aliquam, culpa dignissimos nam tempore praesentium dolor sunt repudiandae odit assumenda, dolorem ipsa, sapiente unde laudantium mollitia modi ipsum distinctio delectus.
-
-                ul.list
-                    li.list__item Close to the beach
-                    li.list__item Close to the beach
-                    li.list__item Close to the beach
-                    li.list__item Close to the beach
-                    li.list__item Close to the beach
-                    li.list__item Close to the beach
-                    li.list__item Close to the beach
-                    li.list__item Close to the beach
+        
                     
-                .details__reviews
-                    p.paragraphs Number of reviews in this university
-                    span.number 456
-                    
-            .dashboard__reviews
-                +reviewCard("loremloreoreolroerloreloeroreo","leo","leo","23/3/2019","4.5")
+            
                     
 
-        .cta
-            h2.cta__title Edit or Delete the University
-            button.b1.b1__edit(id="edit_button")
-                span.b1__visible Edit
-                span.b1__invisible The AOU
+        //- .cta
+        //-     h2.cta__title Edit or Delete the University
+        //-     button.b1.b1__edit(id="edit_button")
+        //-         span.b1__visible Edit
+        //-         span.b1__invisible The AOU
 
-            button.b1.b1__delete(id="delete_button")
-                span.b1__visible Delete
-                span.b1__invisible The AOU        
+        //-     button.b1.b1__delete(id="delete_button")
+        //-         span.b1__visible Delete
+        //-         span.b1__invisible The AOU        
 
 
     .edit__modal(id="edit__modal")
@@ -163,13 +128,15 @@ mixin userLis(img,name,userId)
             
     main.dashboard__reviewview(id="review__main")
         .dashboard__reviews
-            +reviewsLis("welqowe","Taats weird","loerlorelore","aarav","aarav","23/43/2012","8")
+            each r,i in reviews
+                +reviewsLis(i,r._id,'hello',r.review,r.user.photo,r.user.name,r.createdAt,r.rating)
             
 
     main.dashboard__userview(id="user__main")
         .dashboard__container
             ul.dashboard__ul
-                +userLis('aarav','John','122o102o0')
+                each u in users
+                    +userLis(u.photo,u.name,u.id)
               
                             
 

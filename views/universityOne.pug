@@ -44,7 +44,7 @@ block content
         .university__hero--container
             .university__hero--overlay &nbsp;
             img.university__hero--img(src=`../img/universities/${university.coverImage}`)
-            -if (user && user.favoriteUni.includes(university._id))
+            -if (user && user.favoriteUni.some((val) => val.id == university._id))
                 button.favoriteButton.favoriteButtonActive(data-universityid=university._id) 
                     ion-icon(name="heart")
             -else

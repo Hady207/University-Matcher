@@ -40,10 +40,10 @@ if (universities)
     if (!universityli.classList.contains(active)) {
       universityli.classList.add(active);
     }
-
+    console.log(elem.firstChild);
     if (university__main.childNodes) {
       console.log(elem.firstChild);
-      elem.firstChild.remove();
+      // elem.firstChild.remove();
     }
   });
 
@@ -94,17 +94,18 @@ const notification = document.querySelector('#notification');
 const bookmarkDrop = document.querySelector('#bookmarksDrop');
 const notificationDrop = document.querySelector('#notificationDrop');
 
-bookmark.addEventListener('click', e => {
-  // bookmark.classList.toggle(buttonActive);
-  bookmarkDrop.style.display =
-    bookmarkDrop.style.display === 'none' ? 'block' : 'none';
-  // dropbox.style.display = dropbox.style.display === "none" ? "block" : "none";
-});
-
-notification.addEventListener('click', e => {
-  notificationDrop.style.display =
-    notificationDrop.style.display === 'none' ? 'block' : 'none';
-});
+if (bookmark)
+  bookmark.addEventListener('click', e => {
+    // bookmark.classList.toggle(buttonActive);
+    bookmarkDrop.style.display =
+      bookmarkDrop.style.display === 'none' ? 'block' : 'none';
+    // dropbox.style.display = dropbox.style.display === "none" ? "block" : "none";
+  });
+if (notification)
+  notification.addEventListener('click', e => {
+    notificationDrop.style.display =
+      notificationDrop.style.display === 'none' ? 'block' : 'none';
+  });
 
 // if (details)
 //   details.forEach((detail, i) => {

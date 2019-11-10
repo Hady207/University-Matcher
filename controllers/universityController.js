@@ -1,5 +1,6 @@
 const multer = require('multer');
 const sharp = require('sharp');
+
 const factory = require('./handlerFactory');
 const University = require('../models/universityModel');
 const User = require('../models/userModel');
@@ -27,7 +28,7 @@ exports.uploadUniversityImages = upload.fields([
 // upload.array('images',5) req.files
 
 exports.resizeUniversityImages = catchAsync(async (req, res, next) => {
-  console.log(req.files);
+  // console.log(req.files);
   if (!req.files.coverImage || !req.files.images) return next();
 
   // 1) Cover image
@@ -67,7 +68,7 @@ exports.favoriteUni = catchAsync(async (req, res, next) => {
   //   });
   console.log(req.user);
   let user;
-  if (req.user.favoriteUni.includes(req.params.id)) {
+  if (req.user.favoriteUni.some(val => val.id == req.params.id)) {
     console.log('it does include it');
     user = await User.updateOne(
       { _id: req.user.id },
@@ -131,7 +132,7 @@ exports.removeFavorite = catchAsync(async (req, res, next) => {
     });
   } else {
     res.status(201).json({
-      status: 'faild',
+      status: 'failed',
       message: 'this is not in your favorite list'
     });
   }

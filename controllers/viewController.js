@@ -1,4 +1,5 @@
 const University = require('../models/universityModel');
+const Review = require('../models/reviewModel');
 const User = require('../models/userModel');
 const Post = require('../models/postModel');
 const catchAsync = require('../utils/catchAsync');
@@ -47,15 +48,14 @@ exports.campus = catchAsync(async (req, res, next) => {
 
 exports.dashboard = catchAsync(async (req, res, next) => {
   const universities = await University.find({});
-  const user = await User.findById(req.params.id);
-  res.render('dashboard', { title: 'dashboard', universities });
+  const reviews = await Review.find({});
+  const users = await User.find({});
+  res.render('dashboard', { title: 'dashboard', universities, reviews, users });
 });
 
-// exports.dashboard = catchAsync(async (req, res, next) => {
-//   const university = await University.findById(req.params.uni);
-//   const user = await User.findById(req.params.id);
-//   res.render('dashboard', { title: 'dashboard', universities });
-// });
+exports.me = catchAsync(async (req, res, next) => {
+  res.render('me');
+});
 
 exports.profile = catchAsync(async (req, res, next) => {
   const friend = await User.findById(req.params.id);

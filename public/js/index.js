@@ -4,6 +4,11 @@ import { login, logout, signUp } from './Forms/login';
 import { postReview, deleteReview } from './Forms/reviewForm';
 import { updateSettings } from './Forms/updateSettings';
 import { sendPost, sendComment, deleteComment } from './Forms/campus';
+import {
+  deleteAdminUniversity,
+  deleteAdminReview,
+  deleteAdminUser
+} from './Forms/adminCRUD';
 import { renderUni } from './Forms/uniDash';
 import { favorite } from './Forms/favoriteButton';
 import { like, dislike } from './Forms/likes';
@@ -35,6 +40,9 @@ const blockList = document.querySelector('.unfollowFBtns');
 const details = document.querySelectorAll('.details__buttons');
 const universities__main = document.querySelector('#universities__main');
 const university__main = document.querySelector('#university__main');
+const adminUniversityDelete = document.querySelectorAll('.uni__admin__delete');
+const adminReviewDelete = document.querySelectorAll('.review__admin__delete');
+const adminUserDelete = document.querySelectorAll('.user__admin__delete');
 
 // DELEGATION
 if (loginBtn)
@@ -226,3 +234,28 @@ if (details)
       renderUni(unID);
     });
   });
+
+// Admin Crud
+
+if (adminUniversityDelete) {
+}
+
+if (adminReviewDelete) {
+  adminReviewDelete.forEach((button, i) => {
+    button.addEventListener('click', e => {
+      const id = button.dataset.reviewid;
+      // console.log(id);
+      deleteAdminReview(id);
+    });
+  });
+}
+
+if (adminUserDelete) {
+  adminUserDelete.forEach((button, i) => {
+    button.addEventListener('click', e => {
+      const id = button.dataset.userid;
+      // console.log(id);
+      deleteAdminUser(id);
+    });
+  });
+}

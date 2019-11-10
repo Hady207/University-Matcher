@@ -4,8 +4,8 @@ export const displayMap = place => {
   var map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/universitymatcher/ck2drvf7e0gww1cmnlsrbpyy1',
-    center: [47.912932, 29.282543],
-    zoom: 7,
+    // center: [47.912932, 29.282543],
+    // zoom: 7,
     scrollZoom: false
   });
 
@@ -34,12 +34,14 @@ export const displayMap = place => {
   //   Extend map bounds to include current location
   bound.extend(place.coordinates);
 
-  // map.fitBounds(bounds, {
-  //   padding: {
-  //     top: 200,
-  //     bottom: 150,
-  //     left: 100,
-  //     right: 100
-  //   }
-  // });
+  map.addControl(new mapboxgl.NavigationControl());
+
+  map.fitBounds(bound, {
+    padding: {
+      top: 200,
+      bottom: 150,
+      left: 100,
+      right: 100
+    }
+  });
 };
