@@ -57,7 +57,7 @@ block content
                     if user
                         li.nav__elements
                             a.button.button-user(href="/dashboard" id='login')=user.name 
-                                span 4
+                                //- span 4
                         li.nav__elements
                                a.button.button-logout(href="#" id="logoutHome") logout
                     else
@@ -81,8 +81,11 @@ block content
             else
                 h2.uni__title The Top Three Universities
             .uni__row
-                each u in top3
+                //- each u in top3
                     +universityCard(u.slug,u.coverImage,u.name,u.abbrv,u.description.slice(0,20),u.address,u.programs,u.numOfStudents,'spring',u.price,u.ratingAverage)
+                +universityCard(top3[0].slug,top3[0].coverImage,top3[0].name,top3[0].abbrv,top3[0].description.slice(0,20),top3[0].address,top3[0].programs,top3[0].numOfStudents,'spring',top3[0].price,top3[0].ratingAverage)    
+                +universityCard(top3[1].slug,top3[1].coverImage,top3[1].name,top3[1].abbrv,top3[1].description.slice(0,20),top3[1].address,top3[1].programs,top3[1].numOfStudents,'spring',top3[1].price,top3[1].ratingAverage)    
+                +universityCard(top3[2].slug,top3[2].coverImage,top3[2].name,top3[2].abbrv,top3[2].description.slice(0,20),top3[2].address,top3[2].programs,top3[2].numOfStudents,'spring',top3[2].price,top3[2].ratingAverage)    
                 
                
 

@@ -22,7 +22,7 @@ mixin universityCard(slug,img,name,abbv,description,location,programs,students,w
             .card__data
                 ion-icon(name="globe") 
                 span 
-                    a(href=`${website}` style='text-decoration: none;')=website
+                    a(href=`http://${website}` target="_blank"  style='text-decoration: none;')=website
         .card__footer
             p
                 span.card__footer--value #{price} KWD

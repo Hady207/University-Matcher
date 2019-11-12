@@ -18,7 +18,7 @@ const renderUniversityDashboard = u => {
 </div>
 
 <div class="overview">
-<h1 class="overview__heading">${u.name}</h1>
+<h1 class="overview__heading">${u.abbrv}</h1>
 <div class="overview__stars">
   
 </div>

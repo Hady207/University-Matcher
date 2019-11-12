@@ -6,7 +6,18 @@ const catchAsync = require('../utils/catchAsync');
 const AppError = require('../utils/appError');
 
 exports.home = catchAsync(async (req, res, next) => {
-  const top3 = await University.find({ ratingAverage: { $gte: 3 } });
+  let query;
+  if (!req.user) {
+    query = University.find({ ratingAverage: { $gte: 3 } })
+      .sort('-createdAt')
+      .limit(3);
+  } else {
+    query = await University.find({
+      $or: [{ majors: req.user.majors }, { programs: req.user.program }]
+    });
+  }
+  const top3 = await query;
+
   // console.log(top3);
   res.render('home', { title: 'Home', url: '/', top3 });
 });

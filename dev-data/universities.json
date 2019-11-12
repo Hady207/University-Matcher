@@ -54,6 +54,48 @@
         "location.address": ", Block 6, Building 1, Egaila, Kuwait",
         "numOfStudents": 10415,
         "certificates": ["accredited by the Engineering Accreditation Commission of ABET", "Degree equated by Supreme Council of Universities in Kuwait"]
+    },
+    {
+        "name": "American University of Kuwait",
+        "abbrv": "AUK",
+        "email": "admissions@auk.edu.kw",
+        "description": "The American University of Kuwait (AUK) is an independent, private, equal opportunity, and coeducational liberal arts institution of higher education. The educational, cultural, and administrative structure, methods and standards of AUK are based on the American model of higher learning. The language of instruction is English.",
+        "website": "http://www.auk.edu.kw/",
+        "address": "15 Salem Al Mubarak St, Salmiya",
+        "admissionRule": "High school percentage of 60% or 2.00 GPA or above",
+        "coverImage": "aouCover.jpg",
+        "images": ["aou-1.jpg", "aou-2.jpg", "aou-3.jpg"],
+        "programs": ["bachelore"],
+        "majors": ["buisness", "Information Technology"],
+        "priceAverage": 210,
+        "location.coordinates": [48.083292, 29.344323],
+        "location.description": "American University of Kuwait",
+        "location.address": ", 15 Salem Al Mubarak St, Salmiya",
+        "numOfStudents": 3000,
+        "certificates": [" accredited by the Accreditation Board For Engineering & Technology (ABET).", "Degree equated by Supreme Council of Universities in Kuwait"]
+
+
+    },
+    {
+        "name": "Australian College of Kuwait",
+        "abbrv": "ACK",
+        "email": "admissions@ack.edu.kw",
+        "description": "ACK is one of the first private universities in Kuwait.  The College offers world-class higher education on home ground through international learning partnerships.  Courses of study are available at diploma and bachelor degree levels and in specializations within Engineering, Business, Aviation and Maritime studies.",
+        "website": "www.ack.edu.kw",
+        "address": "Mubarak Al-Abdullah Al-Jaber Area",
+        "admissionRule": "High school percentage of 60% or 2.00 GPA or above",
+        "coverImage": "aouCover.jpg",
+        "images": ["aou-1.jpg", "aou-2.jpg", "aou-3.jpg"],
+        "programs": ["bachelore"],
+        "majors": ["buisness", "engineering", "aviation"],
+        "priceAverage": 210,
+        "location.coordinates": [48.049968, 29.275646],
+        "location.description": "Australian College of Kuwait",
+        "location.address": ", Mubarak Al-Abdullah Al-Jaber Area",
+        "numOfStudents": 3000,
+        "certificates": ["Degree equated by Supreme Council of Universities in Kuwait"]
+
+
     }
 
 

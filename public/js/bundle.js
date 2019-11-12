@@ -9062,7 +9062,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 // const university__main = document.querySelector('#university__main');
 var renderUniversityDashboard = function renderUniversityDashboard(u) {
-  var markup = "<div id=\"universityContainer\">\n  \n  <div class=\"gallery\">\n<figure class=\"gallery__item\">\n  <img src=\"./img/universities/".concat(u.images[0], "\" alt=\"\" class=\"gallery__photo\" />\n</figure>\n<figure class=\"gallery__item\">\n  <img src=\"./img/universities/").concat(u.images[1], "\" alt=\"\" class=\"gallery__photo\" />\n</figure>\n<figure class=\"gallery__item\">\n  <img src=\"./img/universities/").concat(u.images[2], "\" alt=\"\" class=\"gallery__photo\" />\n</figure>\n</div>\n\n<div class=\"overview\">\n<h1 class=\"overview__heading\">").concat(u.name, "</h1>\n<div class=\"overview__stars\">\n  \n</div>\n<div class=\"overview__location\">\n  <ion-icon name=\"pin\"></ion-icon>\n  ").concat(u.address, "\n</div>\n<div class=\"overview__rating\">\n  <div class=\"overview__rating-average\">").concat(u.ratingAverage, "</div>\n  <div class=\"overview__rating-count\">").concat(u.ratingQuantity, " votes</div>\n</div>\n</div>\n\n<div class=\"details\">\n<div class=\"description\">\n  <p class=\"paragraph\">\n    ").concat(u.description, "\n  </p>\n  \n\n  <ul class=\"list\">\n    <li class=\"list__item\">").concat(u.admissionRule, "</li>\n    <li class=\"list__item\">").concat(u.majors, "</li>\n    <li class=\"list__item\">").concat(u.priceAverage, "KWD per course hour</li>\n    <li class=\"list__item\">").concat(u.certificates, "</li>\n    <li class=\"list__item\">").concat(u.numOfStudents, "</li>\n    <li class=\"list__item\">").concat(u.programs, "</li>\n    <li class=\"list__item\">").concat(u.website, "</li>\n  </ul>\n  </div>");
+  var markup = "<div id=\"universityContainer\">\n  \n  <div class=\"gallery\">\n<figure class=\"gallery__item\">\n  <img src=\"./img/universities/".concat(u.images[0], "\" alt=\"\" class=\"gallery__photo\" />\n</figure>\n<figure class=\"gallery__item\">\n  <img src=\"./img/universities/").concat(u.images[1], "\" alt=\"\" class=\"gallery__photo\" />\n</figure>\n<figure class=\"gallery__item\">\n  <img src=\"./img/universities/").concat(u.images[2], "\" alt=\"\" class=\"gallery__photo\" />\n</figure>\n</div>\n\n<div class=\"overview\">\n<h1 class=\"overview__heading\">").concat(u.abbrv, "</h1>\n<div class=\"overview__stars\">\n  \n</div>\n<div class=\"overview__location\">\n  <ion-icon name=\"pin\"></ion-icon>\n  ").concat(u.address, "\n</div>\n<div class=\"overview__rating\">\n  <div class=\"overview__rating-average\">").concat(u.ratingAverage, "</div>\n  <div class=\"overview__rating-count\">").concat(u.ratingQuantity, " votes</div>\n</div>\n</div>\n\n<div class=\"details\">\n<div class=\"description\">\n  <p class=\"paragraph\">\n    ").concat(u.description, "\n  </p>\n  \n\n  <ul class=\"list\">\n    <li class=\"list__item\">").concat(u.admissionRule, "</li>\n    <li class=\"list__item\">").concat(u.majors, "</li>\n    <li class=\"list__item\">").concat(u.priceAverage, "KWD per course hour</li>\n    <li class=\"list__item\">").concat(u.certificates, "</li>\n    <li class=\"list__item\">").concat(u.numOfStudents, "</li>\n    <li class=\"list__item\">").concat(u.programs, "</li>\n    <li class=\"list__item\">").concat(u.website, "</li>\n  </ul>\n  </div>");
   document.querySelector('.dashboard-view').insertAdjacentHTML('afterbegin', markup);
 };
 
@@ -9752,42 +9752,53 @@ var blockList = document.querySelector('.unfollowFBtns');
 var details = document.querySelectorAll('.details__buttons');
 var universities__main = document.querySelector('#universities__main');
 var university__main = document.querySelector('#university__main');
-var adminUniversityDelete = document.querySelectorAll('.uni__admin__delete');
+var adminUniversityDelete = document.querySelectorAll('.delete__universities');
 var adminReviewDelete = document.querySelectorAll('.review__admin__delete');
 var adminUserDelete = document.querySelectorAll('.user__admin__delete'); // DELEGATION
 
-if (loginBtn) loginBtn.addEventListener('submit', function (e) {
-  e.preventDefault();
-  var email = document.querySelector('#inputEmail').value;
-  var password = document.querySelector('#inputPassword').value;
-  (0, _login.login)(email, password);
-});
-if (logoutBtn) logoutBtn.addEventListener('click', function (e) {
-  console.log('pushed');
-  (0, _login.logout)();
-});
-if (logoutBtnHome) logoutBtnHome.addEventListener('click', function (e) {
-  console.log('pushedHome');
-  (0, _login.logout)();
-});
-if (formSignup) formSignup.addEventListener('submit', function (e) {
-  e.preventDefault();
-  var name = document.getElementById('name').value;
-  var email = document.getElementById('email').value;
-  var password = document.getElementById('password').value;
-  var passwordConfirm = document.getElementById('passwordconfirm').value;
-  var program = document.getElementById('program').value;
-  var major = document.getElementById('major').value;
-  var newUser = {
-    name: name,
-    email: email,
-    password: password,
-    passwordConfirm: passwordConfirm,
-    program: program,
-    major: major
-  };
-  (0, _login.signUp)(newUser);
-});
+if (loginBtn) {
+  loginBtn.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var email = document.querySelector('#inputEmail').value;
+    var password = document.querySelector('#inputPassword').value;
+    (0, _login.login)(email, password);
+  });
+}
+
+if (logoutBtn) {
+  logoutBtn.addEventListener('click', function (e) {
+    console.log('pushed');
+    (0, _login.logout)();
+  });
+}
+
+if (logoutBtnHome) {
+  logoutBtnHome.addEventListener('click', function (e) {
+    console.log('pushedHome');
+    (0, _login.logout)();
+  });
+}
+
+if (formSignup) {
+  formSignup.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var name = document.getElementById('name').value;
+    var email = document.getElementById('email').value;
+    var password = document.getElementById('password').value;
+    var passwordConfirm = document.getElementById('passwordconfirm').value;
+    var program = document.getElementById('program').value;
+    var major = document.getElementById('major').value;
+    var newUser = {
+      name: name,
+      email: email,
+      password: password,
+      passwordConfirm: passwordConfirm,
+      program: program,
+      major: major
+    };
+    (0, _login.signUp)(newUser);
+  });
+}
 
 if (favoriteBtn) {
   favoriteBtn.addEventListener('click', function (e) {
@@ -9802,35 +9813,43 @@ if (mapBox) {
   (0, _mapbox.displayMap)(place);
 }
 
-if (reviewForm) reviewForm.addEventListener('submit', function (e) {
-  e.preventDefault();
-  var id = reviewForm.getAttribute('data-uniid');
-  var slug = reviewForm.getAttribute('data-slug');
-  var review = document.querySelector('.text__box').value;
-  var stars = document.getElementsByName('rating');
-  var rate;
+if (reviewForm) {
+  reviewForm.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var id = reviewForm.getAttribute('data-uniid');
+    var slug = reviewForm.getAttribute('data-slug');
+    var review = document.querySelector('.text__box').value;
+    var stars = document.getElementsByName('rating');
+    var rate;
 
-  for (var i = 0; i < stars.length; i++) {
-    if (stars[i].checked) {
-      rate = stars[i].value;
-      break;
+    for (var i = 0; i < stars.length; i++) {
+      if (stars[i].checked) {
+        rate = stars[i].value;
+        break;
+      }
     }
-  }
 
-  (0, _reviewForm.postReview)(id, review, rate);
-});
-if (deleteBtn) deleteBtn.addEventListener('click', function (e) {
-  var uniid = deleteBtn.getAttribute('data-uniid');
-  var reviewid = deleteBtn.getAttribute('data-reviewid');
-  (0, _reviewForm.deleteReview)(uniid, reviewid);
-});
-if (postForm) postForm.addEventListener('submit', function (e) {
-  e.preventDefault();
-  var textArea = document.querySelector('.textArea').value;
-  (0, _campus.sendPost)({
-    post: textArea
+    (0, _reviewForm.postReview)(id, review, rate);
   });
-});
+}
+
+if (deleteBtn) {
+  deleteBtn.addEventListener('click', function (e) {
+    var uniid = deleteBtn.getAttribute('data-uniid');
+    var reviewid = deleteBtn.getAttribute('data-reviewid');
+    (0, _reviewForm.deleteReview)(uniid, reviewid);
+  });
+}
+
+if (postForm) {
+  postForm.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var textArea = document.querySelector('.textArea').value;
+    (0, _campus.sendPost)({
+      post: textArea
+    });
+  });
+}
 
 if (commentForm) {
   commentForm.forEach(function (form, i) {
@@ -9862,47 +9881,49 @@ if (userDataForm) {
   });
 }
 
-if (userPasswordForm) userPasswordForm.addEventListener('submit',
-/*#__PURE__*/
-function () {
-  var _ref = _asyncToGenerator(
+if (userPasswordForm) {
+  userPasswordForm.addEventListener('submit',
   /*#__PURE__*/
-  regeneratorRuntime.mark(function _callee(e) {
-    var passwordCurrent, password, passwordConfirm;
-    return regeneratorRuntime.wrap(function _callee$(_context) {
-      while (1) {
-        switch (_context.prev = _context.next) {
-          case 0:
-            e.preventDefault();
-            document.querySelector('#btn--save-password').textContent = 'Updating...';
-            passwordCurrent = document.getElementById('password-current').value;
-            password = document.getElementById('password').value;
-            passwordConfirm = document.getElementById('passwordconfirm').value;
-            _context.next = 7;
-            return (0, _updateSettings.updateSettings)({
-              passwordCurrent: passwordCurrent,
-              password: password,
-              passwordConfirm: passwordConfirm
-            }, 'password');
+  function () {
+    var _ref = _asyncToGenerator(
+    /*#__PURE__*/
+    regeneratorRuntime.mark(function _callee(e) {
+      var passwordCurrent, password, passwordConfirm;
+      return regeneratorRuntime.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              e.preventDefault();
+              document.querySelector('#btn--save-password').textContent = 'Updating...';
+              passwordCurrent = document.getElementById('password-current').value;
+              password = document.getElementById('password').value;
+              passwordConfirm = document.getElementById('passwordconfirm').value;
+              _context.next = 7;
+              return (0, _updateSettings.updateSettings)({
+                passwordCurrent: passwordCurrent,
+                password: password,
+                passwordConfirm: passwordConfirm
+              }, 'password');
 
-          case 7:
-            document.querySelector('#btn--save-password').textContent = 'Save password';
-            document.getElementById('password-current').value = '';
-            document.getElementById('password').value = '';
-            document.getElementById('passwordconfirm').value = '';
+            case 7:
+              document.querySelector('#btn--save-password').textContent = 'Save password';
+              document.getElementById('password-current').value = '';
+              document.getElementById('password').value = '';
+              document.getElementById('passwordconfirm').value = '';
 
-          case 11:
-          case "end":
-            return _context.stop();
+            case 11:
+            case "end":
+              return _context.stop();
+          }
         }
-      }
-    }, _callee);
-  }));
+      }, _callee);
+    }));
 
-  return function (_x) {
-    return _ref.apply(this, arguments);
-  };
-}());
+    return function (_x) {
+      return _ref.apply(this, arguments);
+    };
+  }());
+}
 
 if (likeButton) {
   likeButton.forEach(function (button, i) {
@@ -9952,16 +9973,26 @@ if (unfollowList) {
   });
 }
 
-if (details) details.forEach(function (detail, i) {
-  detail.addEventListener('click', function (e) {
-    var unID = detail.dataset.finduni;
-    universities__main.style.display = 'none';
-    university__main.style.display = 'block';
-    (0, _uniDash.renderUni)(unID);
+if (details) {
+  details.forEach(function (detail, i) {
+    detail.addEventListener('click', function (e) {
+      var unID = detail.dataset.finduni;
+      universities__main.style.display = 'none';
+      university__main.style.display = 'block';
+      (0, _uniDash.renderUni)(unID);
+    });
   });
-}); // Admin Crud
+} // Admin CRUD
 
-if (adminUniversityDelete) {}
+
+if (adminUniversityDelete) {
+  adminUniversityDelete.forEach(function (button, i) {
+    button.addEventListener('click', function (e) {
+      var id = button.dataset.finduni;
+      (0, _adminCRUD.deleteAdminUniversity)(id);
+    });
+  });
+}
 
 if (adminReviewDelete) {
   adminReviewDelete.forEach(function (button, i) {

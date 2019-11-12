@@ -40,32 +40,37 @@ const blockList = document.querySelector('.unfollowFBtns');
 const details = document.querySelectorAll('.details__buttons');
 const universities__main = document.querySelector('#universities__main');
 const university__main = document.querySelector('#university__main');
-const adminUniversityDelete = document.querySelectorAll('.uni__admin__delete');
+const adminUniversityDelete = document.querySelectorAll(
+  '.delete__universities'
+);
 const adminReviewDelete = document.querySelectorAll('.review__admin__delete');
 const adminUserDelete = document.querySelectorAll('.user__admin__delete');
 
 // DELEGATION
-if (loginBtn)
+if (loginBtn) {
   loginBtn.addEventListener('submit', e => {
     e.preventDefault();
     const email = document.querySelector('#inputEmail').value;
     const password = document.querySelector('#inputPassword').value;
     login(email, password);
   });
+}
 
-if (logoutBtn)
+if (logoutBtn) {
   logoutBtn.addEventListener('click', e => {
     console.log('pushed');
     logout();
   });
+}
 
-if (logoutBtnHome)
+if (logoutBtnHome) {
   logoutBtnHome.addEventListener('click', e => {
     console.log('pushedHome');
     logout();
   });
+}
 
-if (formSignup)
+if (formSignup) {
   formSignup.addEventListener('submit', e => {
     e.preventDefault();
     const name = document.getElementById('name').value;
@@ -79,6 +84,7 @@ if (formSignup)
 
     signUp(newUser);
   });
+}
 
 if (favoriteBtn) {
   favoriteBtn.addEventListener('click', e => {
@@ -93,7 +99,7 @@ if (mapBox) {
   displayMap(place);
 }
 
-if (reviewForm)
+if (reviewForm) {
   reviewForm.addEventListener('submit', e => {
     e.preventDefault();
     const id = reviewForm.getAttribute('data-uniid');
@@ -109,22 +115,25 @@ if (reviewForm)
     }
     postReview(id, review, rate);
   });
+}
 
-if (deleteBtn)
+if (deleteBtn) {
   deleteBtn.addEventListener('click', e => {
     const uniid = deleteBtn.getAttribute('data-uniid');
     const reviewid = deleteBtn.getAttribute('data-reviewid');
 
     deleteReview(uniid, reviewid);
   });
+}
 
-if (postForm)
+if (postForm) {
   postForm.addEventListener('submit', e => {
     e.preventDefault();
     const textArea = document.querySelector('.textArea').value;
 
     sendPost({ post: textArea });
   });
+}
 
 if (commentForm) {
   commentForm.forEach((form, i) => {
@@ -157,7 +166,7 @@ if (userDataForm) {
   });
 }
 
-if (userPasswordForm)
+if (userPasswordForm) {
   userPasswordForm.addEventListener('submit', async e => {
     e.preventDefault();
     document.querySelector('#btn--save-password').textContent = 'Updating...';
@@ -175,6 +184,7 @@ if (userPasswordForm)
     document.getElementById('password').value = '';
     document.getElementById('passwordconfirm').value = '';
   });
+}
 
 if (likeButton) {
   likeButton.forEach((button, i) => {
@@ -225,7 +235,7 @@ if (unfollowList) {
   });
 }
 
-if (details)
+if (details) {
   details.forEach((detail, i) => {
     detail.addEventListener('click', e => {
       const unID = detail.dataset.finduni;
@@ -234,10 +244,16 @@ if (details)
       renderUni(unID);
     });
   });
-
-// Admin Crud
+}
+// Admin CRUD
 
 if (adminUniversityDelete) {
+  adminUniversityDelete.forEach((button, i) => {
+    button.addEventListener('click', e => {
+      const id = button.dataset.finduni;
+      deleteAdminUniversity(id);
+    });
+  });
 }
 
 if (adminReviewDelete) {

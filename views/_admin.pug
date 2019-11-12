@@ -6,8 +6,10 @@ mixin universitiesLis(i,img,name,uniId)
             img.user__profile(src=`/img/universities/${img}`)
         
         h2.user__name=name
-        .detail__button__div
-            a.b1.b1__edit.b1__delete--sm.details__buttons(id=`details__button-${i}` data-finduni=uniId) Details
+        .detail__button__div(style="display: flex;flex-direction: column;")
+            a.b1.b1__edit.b1__delete--sm.details__buttons(id=`details__button-${i}` data-finduni=uniId style="margin-bottom:1rem;") Details
+            a.b1.b1__delete--sm.delete__universities(id=`delete__university-${i}` data-finduni=uniId) delete
+            
 
 
 mixin reviewCard(review,img,name,createdAt,rating)
