@@ -12,7 +12,7 @@ exports.setUniUserId = (req, res, next) => {
 exports.createReviewForm = catchAsync(async (req, res, next) => {
   const review = await Review.create(req.body);
   if (!review) console.log('error');
-  console.log(review);
+  // console.log(review);
   res.redirect('back');
 });
 

@@ -67,10 +67,10 @@ exports.favoriteUni = catchAsync(async (req, res, next) => {
   //   const user = await User.findByIdAndUpdate(req.user._id, {
   //     favoriteUni: { $push: { _id: req.params.id } }
   //   });
-  console.log(req.user);
+  // console.log(req.user);
   let user;
   if (req.user.favoriteUni.some(val => val.id == req.params.id)) {
-    console.log('it does include it');
+    // console.log('it does include it');
     user = await User.updateOne(
       { _id: req.user.id },
       { $pull: { favoriteUni: req.params.id } },
@@ -81,7 +81,7 @@ exports.favoriteUni = catchAsync(async (req, res, next) => {
     //   { $pull: { favoriteUni: { _id: req.params.id } } },
     //   { new: true, safe: true, multi: true }
     // );
-    console.log(user);
+    // console.log(user);
 
     res.status(201).json({
       status: 'removed',
@@ -93,7 +93,7 @@ exports.favoriteUni = catchAsync(async (req, res, next) => {
       { $push: { favoriteUni: { _id: req.params.id } } },
       { safe: true, multi: true }
     );
-    console.log(user);
+    // console.log(user);
     res.status(201).json({
       status: 'added',
       message: 'added to favorite'
@@ -126,7 +126,7 @@ exports.removeFavorite = catchAsync(async (req, res, next) => {
     const user = await User.findByIdAndUpdate(req.user.id, {
       $pull: { favoriteUni: req.params.id }
     });
-    console.log(user);
+    // console.log(user);
     res.status(201).json({
       status: 'success',
       message: 'removed from favorite'
