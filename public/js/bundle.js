@@ -8365,19 +8365,18 @@ function () {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
-            console.log(email, password);
-            _context.prev = 1;
-            _context.next = 4;
+            _context.prev = 0;
+            _context.next = 3;
             return (0, _axios.default)({
               method: 'POST',
-              url: "http://127.0.0.1:3000/api/users/login",
+              url: "api/users/login",
               data: {
                 email: email,
                 password: password
               }
             });
 
-          case 4:
+          case 3:
             res = _context.sent;
 
             if (res.data.status === 'success') {
@@ -8387,20 +8386,20 @@ function () {
               }, 1500);
             }
 
-            _context.next = 11;
+            _context.next = 10;
             break;
 
-          case 8:
-            _context.prev = 8;
-            _context.t0 = _context["catch"](1);
+          case 7:
+            _context.prev = 7;
+            _context.t0 = _context["catch"](0);
             (0, _alerts.showAlert)('error', _context.t0.response.data.message);
 
-          case 11:
+          case 10:
           case "end":
             return _context.stop();
         }
       }
-    }, _callee, null, [[1, 8]]);
+    }, _callee, null, [[0, 7]]);
   }));
 
   return function login(_x, _x2) {
@@ -8424,7 +8423,7 @@ function () {
             _context2.next = 2;
             return (0, _axios.default)({
               method: 'GET',
-              url: "http://127.0.0.1:3000/api/users/logout"
+              url: "/api/users/logout"
             });
 
           case 2:
@@ -8475,7 +8474,7 @@ function () {
             _context3.next = 3;
             return (0, _axios.default)({
               method: 'POST',
-              url: 'http://127.0.0.1:3000/api/users/signup',
+              url: '/api/users/signup',
               data: newUser
             });
 
@@ -8489,16 +8488,16 @@ function () {
               }, 1500);
             }
 
-            _context3.next = 11;
+            _context3.next = 10;
             break;
 
           case 7:
             _context3.prev = 7;
             _context3.t0 = _context3["catch"](0);
-            console.log(_context3.t0.response);
+            // console.log(error.response);
             (0, _alerts.showAlert)('error', _context3.t0.response.data.message);
 
-          case 11:
+          case 10:
           case "end":
             return _context3.stop();
         }
@@ -8545,7 +8544,7 @@ function () {
             _context.next = 3;
             return (0, _axios.default)({
               method: 'POST',
-              url: "http://127.0.0.1:3000/api/universities/".concat(id, "/review"),
+              url: "/api/universities/".concat(id, "/review"),
               data: {
                 review: review,
                 rating: rating
@@ -8595,7 +8594,7 @@ function () {
             _context2.next = 3;
             return (0, _axios.default)({
               method: 'DELETE',
-              url: "http://127.0.0.1:3000/api/universities/".concat(uniId, "/review/").concat(reviewId)
+              url: "/api/universities/".concat(uniId, "/review/").concat(reviewId)
             });
 
           case 3:
@@ -8654,7 +8653,7 @@ function () {
         switch (_context.prev = _context.next) {
           case 0:
             _context.prev = 0;
-            url = type === 'password' ? 'http://127.0.0.1:3000/api/users/updateMyPassword' : 'http://127.0.0.1:3000/api/users/updateMe';
+            url = type === 'password' ? '/api/users/updateMyPassword' : '/api/users/updateMe';
             _context.next = 4;
             return (0, _axios.default)({
               method: 'PATCH',
@@ -8669,16 +8668,16 @@ function () {
               (0, _alerts.showAlert)('success', "".concat(type.toUpperCase(), " updated successfully!"));
             }
 
-            _context.next = 12;
+            _context.next = 11;
             break;
 
           case 8:
             _context.prev = 8;
             _context.t0 = _context["catch"](0);
-            console.log(_context.t0);
+            // console.log(error);
             (0, _alerts.showAlert)('error', _context.t0);
 
-          case 12:
+          case 11:
           case "end":
             return _context.stop();
         }
@@ -8726,7 +8725,7 @@ function () {
             _context.next = 3;
             return (0, _axios.default)({
               method: 'POST',
-              url: "http://127.0.0.1:3000/api/posts",
+              url: "/api/posts",
               data: data
             });
 
@@ -8777,7 +8776,7 @@ function () {
             _context2.next = 3;
             return (0, _axios.default)({
               method: 'POST',
-              url: "http://127.0.0.1:3000/api/posts/".concat(postId),
+              url: "/api/posts/".concat(postId),
               data: {
                 comment: comment
               }
@@ -8825,7 +8824,7 @@ function () {
             _context3.next = 3;
             return (0, _axios.default)({
               method: 'DELETE',
-              url: "http://127.0.0.1:3000/api/posts/".concat(postId, "/comments/").concat(commentId)
+              url: "/api/posts/".concat(postId, "/comments/").concat(commentId)
             });
 
           case 3:
@@ -8889,7 +8888,7 @@ function () {
             _context.next = 3;
             return (0, _axios.default)({
               method: 'PATCH',
-              url: "http://127.0.0.1:3000/api/university/".concat(id),
+              url: "/api/university/".concat(id),
               data: data
             });
 
@@ -8931,7 +8930,7 @@ function () {
           case 0:
             _context2.prev = 0;
             _context2.next = 3;
-            return _axios.default.delete("http://127.0.0.1:3000/api/university/".concat(id));
+            return _axios.default.delete("/api/university/".concat(id));
 
           case 3:
             location.reload(true);
@@ -8971,7 +8970,7 @@ function () {
           case 0:
             _context3.prev = 0;
             _context3.next = 3;
-            return _axios.default.delete("http://127.0.0.1:3000/api/reviews/".concat(id));
+            return _axios.default.delete("/api/reviews/".concat(id));
 
           case 3:
             location.reload(true);
@@ -9011,7 +9010,7 @@ function () {
           case 0:
             _context4.prev = 0;
             _context4.next = 3;
-            return _axios.default.delete("http://127.0.0.1:3000/api/users/".concat(id));
+            return _axios.default.delete("/api/users/".concat(id));
 
           case 3:
             location.reload(true);
@@ -9088,30 +9087,27 @@ function () {
           case 0:
             _context.prev = 0;
             _context.next = 3;
-            return _axios.default.get("http://127.0.0.1:3000/api/universities/".concat(uniId));
+            return _axios.default.get("/api/universities/".concat(uniId));
 
           case 3:
             university = _context.sent;
-            console.log(university);
-            console.log(university.data.data);
             data = _objectSpread({}, university.data.data.data);
-            console.log(data);
             renderUniversityDashboard(data);
             starsRender(data.ratingAverage);
-            _context.next = 15;
+            _context.next = 12;
             break;
 
-          case 12:
-            _context.prev = 12;
+          case 9:
+            _context.prev = 9;
             _context.t0 = _context["catch"](0);
             console.log(_context.t0);
 
-          case 15:
+          case 12:
           case "end":
             return _context.stop();
         }
       }
-    }, _callee, null, [[0, 12]]);
+    }, _callee, null, [[0, 9]]);
   }));
 
   return function renderUni(_x) {
@@ -9151,7 +9147,7 @@ function () {
           case 0:
             _context.prev = 0;
             _context.next = 3;
-            return _axios.default.post("http://127.0.0.1:3000/api/universities/".concat(id));
+            return _axios.default.post("/api/universities/".concat(id));
 
           case 3:
             res = _context.sent;
@@ -9215,7 +9211,7 @@ function () {
           case 0:
             _context.prev = 0;
             _context.next = 3;
-            return _axios.default.post("http://127.0.0.1:3000/api/posts/".concat(id, "/like"));
+            return _axios.default.post("/api/posts/".concat(id, "/like"));
 
           case 3:
             res = _context.sent;
@@ -9260,7 +9256,7 @@ function () {
           case 0:
             _context2.prev = 0;
             _context2.next = 3;
-            return _axios.default.post("http://127.0.0.1:3000/api/posts/".concat(id, "/dislike"));
+            return _axios.default.post("/api/posts/".concat(id, "/dislike"));
 
           case 3:
             res = _context2.sent;
@@ -9322,7 +9318,7 @@ function () {
           case 0:
             _context.prev = 0;
             _context.next = 3;
-            return _axios.default.post("http://127.0.0.1:3000/api/users/".concat(id, "/follow"));
+            return _axios.default.post("/api/users/".concat(id, "/follow"));
 
           case 3:
             res = _context.sent;
@@ -9368,7 +9364,7 @@ function () {
           case 0:
             _context2.prev = 0;
             _context2.next = 3;
-            return _axios.default.post("http://127.0.0.1:3000/api/users/".concat(id, "/unfollow"));
+            return _axios.default.post("/api/users/".concat(id, "/unfollow"));
 
           case 3:
             res = _context2.sent;
@@ -10014,7 +10010,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54077" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53743" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

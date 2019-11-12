@@ -5,7 +5,7 @@ export const postReview = async (id, review, rating) => {
   try {
     const res = await axios({
       method: 'POST',
-      url: `http://127.0.0.1:3000/api/universities/${id}/review`,
+      url: `/api/universities/${id}/review`,
       data: {
         review,
         rating
@@ -23,7 +23,7 @@ export const deleteReview = async (uniId, reviewId) => {
   try {
     const res = await axios({
       method: 'DELETE',
-      url: `http://127.0.0.1:3000/api/universities/${uniId}/review/${reviewId}`
+      url: `/api/universities/${uniId}/review/${reviewId}`
     });
     location.reload(true);
     showAlert('success', 'Review Deleted');

@@ -5,7 +5,7 @@ export const editAdminUniversity = async (id, data) => {
   try {
     await axios({
       method: 'PATCH',
-      url: `http://127.0.0.1:3000/api/university/${id}`,
+      url: `/api/university/${id}`,
       data
     });
     location.reload(true);
@@ -17,7 +17,7 @@ export const editAdminUniversity = async (id, data) => {
 // Delete University
 export const deleteAdminUniversity = async id => {
   try {
-    await axios.delete(`http://127.0.0.1:3000/api/university/${id}`);
+    await axios.delete(`/api/university/${id}`);
     location.reload(true);
   } catch (error) {
     console.log(error);
@@ -27,7 +27,7 @@ export const deleteAdminUniversity = async id => {
 
 export const deleteAdminReview = async id => {
   try {
-    await axios.delete(`http://127.0.0.1:3000/api/reviews/${id}`);
+    await axios.delete(`/api/reviews/${id}`);
     location.reload(true);
   } catch (error) {
     console.log(error);
@@ -37,7 +37,7 @@ export const deleteAdminReview = async id => {
 // Delete User
 export const deleteAdminUser = async id => {
   try {
-    await axios.delete(`http://127.0.0.1:3000/api/users/${id}`);
+    await axios.delete(`/api/users/${id}`);
     location.reload(true);
   } catch (error) {
     console.log(error);

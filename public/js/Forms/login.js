@@ -6,7 +6,7 @@ export const login = async (email, password) => {
   try {
     const res = await axios({
       method: 'POST',
-      url: `http://127.0.0.1:3000/api/users/login`,
+      url: `api/users/login`,
       data: {
         email,
         password
@@ -26,7 +26,7 @@ export const login = async (email, password) => {
 export const logout = async () => {
   const res = await axios({
     method: 'GET',
-    url: `http://127.0.0.1:3000/api/users/logout`
+    url: `/api/users/logout`
   });
 
   if (res.data.status === 'success') {
@@ -50,7 +50,7 @@ export const signUp = async newUser => {
   try {
     const res = await axios({
       method: 'POST',
-      url: 'http://127.0.0.1:3000/api/users/signup',
+      url: '/api/users/signup',
       data: newUser
     });
     if (res.data.status === 'success') {

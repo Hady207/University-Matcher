@@ -4,7 +4,7 @@ import { showAlert } from '../UI/alerts';
 export const follow = async id => {
   try {
     const res = await axios.post(
-      `http://127.0.0.1:3000/api/users/${id}/follow`
+      `/api/users/${id}/follow`
     );
     if (res.data.status === 'success') {
       showAlert('success', 'followed');
@@ -18,7 +18,7 @@ export const follow = async id => {
 export const unFollow = async id => {
   try {
     const res = await axios.post(
-      `http://127.0.0.1:3000/api/users/${id}/unfollow`
+      `/api/users/${id}/unfollow`
     );
     if (res.data.status === 'success') {
       showAlert('success', 'unfollowed');

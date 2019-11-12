@@ -66,9 +66,7 @@ const starsRender = rate => {
 
 export const renderUni = async uniId => {
   try {
-    const university = await axios.get(
-      `http://127.0.0.1:3000/api/universities/${uniId}`
-    );
+    const university = await axios.get(`/api/universities/${uniId}`);
 
     const data = { ...university.data.data.data };
 

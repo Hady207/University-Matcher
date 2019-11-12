@@ -3,9 +3,7 @@ import { showAlert } from '../UI/alerts';
 
 export const favorite = async id => {
   try {
-    const res = await axios.post(
-      `http://127.0.0.1:3000/api/universities/${id}`
-    );
+    const res = await axios.post(`/api/universities/${id}`);
 
     if (res.data.status === 'added') {
       showAlert('success', 'added to favorite');

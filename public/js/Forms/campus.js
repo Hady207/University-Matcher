@@ -6,7 +6,7 @@ export const sendPost = async data => {
   try {
     const res = await axios({
       method: 'POST',
-      url: `http://127.0.0.1:3000/api/posts`,
+      url: `/api/posts`,
       data: data
     });
 
@@ -24,7 +24,7 @@ export const sendComment = async (postId, comment) => {
   try {
     const res = await axios({
       method: 'POST',
-      url: `http://127.0.0.1:3000/api/posts/${postId}`,
+      url: `/api/posts/${postId}`,
       data: {
         comment
       }
@@ -40,7 +40,7 @@ export const deleteComment = async (postId, commentId) => {
   try {
     const res = await axios({
       method: 'DELETE',
-      url: `http://127.0.0.1:3000/api/posts/${postId}/comments/${commentId}`
+      url: `/api/posts/${postId}/comments/${commentId}`
     });
     location.reload(true);
     showAlert('success', 'comment Deleted');
