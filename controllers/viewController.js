@@ -7,7 +7,7 @@ const AppError = require('../utils/appError');
 
 exports.home = catchAsync(async (req, res, next) => {
   const top3 = await University.find({ ratingAverage: { $gte: 3 } });
-  console.log(top3);
+  // console.log(top3);
   res.render('home', { title: 'Home', url: '/', top3 });
 });
 

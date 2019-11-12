@@ -3,47 +3,40 @@ import showAlert from '../UI/alerts';
 // const university__main = document.querySelector('#university__main');
 
 const renderUniversityDashboard = u => {
-  const markup = `
-  <div id="universityContainer">
+  const markup = `<div id="universityContainer">
   
-    <div class="gallery">
-        <figure class="gallery__item">
-          <img src="./img/universities/${
-            u.images[0]
-          }" alt="" class="gallery__photo" />
-        </figure>
-        <figure class="gallery__item">
-          <img src="./img/universities/${
-            u.images[1]
-          }" alt="" class="gallery__photo" />
-        </figure>
-        <figure class="gallery__item">
-          <img src="./img/universities/${
-            u.images[2]
-          }" alt="" class="gallery__photo" />
-        </figure>
-    </div>
+  <div class="gallery">
+<figure class="gallery__item">
+  <img src="./img/universities/${u.images[0]}" alt="" class="gallery__photo" />
+</figure>
+<figure class="gallery__item">
+  <img src="./img/universities/${u.images[1]}" alt="" class="gallery__photo" />
+</figure>
+<figure class="gallery__item">
+  <img src="./img/universities/${u.images[2]}" alt="" class="gallery__photo" />
+</figure>
+</div>
 
-    <div class="overview">
-      <h1 class="overview__heading">${u.name}</h1>
-      <div class="overview__stars">
+<div class="overview">
+<h1 class="overview__heading">${u.name}</h1>
+<div class="overview__stars">
   
-      </div>
-      <div class="overview__location">
-         <ion-icon name="pin"></ion-icon>
-          ${u.address}
-      </div>
-      <div class="overview__rating">
-        <div class="overview__rating-average">${u.ratingAverage}</div>
-        <div class="overview__rating-count">${u.ratingQuantity} votes</div>
-      </div>
-    </div>
+</div>
+<div class="overview__location">
+  <ion-icon name="pin"></ion-icon>
+  ${u.address}
+</div>
+<div class="overview__rating">
+  <div class="overview__rating-average">${u.ratingAverage}</div>
+  <div class="overview__rating-count">${u.ratingQuantity} votes</div>
+</div>
+</div>
 
 <div class="details">
-  <div class="description">
-    <p class="paragraph">
-      ${u.description}
-    </p>
+<div class="description">
+  <p class="paragraph">
+    ${u.description}
+  </p>
   
 
   <ul class="list">
@@ -55,12 +48,7 @@ const renderUniversityDashboard = u => {
     <li class="list__item">${u.programs}</li>
     <li class="list__item">${u.website}</li>
   </ul>
-
-  </div>
-  
-  </div>
-  
-  `;
+  </div>`;
 
   document
     .querySelector('.dashboard-view')

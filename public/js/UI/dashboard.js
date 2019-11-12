@@ -40,10 +40,11 @@ if (universities)
     if (!universityli.classList.contains(active)) {
       universityli.classList.add(active);
     }
-    console.log(elem.firstChild);
+    // console.log(elem.firstChild);
+    // console.log(elem.childNodes);
     if (university__main.childNodes) {
       console.log(elem.firstChild);
-      // elem.firstChild.remove();
+      elem.firstChild.remove();
     }
   });
 

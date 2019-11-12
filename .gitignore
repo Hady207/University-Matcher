@@ -3,3 +3,4 @@ node_modules
 config.env
 chatbot-master-v1.json
 .cache
+dev-data
