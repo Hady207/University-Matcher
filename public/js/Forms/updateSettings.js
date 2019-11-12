@@ -18,7 +18,7 @@ export const updateSettings = async (data, type) => {
       showAlert('success', `${type.toUpperCase()} updated successfully!`);
     }
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     showAlert('error', error);
   }
 };

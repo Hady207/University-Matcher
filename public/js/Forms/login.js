@@ -2,7 +2,7 @@ import axios from 'axios';
 import { showAlert } from '../UI/alerts';
 
 export const login = async (email, password) => {
-  console.log(email, password);
+  // console.log(email, password);
   try {
     const res = await axios({
       method: 'POST',
@@ -60,7 +60,7 @@ export const signUp = async newUser => {
       }, 1500);
     }
   } catch (error) {
-    console.log(error.response);
+    // console.log(error.response);
     showAlert('error', error.response.data.message);
   }
 };

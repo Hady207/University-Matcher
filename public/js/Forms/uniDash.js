@@ -69,10 +69,8 @@ export const renderUni = async uniId => {
     const university = await axios.get(
       `http://127.0.0.1:3000/api/universities/${uniId}`
     );
-    console.log(university);
-    console.log(university.data.data);
+
     const data = { ...university.data.data.data };
-    console.log(data);
 
     renderUniversityDashboard(data);
     starsRender(data.ratingAverage);
