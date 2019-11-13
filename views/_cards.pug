@@ -6,7 +6,7 @@ mixin universityCard(slug,img,name,abbv,description,location,programs,students,w
                 span= abbv
         .card__body
             h4.card__body--title=name
-            p.card__body--paragraph=description 
+            p.card__body--paragraph #{description} ... 
             .card__data
                 ion-icon(name="pin") 
                 span=location

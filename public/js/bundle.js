@@ -8495,7 +8495,7 @@ function () {
             _context3.prev = 7;
             _context3.t0 = _context3["catch"](0);
             // console.log(error.response);
-            (0, _alerts.showAlert)('error', _context3.t0.response.data.message);
+            (0, _alerts.showAlert)('error', 'please fill all the fields');
 
           case 10:
           case "end":

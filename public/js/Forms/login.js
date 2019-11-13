@@ -61,6 +61,6 @@ export const signUp = async newUser => {
     }
   } catch (error) {
     // console.log(error.response);
-    showAlert('error', error.response.data.message);
+    showAlert('error', 'please fill all the fields');
   }
 };

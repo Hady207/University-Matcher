@@ -4,6 +4,12 @@ const mongoose = require('mongoose');
 const port = process.env.PORT || 3000;
 const app = require('./app');
 
+process.on('uncaughtException', err => {
+  console.log('UNCAUGHT EXCEPTION! 💥 Shutting down...');
+  console.log(err.name, err.message);
+  process.exit(1);
+});
+
 const DB = process.env.DATABASE.replace(
   '<PASSWORD>',
   process.env.DATABASE_PASSWORD
@@ -29,4 +35,14 @@ mongoose
 //   .then(() => console.log('Database is connected'))
 //   .catch(err => console.log(err.message));
 
-app.listen(port, () => console.log(`server started on ${port}`));
+const server = app.listen(port, () =>
+  console.log(`server started on ${port}...`)
+);
+
+process.on('unhandledRejection', err => {
+  console.log('UNHANDLED REJECTION! 💥 Shutting down...');
+  console.log(err.name, err.message);
+  server.close(() => {
+    process.exit(1);
+  });
+});
