@@ -22,11 +22,17 @@ const viewRoute = require('./routes/viewRoute');
 
 const app = express();
 
-// Serving static files
 app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, 'views'));
 
 // Modules Middleware
+
+// Implement CORS
+app.use(cors());
+
+app.options('*', cors());
+
+// Serving static files
 app.use(express.static(path.join(__dirname, 'public')));
 // Set security HTTP headers
 app.use(helmet());
@@ -58,18 +64,9 @@ app.use(xss());
 // Prevent parameter pollution
 app.use(
   hpp({
-    whitelist: [
-      'duration',
-      'ratingsQuantity',
-      'ratingsAverage',
-      'maxGroupSize',
-      'difficulty',
-      'price'
-    ]
+    whitelist: ['ratingsQuantity', 'ratingsAverage', 'price']
   })
 );
-
-app.use(cors());
 
 app.use((req, res, next) => {
   req.requestTime = new Date().toISOString();
