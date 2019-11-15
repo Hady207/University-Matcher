@@ -60,9 +60,25 @@ exports.resizeUniversityImages = catchAsync(async (req, res, next) => {
 // exports.getAllUni = factory.getAll(University);
 
 // TESTing purpose
-exports.getAllUni = catchAsync(async (req, res, next) => {
-  const university = await University.find;
-});
+// exports.getAllUni = catchAsync(async (req, res, next) => {
+//   // const university = await University.find({ programs: 'bachelore' }).select(
+//   //   '-_id -name -description -images -coverImage -programs -courses -email -website -address -admissionRule -location -id ',
+//   // );
+//   const university = await University.find({
+//     programs: 'bachelore',
+//   }).select({ abbrv: 1 });
+
+//   const elements = university.map(el => el.abbrv);
+
+//   // const [...elements] = university.abbrv;
+//   // console.log(university.abbrv);
+//   // let [...element] = university;
+//   console.log(elements);
+//   res.json({
+//     fulfillmentText: `you can find what you looking for here ${elements}`,
+//     data: university,
+//   });
+// });
 exports.getUni = factory.getOne(University, { path: 'reviews' });
 exports.createUni = factory.createOne(University);
 exports.updateUni = factory.updateOne(University);
