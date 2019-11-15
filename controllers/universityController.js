@@ -21,7 +21,7 @@ const upload = multer({ storage: multerStorage, fileFilter: multerFilter });
 
 exports.uploadUniversityImages = upload.fields([
   { name: 'coverImage', maxCount: 1 },
-  { name: 'images', maxCount: 3 }
+  { name: 'images', maxCount: 3 },
 ]);
 
 // upload.single('images') req.file
@@ -52,12 +52,17 @@ exports.resizeUniversityImages = catchAsync(async (req, res, next) => {
         .jpeg({ quality: 90 })
         .toFile(`public/img/universities/${filename}`);
       req.body.images.push(filename);
-    })
+    }),
   );
   next();
 });
 
-exports.getAllUni = factory.getAll(University);
+// exports.getAllUni = factory.getAll(University);
+
+// TESTing purpose
+exports.getAllUni = catchAsync(async (req, res, next) => {
+  const university = await University.find;
+});
 exports.getUni = factory.getOne(University, { path: 'reviews' });
 exports.createUni = factory.createOne(University);
 exports.updateUni = factory.updateOne(University);
@@ -74,7 +79,7 @@ exports.favoriteUni = catchAsync(async (req, res, next) => {
     user = await User.updateOne(
       { _id: req.user.id },
       { $pull: { favoriteUni: req.params.id } },
-      { new: true, safe: true, multi: true }
+      { new: true, safe: true, multi: true },
     );
     // user = await User.findByIdAndUpdate(
     //   req.user.id,
@@ -85,18 +90,18 @@ exports.favoriteUni = catchAsync(async (req, res, next) => {
 
     res.status(201).json({
       status: 'removed',
-      message: 'removed from favorite'
+      message: 'removed from favorite',
     });
   } else {
     user = await User.updateOne(
       { _id: req.user.id },
       { $push: { favoriteUni: { _id: req.params.id } } },
-      { safe: true, multi: true }
+      { safe: true, multi: true },
     );
     // console.log(user);
     res.status(201).json({
       status: 'added',
-      message: 'added to favorite'
+      message: 'added to favorite',
     });
   }
 
@@ -124,17 +129,17 @@ exports.favoriteUni = catchAsync(async (req, res, next) => {
 exports.removeFavorite = catchAsync(async (req, res, next) => {
   if (req.user.favoriteUni.includes(req.params.id)) {
     const user = await User.findByIdAndUpdate(req.user.id, {
-      $pull: { favoriteUni: req.params.id }
+      $pull: { favoriteUni: req.params.id },
     });
     // console.log(user);
     res.status(201).json({
       status: 'success',
-      message: 'removed from favorite'
+      message: 'removed from favorite',
     });
   } else {
     res.status(201).json({
       status: 'failed',
-      message: 'this is not in your favorite list'
+      message: 'this is not in your favorite list',
     });
   }
 });

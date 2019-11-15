@@ -76,7 +76,9 @@ exports.profile = catchAsync(async (req, res, next) => {
 exports.chatbot = catchAsync(async (req, res, next) => {
   let university;
   if (req.params.programs) {
-    university = await University.findById(req.params.programs).select('abbrv');
+    university = await University.find({
+      programs: req.params.programs,
+    }).select('abbrv');
   }
   res.json({
     fulfillmentText: `you can find what you looking for here ${university}`,
