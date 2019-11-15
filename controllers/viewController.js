@@ -81,8 +81,8 @@ exports.chatbot = catchAsync(async (req, res, next) => {
       programs: req.params.programs,
     }).select('abbrv');
     abbrvs = University.map(el => el.abbrv);
+    res.json({
+      fulfillmentText: `you can find what you looking for here ${abbrvs}`,
+    });
   }
-  res.json({
-    fulfillmentText: `you can find what you looking for here ${abbrvs}`,
-  });
 });

@@ -57,7 +57,7 @@ exports.resizeUniversityImages = catchAsync(async (req, res, next) => {
   next();
 });
 
-// exports.getAllUni = factory.getAll(University);
+exports.getAllUni = factory.getAll(University);
 
 // TESTing purpose
 // exports.getAllUni = catchAsync(async (req, res, next) => {
