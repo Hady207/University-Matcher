@@ -75,6 +75,6 @@ exports.profile = catchAsync(async (req, res, next) => {
 
 exports.chatbot = catchAsync(async (req, res, next) => {
   res.json({
-    message: 'hello sir',
+    fulfillmentText: 'hello sir',
   });
 });
