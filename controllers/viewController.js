@@ -75,10 +75,10 @@ exports.profile = catchAsync(async (req, res, next) => {
 
 exports.chatbot = catchAsync(async (req, res, next) => {
   const programs = req.body.queryResult.parameters.programs;
-  const universityOne = req.body.queryResult.parameters.uni_names;
+  const name = req.body.queryResult.parameters.uni_names;
   // let university;
   // let abbrvs;
-
+  console.log(name);
   if (programs) {
     const university = await University.find({
       programs,
@@ -87,12 +87,12 @@ exports.chatbot = catchAsync(async (req, res, next) => {
     res.json({
       fulfillmentText: `you can find what you looking for here ${abbrvs}`,
     });
-  } else if (universityOne) {
-    const university = await University.find({ name: universityOne });
+  } else if (name) {
+    const universityOne = await University.findOne({ name });
     res.json({
-      fulfillmentText: `${university.abbrv} has a rating average of ${university.ratingAverage}/5, voted by ${university.ratingQuantity} student,\n it provides the following courses in ${university.majors}.
-      and located at ${university.address}. if you like to know more please visit the ${university.name} page
-      at ${req.protocol}://${req.hostname}.com/university/${university.slug}`,
+      fulfillmentText: `${universityOne.abbrv} has a rating average of ${universityOne.ratingAverage}/5, voted by ${universityOne.ratingQuantity} student,\n it provides the following courses in ${universityOne.majors}.
+      and located at ${universityOne.address}. if you like to know more please visit the ${universityOne.name} page
+      at ${req.protocol}://${req.hostname}.com/universities/${universityOne.slug}`,
     });
   }
 });
