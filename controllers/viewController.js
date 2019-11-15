@@ -13,7 +13,7 @@ exports.home = catchAsync(async (req, res, next) => {
       .limit(3);
   } else {
     query = await University.find({
-      $or: [{ majors: req.user.majors }, { programs: req.user.program }]
+      $or: [{ majors: req.user.majors }, { programs: req.user.program }],
     });
   }
   const top3 = await query;
@@ -30,7 +30,7 @@ exports.universities = catchAsync(async (req, res, next) => {
 exports.universityOne = catchAsync(async (req, res, next) => {
   const one = await University.findOne({ slug: req.params.slug }).populate({
     path: 'reviews',
-    fields: 'review rating user'
+    fields: 'review rating user',
   });
 
   if (!one) {
@@ -39,7 +39,7 @@ exports.universityOne = catchAsync(async (req, res, next) => {
 
   res.render('universityOne', {
     title: `Hello ${one.name}`,
-    university: one
+    university: one,
   });
 });
 
@@ -71,4 +71,8 @@ exports.me = catchAsync(async (req, res, next) => {
 exports.profile = catchAsync(async (req, res, next) => {
   const friend = await User.findById(req.params.id);
   res.render('friend', { title: 'Welcome', friend });
+});
+
+exports.chatbot = catchAsync(async (req, res, next) => {
+  console.log(req.query);
 });

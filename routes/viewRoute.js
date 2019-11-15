@@ -10,12 +10,12 @@ router.get('/login', authController.isLoggedIn, viewController.login);
 router.get(
   '/universities',
   authController.isLoggedIn,
-  viewController.universities
+  viewController.universities,
 );
 router.get(
   '/universities/:slug',
   authController.isLoggedIn,
-  viewController.universityOne
+  viewController.universityOne,
 );
 router.get('/campus', authController.isLoggedIn, viewController.campus);
 router.get('/dashboard', authController.protect, viewController.dashboard);
@@ -25,5 +25,7 @@ router.get('/dashboard', authController.protect, viewController.dashboard);
 //   viewController.dashboardUni
 // );
 router.get('/profile/:id', authController.protect, viewController.profile);
+
+router.post('chatbot', viewController.chatbot);
 
 module.exports = router;
