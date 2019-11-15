@@ -75,16 +75,24 @@ exports.profile = catchAsync(async (req, res, next) => {
 
 exports.chatbot = catchAsync(async (req, res, next) => {
   const programs = req.body.queryResult.parameters.programs;
-  let university;
-  let abbrvs;
+  const universityOne = req.body.queryResult.parameters.uni_names;
+  // let university;
+  // let abbrvs;
 
   if (programs) {
-    university = await University.find({
+    const university = await University.find({
       programs,
     }).select('abbrv');
-    abbrvs = university.map(el => el.abbrv);
+    const abbrvs = university.map(el => el.abbrv);
     res.json({
       fulfillmentText: `you can find what you looking for here ${abbrvs}`,
+    });
+  } else if (universityOne) {
+    const university = await University.find({ name: universityOne });
+    res.json({
+      fulfillmentText: `${university.abbrv} has a rating average of ${university.ratingAverage}/5, voted by ${university.ratingQuantity} student,\n it provides the following courses in ${university.majors}.
+      and located at ${university.address}. if you like to know more please visit the ${university.name} page
+      at ${req.protocol}://${req.hostname}.com/university/${university.slug}`,
     });
   }
 });

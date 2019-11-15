@@ -64,18 +64,20 @@ exports.getAllUni = factory.getAll(University);
 //   // const university = await University.find({ programs: 'bachelore' }).select(
 //   //   '-_id -name -description -images -coverImage -programs -courses -email -website -address -admissionRule -location -id ',
 //   // );
-//   const university = await University.find({
-//     programs: 'bachelore',
-//   }).select({ abbrv: 1 });
+//   const university = await University.findOne({
+//     name: 'Australian College of Kuwait',
+//   });
 
-//   const elements = university.map(el => el.abbrv);
+//   // const elements = university.map(el => el.abbrv);
 
 //   // const [...elements] = university.abbrv;
 //   // console.log(university.abbrv);
 //   // let [...element] = university;
-//   console.log(elements);
+//   console.log(university);
 //   res.json({
-//     fulfillmentText: `you can find what you looking for here ${elements}`,
+//     fulfillmentText: `${university.abbrv} has a rating average of ${university.ratingAverage}/5, voted by ${university.ratingQuantity} student,\n it provides the following courses in ${university.majors}.
+//     if you like to know more please visit the ${university.name} page
+//     at ${req.protocol}://${req.hostname}.com/university/${university.slug}`,
 //     data: university,
 //   });
 // });
