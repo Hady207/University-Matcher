@@ -74,7 +74,11 @@ exports.profile = catchAsync(async (req, res, next) => {
 });
 
 exports.chatbot = catchAsync(async (req, res, next) => {
+  let university;
+  if (req.params.programs) {
+    university = await University.findById(req.params.programs).select('abbrv');
+  }
   res.json({
-    fulfillmentText: 'hello sir',
+    fulfillmentText: `you can find what you looking for here ${university}`,
   });
 });
