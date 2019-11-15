@@ -83,6 +83,6 @@ exports.chatbot = catchAsync(async (req, res, next) => {
     abbrvs = University.map(el => el.abbrv);
   }
   res.json({
-    fulfillmentText: `you can find what you looking for here ${abbrv}`,
+    fulfillmentText: `you can find what you looking for here ${abbrvs}`,
   });
 });
