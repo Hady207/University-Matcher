@@ -26,6 +26,6 @@ router.get('/dashboard', authController.protect, viewController.dashboard);
 // );
 router.get('/profile/:id', authController.protect, viewController.profile);
 
-router.post('chatbot', viewController.chatbot);
+router.post('/chatbot', viewController.chatbot);
 
 module.exports = router;

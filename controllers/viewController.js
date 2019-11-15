@@ -74,5 +74,7 @@ exports.profile = catchAsync(async (req, res, next) => {
 });
 
 exports.chatbot = catchAsync(async (req, res, next) => {
-  console.log(req.query);
+  res.json({
+    message: 'hello sir',
+  });
 });
