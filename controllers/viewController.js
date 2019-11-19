@@ -166,7 +166,7 @@ exports.chatbot = catchAsync(async (req, res, next) => {
   if (Intent == 'ratesIntent') {
     console.log(Intent);
     const rate = req.body.queryResult.parameters.rates;
-    const majors = req.body.queryResult.parameters.course;
+    const majors = req.body.queryResult.parameters.courses;
     const programs = req.body.queryResult.parameters.programs;
 
     if (rate == 'highest') {
