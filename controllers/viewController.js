@@ -182,7 +182,7 @@ exports.chatbot = catchAsync(async (req, res, next) => {
           });
         }
         res.json({
-          fulfillmentText: `${university.name} provide a ${majors} and it is rated by ${university.ratingAverage}/5 \n
+          fulfillmentText: `${university.name} provide ${majors} and it is rated by ${university.ratingAverage}/5 \n
           you can find more on this link ${req.protocol}://${req.hostname}.com/universities/${university.slug} `,
         });
       } else if (majors || programs) {
@@ -205,7 +205,7 @@ exports.chatbot = catchAsync(async (req, res, next) => {
           });
         }
         res.json({
-          fulfillmentText: `${university.name} provide a ${word} and it is rated by ${university.ratingAverage}/5 \n
+          fulfillmentText: `${university.name} provide ${word} and it is rated by ${university.ratingAverage}/5 \n
           you can find more on this link ${req.protocol}://${req.hostname}.com/universities/${university.slug} `,
         });
       }
@@ -234,7 +234,7 @@ exports.chatbot = catchAsync(async (req, res, next) => {
           });
         }
         res.json({
-          fulfillmentText: `${university.name} provide a ${majors} and it is rated by ${university.ratingAverage}/5 \n
+          fulfillmentText: `${university.name} provide ${majors} and it is rated by ${university.ratingAverage}/5 \n
           you can find more on this link ${req.protocol}://${req.hostname}.com/universities/${university.slug} `,
         });
       } else if (majors || programs) {
@@ -258,7 +258,7 @@ exports.chatbot = catchAsync(async (req, res, next) => {
           });
         }
         res.json({
-          fulfillmentText: `${university.name} provide a ${word} and it is rated by ${university.ratingAverage}/5 \n
+          fulfillmentText: `${university.name} provide ${word} and it is rated by ${university.ratingAverage}/5 \n
           you can find more on this link ${req.protocol}://${req.hostname}.com/universities/${university.slug} `,
         });
       }
@@ -287,7 +287,7 @@ exports.chatbot = catchAsync(async (req, res, next) => {
           });
         }
         res.json({
-          fulfillmentText: `${university.name} provide a ${majors} and it is rated by ${university.ratingAverage}/5 \n
+          fulfillmentText: `${university.name} provide ${majors} and it is rated by ${university.ratingAverage}/5 \n
           you can find more on this link ${req.protocol}://${req.hostname}.com/universities/${university.slug} `,
         });
       } else if (majors || programs) {
@@ -311,7 +311,7 @@ exports.chatbot = catchAsync(async (req, res, next) => {
           });
         }
         res.json({
-          fulfillmentText: `${university.name} provide a ${word} and it is rated by ${university.ratingAverage}/5 \n
+          fulfillmentText: `${university.name} provide ${word} and it is rated by ${university.ratingAverage}/5 \n
           you can find more on this link ${req.protocol}://${req.hostname}.com/universities/${university.slug} `,
         });
       }
