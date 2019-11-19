@@ -11,7 +11,7 @@ export const updateSettings = async (data, type) => {
     const res = await axios({
       method: 'PATCH',
       url,
-      data
+      data,
     });
 
     if (res.data.status === 'success') {
@@ -19,6 +19,6 @@ export const updateSettings = async (data, type) => {
     }
   } catch (error) {
     // console.log(error);
-    showAlert('error', error);
+    showAlert('error', error.response.data.message);
   }
 };

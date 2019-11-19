@@ -1256,6 +1256,7 @@ section {
   background: white;
   flex-direction: column;
   width: 33rem;
+  border-radius: 23px;
   position: relative;
 }
 
@@ -1277,6 +1278,18 @@ section {
   height: 100%;
   object-fit: cover;
   border-radius: 100%;
+}
+
+.students .box__container .box__body {
+  margin-top: 3rem;
+  font-weight: 500;
+  padding: 1rem 2rem;
+  text-align: center;
+  font-style: italic;
+}
+
+.students .box__container .box__body__elements:not(:last-child) {
+  margin-bottom: 2rem;
 }
 
 .students .box__container .box__paragraph {

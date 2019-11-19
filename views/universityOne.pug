@@ -131,7 +131,7 @@ block content
                 h2.review--title Write your own review
                 //- form.review__form(action=`/api/universities/${university._id}/review/postReview`, method="post")
                 form.review__form(data-uniid=`${university._id}`,data-slug=`${university.slug}`)
-                    textarea.text__box(name="review", cols="30", rows="10")
+                    textarea.text__box(name="review", cols="30", rows="10" required)
                     .star__rating
                         input.stars.stars--1(type="radio", id="star1", value="5", name="rating")
                         label(for="star1")

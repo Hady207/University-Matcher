@@ -4,7 +4,7 @@ if url
             .logo
                 img.logo__img(src='../img/icons/logo_transparent.png' alt='logo')
             ul.nav__items
-                li.nav__elements
+                li.nav__elements!=typeof page !== 'undefined' && page === 'homepage' ? '.active' : ''
                     a(href="/") Home
                 li.nav__elements
                     a(href="/universities") Universities

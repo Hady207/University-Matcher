@@ -9,8 +9,8 @@ export const login = async (email, password) => {
       url: `api/users/login`,
       data: {
         email,
-        password
-      }
+        password,
+      },
     });
     if (res.data.status === 'success') {
       showAlert('success', 'Logged In successfully');
@@ -26,7 +26,7 @@ export const login = async (email, password) => {
 export const logout = async () => {
   const res = await axios({
     method: 'GET',
-    url: `/api/users/logout`
+    url: `/api/users/logout`,
   });
 
   if (res.data.status === 'success') {
@@ -51,7 +51,7 @@ export const signUp = async newUser => {
     const res = await axios({
       method: 'POST',
       url: '/api/users/signup',
-      data: newUser
+      data: newUser,
     });
     if (res.data.status === 'success') {
       showAlert('success', 'Logged In successfully');

@@ -10,7 +10,11 @@ router.use('/:uniId/review', reviewRouter);
 router
   .route('/')
   .get(universityController.getAllUni)
-  .post(universityController.createUni);
+  .post(
+    authController.protect,
+    authController.restrictTo('admin'),
+    universityController.createUni,
+  );
 
 router
   .route('/:id')
@@ -18,15 +22,17 @@ router
   .post(authController.protect, universityController.favoriteUni)
   .patch(
     authController.protect,
+    authController.restrictTo('admin'),
     universityController.uploadUniversityImages,
     universityController.resizeUniversityImages,
-    universityController.updateUni
+    universityController.updateUni,
   )
   .delete(universityController.deleteUni);
 
 router.post(
   '/:id/favourite',
   authController.protect,
-  universityController.removeFavorite
+  authController.restrictTo('admin'),
+  universityController.removeFavorite,
 );
 module.exports = router;

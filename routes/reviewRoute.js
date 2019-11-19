@@ -12,12 +12,22 @@ router
 router
   .route('/')
   .get(reviewController.getReviews)
-  .post(reviewController.setUniUserId, reviewController.createReview);
+  .post(
+    authController.restrictTo('student'),
+    reviewController.setUniUserId,
+    reviewController.createReview,
+  );
 
 router
   .route('/:id')
   .get(reviewController.getReview)
-  .patch(reviewController.updateReview)
-  .delete(reviewController.removeReview);
+  .patch(
+    authController.restrictTo('student', 'admin'),
+    reviewController.updateReview,
+  )
+  .delete(
+    authController.restrictTo('student', 'admin'),
+    reviewController.removeReview,
+  );
 
 module.exports = router;
