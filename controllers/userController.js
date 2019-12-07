@@ -45,8 +45,6 @@ exports.getMe = (req, res, next) => {
 };
 
 exports.updateMe = catchAsync(async (req, res, next) => {
-  // console.log(req.file);
-  // console.log(req.body);
   // 1) Create error if user POSTs password data
   if (req.body.password || req.body.passwordConfirm) {
     return new AppError(
@@ -73,22 +71,15 @@ exports.updateMe = catchAsync(async (req, res, next) => {
 
 exports.follow = catchAsync(async (req, res, next) => {
   const user = await User.findById(req.user.id);
-  // const friend = await User.findById(req.params.id);
-  // console.log('me', user);
-  // console.log('you', friend);
   if (!user) {
     return next(new AppError('no user with given id', 400));
   }
   user.follow(req.params.id);
 
-  // console.log(friend.followers);
-  // friend.followers.push(user._id);
-  // console.log(friend.followers);
-  // friend.save({ validateBeforeSave: false });
   const friend = await User.findByIdAndUpdate(req.params.id, {
     $push: { followers: req.user.id }
   });
-  // console.log(friend);
+
   res.status(200).json({
     status: 'success',
     message: `you followed this user ${friend.name}`,
@@ -114,8 +105,7 @@ exports.unfollow = catchAsync(async (req, res, next) => {
     },
     { new: true, safe: true, multi: true }
   );
-  // friend.followers.pop(user._id);
-  // friend.save({ validateBeforeSave: false });
+
   res.status(200).json({
     status: 'success',
     message: `you unfollowed this ${friend.name}`,

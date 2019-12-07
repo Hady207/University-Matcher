@@ -21,11 +21,8 @@ const upload = multer({ storage: multerStorage, fileFilter: multerFilter });
 
 exports.uploadUniversityImages = upload.fields([
   { name: 'coverImage', maxCount: 1 },
-  { name: 'images', maxCount: 3 },
+  { name: 'images', maxCount: 3 }
 ]);
-
-// upload.single('images') req.file
-// upload.array('images',5) req.files
 
 exports.resizeUniversityImages = catchAsync(async (req, res, next) => {
   // console.log(req.files);
@@ -52,112 +49,56 @@ exports.resizeUniversityImages = catchAsync(async (req, res, next) => {
         .jpeg({ quality: 90 })
         .toFile(`public/img/universities/${filename}`);
       req.body.images.push(filename);
-    }),
+    })
   );
   next();
 });
 
 exports.getAllUni = factory.getAll(University);
-
-// TESTing purpose
-// exports.getAllUni = catchAsync(async (req, res, next) => {
-//   // const university = await University.find({ programs: 'bachelore' }).select(
-//   //   '-_id -name -description -images -coverImage -programs -courses -email -website -address -admissionRule -location -id ',
-//   // );
-//   const university = await University.findOne({
-//     name: 'Australian College of Kuwait',
-//   });
-
-//   // const elements = university.map(el => el.abbrv);
-
-//   // const [...elements] = university.abbrv;
-//   // console.log(university.abbrv);
-//   // let [...element] = university;
-//   console.log(university);
-//   res.json({
-//     fulfillmentText: `${university.abbrv} has a rating average of ${university.ratingAverage}/5, voted by ${university.ratingQuantity} student,\n it provides the following courses in ${university.majors}.
-//     if you like to know more please visit the ${university.name} page
-//     at ${req.protocol}://${req.hostname}.com/university/${university.slug}`,
-//     data: university,
-//   });
-// });
 exports.getUni = factory.getOne(University, { path: 'reviews' });
 exports.createUni = factory.createOne(University);
 exports.updateUni = factory.updateOne(University);
 exports.deleteUni = factory.deleteOne(University);
 
 exports.favoriteUni = catchAsync(async (req, res, next) => {
-  //   const user = await User.findByIdAndUpdate(req.user._id, {
-  //     favoriteUni: { $push: { _id: req.params.id } }
-  //   });
-  // console.log(req.user);
   let user;
   if (req.user.favoriteUni.some(val => val.id == req.params.id)) {
-    // console.log('it does include it');
     user = await User.updateOne(
       { _id: req.user.id },
       { $pull: { favoriteUni: req.params.id } },
-      { new: true, safe: true, multi: true },
+      { new: true, safe: true, multi: true }
     );
-    // user = await User.findByIdAndUpdate(
-    //   req.user.id,
-    //   { $pull: { favoriteUni: { _id: req.params.id } } },
-    //   { new: true, safe: true, multi: true }
-    // );
-    // console.log(user);
-
     res.status(201).json({
       status: 'removed',
-      message: 'removed from favorite',
+      message: 'removed from favorite'
     });
   } else {
     user = await User.updateOne(
       { _id: req.user.id },
       { $push: { favoriteUni: { _id: req.params.id } } },
-      { safe: true, multi: true },
+      { safe: true, multi: true }
     );
-    // console.log(user);
     res.status(201).json({
       status: 'added',
-      message: 'added to favorite',
+      message: 'added to favorite'
     });
   }
-
-  // console.log(user);
-  // if (!user) {
-  //   next(new appError('you must sign in', 401));
-  // }
-
-  // res.status(201).json({
-  //   status: 'success',
-  //   message: 'added/removed to favorite'
-  // });
 });
-
-// exports.getAllUni = catchAsync(async (req, res, next) => {
-//   const uni = await University.find({});
-//   res.status(200).json({
-//     message: "hello",
-//     data: {
-//       uni,
-//     },
-//   });
-// });
 
 exports.removeFavorite = catchAsync(async (req, res, next) => {
   if (req.user.favoriteUni.includes(req.params.id)) {
     const user = await User.findByIdAndUpdate(req.user.id, {
-      $pull: { favoriteUni: req.params.id },
+      $pull: { favoriteUni: req.params.id }
     });
     // console.log(user);
     res.status(201).json({
       status: 'success',
-      message: 'removed from favorite',
+      message: 'removed from favorite'
     });
   } else {
     res.status(201).json({
       status: 'failed',
-      message: 'this is not in your favorite list',
+      message: 'this is not in your favorite list'
     });
   }
 });

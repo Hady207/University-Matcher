@@ -24,7 +24,7 @@ const uniSchema = new mongoose.Schema(
     images: [String],
     slug: String,
     programs: [
-      { type: String, enum: ['diploma', 'bachelore', 'masters', 'phd'] }
+      { type: String, enum: ['diploma', 'bachelor', 'masters', 'phd'] }
     ],
     majors: [String],
     address: String,

@@ -13,7 +13,7 @@ exports.home = catchAsync(async (req, res, next) => {
       .limit(3);
   } else {
     query = await University.find({
-      $or: [{ majors: req.user.majors }, { programs: req.user.program }],
+      $or: [{ majors: req.user.major }, { programs: req.user.program }]
     });
   }
   const top3 = await query;
@@ -30,7 +30,7 @@ exports.universities = catchAsync(async (req, res, next) => {
 exports.universityOne = catchAsync(async (req, res, next) => {
   const one = await University.findOne({ slug: req.params.slug }).populate({
     path: 'reviews',
-    fields: 'review rating user',
+    fields: 'review rating user'
   });
 
   if (!one) {
@@ -39,7 +39,7 @@ exports.universityOne = catchAsync(async (req, res, next) => {
 
   res.render('universityOne', {
     title: `Hello ${one.name}`,
-    university: one,
+    university: one
   });
 });
 
@@ -53,7 +53,6 @@ exports.login = catchAsync(async (req, res, next) => {
 
 exports.campus = catchAsync(async (req, res, next) => {
   const posts = await Post.find({}).sort('-createdAt');
-  console.log('posts', posts);
   res.render('campus', { title: 'campus', posts });
 });
 
@@ -74,97 +73,96 @@ exports.profile = catchAsync(async (req, res, next) => {
 });
 
 exports.chatbot = catchAsync(async (req, res, next) => {
-  // const programs = req.body.queryResult.parameters.programs;
-  // const name = req.body.queryResult.parameters.uni_names;
-  // const rate = req.body.queryResult.parameters.rates;
-  // const prices = req.body.queryResult.parameters.prices;
-  // const priceIntent = req.body.queryResult.action;
-  // const programsIntent = req.body.queryResult.action;
-  // const rateIntent = req.body.queryResult.action;
-  // const descripeIntent = req.body.queryResult.action;
+  // gets the action intent
   const Intent = req.body.queryResult.action;
-  // let university;
-  // let abbrvs;
-  // console.log(name);
 
+  // majors dialog intent
   if (Intent == 'majorsIntent') {
     const majors = req.body.queryResult.parameters.courses;
-    console.log(majors);
     const university = await University.find({ majors }).select('name');
     const unis = university.map(el => el.name);
     const word = unis.length > 1 ? 'universities' : 'university';
+    const verb = word == 'universities' ? 'are' : 'is';
     res.json({
-      fulfillmentText: `${word} that provide this major are ${unis}`,
+      fulfillmentText: `${word} that provide this major ${verb} ${unis}`
     });
   }
 
+  // prices dialog intent
   if (Intent == 'priceIntent') {
-    console.log(Intent);
     const price = req.body.queryResult.parameters.prices;
     const programs = req.body.queryResult.parameters.programs;
 
     if (price == 'expensive' && programs) {
       const university = await University.findOne({
         priceAverage: { $gte: 240 },
-        programs,
+        programs
       });
       res.json({
-        fulfillmentText: `The most expensive university that provide a ${programs} is ${university.name} with a rating of ${university.ratingAverage}/5`,
+        fulfillmentText: `The most expensive university that provide a ${programs} is ${university.name} with a rating of ${university.ratingAverage}/5`
       });
     } else if (price == 'cheap' && programs) {
       const university = await University.findOne({
         priceAverage: { $lte: 240 },
-        programs,
+        programs
       });
       res.json({
-        fulfillmentText: `The most expensive university that provide a ${programs} is ${university.name} with a rating of ${university.ratingAverage}/5`,
+        fulfillmentText: `The most expensive university that provide a ${programs} is ${university.name} with a rating of ${university.ratingAverage}/5`
       });
     } else if (price == 'expensive') {
-      console.log('if price expensive');
       const university = await University.findOne({
-        priceAverage: { $gte: 240 },
+        priceAverage: { $gte: 240 }
       });
       res.json({
-        fulfillmentText: `The most expensive university is ${university.name} with a rating of ${university.ratingAverage}/5`,
+        fulfillmentText: `The most expensive university is ${university.name} with a rating of ${university.ratingAverage}/5`
       });
     } else if (price == 'cheap') {
       const university = await University.findOne({
-        priceAverage: { $lt: 240 },
+        priceAverage: { $lt: 240 }
       });
       res.json({
-        fulfillmentText: `The cheapest university is ${university.name} with a rating of ${university.ratingAverage}/5`,
+        fulfillmentText: `The cheapest university is ${university.name} with a rating of ${university.ratingAverage}/5`
       });
     }
   }
 
+  // program dialog intent
   if (Intent == 'programIntent') {
-    console.log(Intent);
     const programs = req.body.queryResult.parameters.programs;
     const university = await University.find({
-      programs,
+      programs
     }).select('abbrv');
+    if (!university) {
+      res.json({
+        fulfillmentText: `there is no universitiy with your specifications`
+      });
+    }
     const abbrvs = university.map(el => el.abbrv);
     const word = unis.length > 1 ? 'universities' : 'university';
 
     res.json({
-      fulfillmentText: `you can find what you looking for in these ${word} ${abbrvs}`,
+      fulfillmentText: `you can find what you looking for in these ${word} ${abbrvs}`
     });
   }
 
+  // descripe Intent
   if (Intent == 'descripeIntent') {
-    console.log(Intent);
     const name = req.body.queryResult.parameters.uni_names;
     const universityOne = await University.findOne({ name });
+    if (!universityOne) {
+      res.json({
+        fulfillmentText: `there is no universitiy with your specifications`
+      });
+    }
     res.json({
       fulfillmentText: `${universityOne.abbrv} has a rating average of ${universityOne.ratingAverage}/5, voted by ${universityOne.ratingQuantity} student,\n it provides the following courses in ${universityOne.majors}.
         and located at ${universityOne.address}. if you like to know more please visit the ${universityOne.name} page
-        at ${req.protocol}://${req.hostname}.com/universities/${universityOne.slug}`,
+        at ${req.protocol}://${req.hostname}.com/universities/${universityOne.slug}`
     });
   }
 
-  // Dilaog flow send rate intent action
+  // rate intent action
   if (Intent == 'ratesIntent') {
-    console.log(Intent);
     const rate = req.body.queryResult.parameters.rates;
     const majors = req.body.queryResult.parameters.courses;
     const programs = req.body.queryResult.parameters.programs;
@@ -174,16 +172,16 @@ exports.chatbot = catchAsync(async (req, res, next) => {
         const university = await University.findOne({
           ratingAverage: { $gt: 3.5 },
           majors,
-          programs,
+          programs
         });
         if (!university) {
           res.json({
-            fulfillmentText: `there is no universitiy with your specifications`,
+            fulfillmentText: `there is no universitiy with your specifications`
           });
         }
         res.json({
           fulfillmentText: `${university.name} provide ${majors} and it is rated by ${university.ratingAverage}/5 \n
-          you can find more on this link ${req.protocol}://${req.hostname}.com/universities/${university.slug} `,
+          you can find more on this link ${req.protocol}://${req.hostname}.com/universities/${university.slug} `
         });
       } else if (majors || programs) {
         let university;
@@ -191,51 +189,51 @@ exports.chatbot = catchAsync(async (req, res, next) => {
         if (majors) {
           university = await University.findOne({
             ratingAverage: { $gt: 3.5 },
-            majors,
+            majors
           });
         } else if (porgrams) {
           university = await University.findOne({
             ratingAverage: { $gt: 3.5 },
-            programs,
+            programs
           });
         }
         if (!university) {
           res.json({
-            fulfillmentText: `there is no universitiy with your specifications`,
+            fulfillmentText: `there is no universitiy with your specifications`
           });
         }
         res.json({
           fulfillmentText: `${university.name} provide ${word} and it is rated by ${university.ratingAverage}/5 \n
-          you can find more on this link ${req.protocol}://${req.hostname}.com/universities/${university.slug} `,
+          you can find more on this link ${req.protocol}://${req.hostname}.com/universities/${university.slug} `
         });
       }
       const university = await University.findOne({
-        ratingAverage: { $gt: 3.5 },
+        ratingAverage: { $gt: 3.5 }
       });
       if (!university) {
         res.json({
-          fulfillmentText: `there is no universitiy with your specifications`,
+          fulfillmentText: `there is no universitiy with your specifications`
         });
       }
       res.json({
         fulfillmentText: `${university.name} it is rated by ${university.ratingAverage}/5 \n
-        you can find more on this link ${req.protocol}://${req.hostname}.com/universities/${university.slug} `,
+        you can find more on this link ${req.protocol}://${req.hostname}.com/universities/${university.slug} `
       });
     } else if (rate == 'medium') {
       if (majors && programs) {
         const university = await University.findOne({
           ratingAverage: { $eq: 3.5 },
           majors,
-          programs,
+          programs
         });
         if (!university) {
           res.json({
-            fulfillmentText: `there is no universitiy with your specifications`,
+            fulfillmentText: `there is no universitiy with your specifications`
           });
         }
         res.json({
           fulfillmentText: `${university.name} provide ${majors} and it is rated by ${university.ratingAverage}/5 \n
-          you can find more on this link ${req.protocol}://${req.hostname}.com/universities/${university.slug} `,
+          you can find more on this link ${req.protocol}://${req.hostname}.com/universities/${university.slug} `
         });
       } else if (majors || programs) {
         let word = majors == undefined ? programs : majors;
@@ -243,52 +241,52 @@ exports.chatbot = catchAsync(async (req, res, next) => {
         if (majors) {
           university = await University.findOne({
             ratingAverage: { $eq: 3.5 },
-            majors,
+            majors
           });
         } else if (programs) {
           university = await University.findOne({
             ratingAverage: { $eq: 3.5 },
-            programs,
+            programs
           });
         }
 
         if (!university) {
           res.json({
-            fulfillmentText: `there is no universitiy with your specifications`,
+            fulfillmentText: `there is no universitiy with your specifications`
           });
         }
         res.json({
           fulfillmentText: `${university.name} provide ${word} and it is rated by ${university.ratingAverage}/5 \n
-          you can find more on this link ${req.protocol}://${req.hostname}.com/universities/${university.slug} `,
+          you can find more on this link ${req.protocol}://${req.hostname}.com/universities/${university.slug} `
         });
       }
       const university = await University.findOne({
-        ratingAverage: { $eq: 3.5 },
+        ratingAverage: { $eq: 3.5 }
       });
       if (!university) {
         res.json({
-          fulfillmentText: `there is no universitiy with your specifications`,
+          fulfillmentText: `there is no universitiy with your specifications`
         });
       }
       res.json({
         fulfillmentText: `${university.name} it is rated by ${university.ratingAverage}/5 \n
-        you can find more on this link ${req.protocol}://${req.hostname}.com/universities/${university.slug} `,
+        you can find more on this link ${req.protocol}://${req.hostname}.com/universities/${university.slug} `
       });
     } else if (rate == 'lowest') {
       if (majors && programs) {
         const university = await University.findOne({
           ratingAverage: { $lt: 3.5 },
           majors,
-          programs,
+          programs
         });
         if (!university) {
           res.json({
-            fulfillmentText: `there is no universitiy with your specifications`,
+            fulfillmentText: `there is no universitiy with your specifications`
           });
         }
         res.json({
           fulfillmentText: `${university.name} provide ${majors} and it is rated by ${university.ratingAverage}/5 \n
-          you can find more on this link ${req.protocol}://${req.hostname}.com/universities/${university.slug} `,
+          you can find more on this link ${req.protocol}://${req.hostname}.com/universities/${university.slug} `
         });
       } else if (majors || programs) {
         let university;
@@ -296,113 +294,37 @@ exports.chatbot = catchAsync(async (req, res, next) => {
         if (majors) {
           university = await University.findOne({
             ratingAverage: { $lt: 3.5 },
-            majors,
+            majors
           });
         } else if (programs) {
           university = await University.findOne({
             ratingAverage: { $lt: 3.5 },
-            porgrams,
+            porgrams
           });
         }
 
         if (!university) {
           res.json({
-            fulfillmentText: `there is no universitiy with your specifications`,
+            fulfillmentText: `there is no universitiy with your specifications`
           });
         }
         res.json({
           fulfillmentText: `${university.name} provide ${word} and it is rated by ${university.ratingAverage}/5 \n
-          you can find more on this link ${req.protocol}://${req.hostname}.com/universities/${university.slug} `,
+          you can find more on this link ${req.protocol}://${req.hostname}.com/universities/${university.slug} `
         });
       }
       const university = await University.findOne({
-        ratingAverage: { $lt: 3.5 },
+        ratingAverage: { $lt: 3.5 }
       });
       if (!university) {
         res.json({
-          fulfillmentText: `there is no universitiy with your specifications`,
+          fulfillmentText: `there is no universitiy with your specifications`
         });
       }
       res.json({
         fulfillmentText: `${university.name} it is rated by ${university.ratingAverage}/5 \n
-        you can find more on this link ${req.protocol}://${req.hostname}.com/universities/${university.slug} `,
+        you can find more on this link ${req.protocol}://${req.hostname}.com/universities/${university.slug} `
       });
     }
   }
-
-  //   if (rate == 'highest' && course && programs) {
-  //     const university = await University.findOne({
-  //       ratingAverage: { $gte: 3.5 },
-  //       majors: course,
-  //       programs,
-  //     });
-  //     res.json({
-  //       fulfillmentText: `${university.name} provide a ${course} and it is rated by ${university.ratingAverage}/5 \n
-  //       you can find more on this link ${req.protocol}://${req.hostname}.com/universities/${university.slug} `,
-  //     });
-  //   } else if (rate == 'medium' && course && programs) {
-  //     const university = await University.findOne({
-  //       ratingAverage: { $eq: 3.5 },
-  //       majors: course,
-  //       programs,
-  //     });
-  //     res.json({
-  //       fulfillmentText: `${university.name} provide a ${course} and it is rated by ${university.ratingAverage}/5 \n
-  //       you can find more on this link ${req.protocol}://${req.hostname}.com/universities/${universityOne.slug} `,
-  //     });
-  //   } else if (rate == 'lowest' && course && programs) {
-  //     const university = await University.findOne({
-  //       ratingAverage: { $lt: 3.5 },
-  //       majors: course,
-  //       programs,
-  //     });
-  //     res.json({
-  //       fulfillmentText: `${university.name} provide a ${course} and it is rated by ${university.ratingAverage}/5 \n
-  //       you can find more on this link ${req.protocol}://${req.hostname}.com/universities/${universityOne.slug} `,
-  //     });
-  //   } else if (rate == 'highest') {
-  //     const university = await University.findOne({
-  //       ratingAverage: { $gt: 3.5 },
-  //       majors: course,
-  //       programs,
-  //     });
-  //     res.json({
-  //       fulfillmentText: `${university.name} it is rated by ${university.ratingAverage}/5 \n
-  //       you can find more on this link ${req.protocol}://${req.hostname}.com/universities/${universityOne.slug} `,
-  //     });
-  //   } else if (rate == 'medium') {
-  //     const university = await University.findOne({
-  //       ratingAverage: { $eq: 3.5 },
-  //     });
-  //     res.json({
-  //       fulfillmentText: `${university.name} it is rated by ${university.ratingAverage}/5 \n
-  //       you can find more on this link ${req.protocol}://${req.hostname}.com/universities/${universityOne.slug} `,
-  //     });
-  //   } else if (rate == 'small') {
-  //     const university = await University.findOne({
-  //       ratingAverage: { $lt: 3.5 },
-  //     });
-  //     res.json({
-  //       fulfillmentText: `${university.name} it is rated by ${university.ratingAverage}/5 \n
-  //       you can find more on this link ${req.protocol}://${req.hostname}.com/universities/${universityOne.slug} `,
-  //     });
-  //   }
-  // }
-
-  // if (programs) {
-  //   const university = await University.find({
-  //     programs,
-  //   }).select('abbrv');
-  //   const abbrvs = university.map(el => el.abbrv);
-  //   res.json({
-  //     fulfillmentText: `you can find what you looking for here ${abbrvs}`,
-  //   });
-  // } else if (name) {
-  //   const universityOne = await University.findOne({ name });
-  //   res.json({
-  //     fulfillmentText: `${universityOne.abbrv} has a rating average of ${universityOne.ratingAverage}/5, voted by ${universityOne.ratingQuantity} student,\n it provides the following courses in ${universityOne.majors}.
-  //     and located at ${universityOne.address}. if you like to know more please visit the ${universityOne.name} page
-  //     at ${req.protocol}://${req.hostname}.com/universities/${universityOne.slug}`,
-  //   });
-  // }
 });

@@ -5,19 +5,15 @@ include _cards
 block content
     section.universities
         .search__container
-            form.search(action="", method="get")
-                input.search__input(type="text", name="search" placeholder= "Search")
-                button.search__button(type="submit")
-                    ion-icon(name="search")
+            //- form.search(action="", method="get")
+            //-     input.search__input(type="text", name="search" placeholder= "Search")
+            //-     button.search__button(type="submit")
+            //-         ion-icon(name="search")
         
         .uni__row
             each uni in universities
                 +universityCard(uni.slug,uni.coverImage,uni.name,uni.abbrv,uni.description.slice(0,30),uni.address,uni.programs,uni.numOfStudents,uni.website,uni.priceAverage,uni.ratingAverage)
-                //- +universityCard('The Arab Open University','AOU','loremloremlorem','location','programs','students','date','123','rate')
-                //- +universityCard('The Arab Open University','AOU','loremloremlorem','location','programs','students','date','123','rate')
-
-
-    
+                
 
 
 

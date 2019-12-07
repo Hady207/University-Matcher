@@ -65,10 +65,10 @@ const userSchema = new mongoose.Schema({
     }
   ],
   major: String,
-  programs: [{ type: String, enum: ['diploma', 'bachelore', 'master', 'phd'] }],
+  programs: [{ type: String, enum: ['diploma', 'bachelor', 'master', 'phd'] }],
   program: {
     type: String,
-    enum: ['diploma', 'bachelore', 'master', 'phd']
+    enum: ['diploma', 'bachelor', 'master', 'phd']
   },
   notifications: [notificationSchema],
   passwordChangedAt: Date,

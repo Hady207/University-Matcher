@@ -1,19 +1,6 @@
 const Post = require('../models/postModel');
 const catchAsync = require('../utils/catchAsync');
 const factory = require('./handlerFactory');
-const Pusher = require('pusher');
-
-// const pusher = new Pusher({
-//   appId: process.env.PUSHER_appId,
-//   key: process.env.PUSHER_KEY,
-//   secret: process.env.PUSHER_SECRET,
-//   cluster: process.env.PUSHER_CLUSTER,
-//   encrypted: process.env.PUSHER_ENCRYPTED
-// });
-
-// pusher.trigger('my-channel', 'my-event', {
-//   message: 'hello world'
-// });
 
 exports.setUserId = (req, res, next) => {
   req.body.user = req.user.id;
@@ -33,7 +20,6 @@ exports.createComment = catchAsync(async (req, res, next) => {
   const post = await Post.findById(req.params.id);
   const comment = post.comments.push(writtenComment);
 
-  // channels_client.trigger('.commentSection', 'new_comment', comment);
   post.save(err => console.log('success'));
 
   res.status(201).json({
@@ -61,8 +47,6 @@ exports.hitLike = catchAsync(async (req, res, next) => {
   const post = await Post.findByIdAndUpdate(req.params.id, {
     $push: { likes: req.user.id }
   });
-
-  // pusher.trigger('like-channel','post-action',{postId: req.params.id},req.body.socketId)
 
   res.status(201).json({
     status: 'success',
