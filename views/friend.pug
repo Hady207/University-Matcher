@@ -30,10 +30,10 @@ block content
             header.user__nav__header
                 img.logo(src="../img/icons/logo_transparent.png")
 
-                form.search(action="", method="get")
-                    input.search__input(type="search",placeholder="Search")
-                    button.search__button(type="submit")
-                        ion-icon(name="search")
+                //- form.search(action="", method="get")
+                //-     input.search__input(type="search",placeholder="Search")
+                //-     button.search__button(type="submit")
+                //-         ion-icon(name="search")
 
                 nav.user__nav
                     //- .user__icon--box(id="bookmark")
@@ -42,7 +42,7 @@ block content
                     -if(user.following.some(val => val.id == friend.id))
                         button.unfollow__button(data-friend=`${friend.id}`)
                             ion-icon(name="person-add")
-                    -else
+                    -else if(user.id !== friend.id)
                         button.follow__button(data-friend=`${friend.id}`)
                             ion-icon(name="person-add")
                     .user
@@ -87,7 +87,7 @@ block content
                             +universitiesLis()
 
                 main.dashboard__reviewview(id="review__main")
-                    h2.dashboard__settings--title Your Friends List
+                    h2.dashboard__settings--title Friends List
                     .dashboard__container
                         h5 Followers
                         each f in friend.followers
